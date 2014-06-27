@@ -38,6 +38,8 @@ class SessionCollector implements CollectorInterface
     public function getSessionData()
     {
         $container = new Container;
+        $container->getManager()->start();
+        
         $arraysession = $container->getManager()->getStorage()->toArray();
         
         $data = array();

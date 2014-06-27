@@ -2,16 +2,8 @@
 
 namespace SanSessionToolbar;
 
-use Zend\Session\Container;
-
 class Module
 {
-    public function onBootstrap($e)
-    {
-        $sessionContainer = new Container;
-        $sessionContainer->getManager()->start();
-    }
-    
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
