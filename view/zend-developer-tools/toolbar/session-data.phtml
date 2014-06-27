@@ -1,0 +1,19 @@
+<?php /* @var $collector \SanSessionToolbar\Collector\SessionCollector */ ?>
+<div class="zdt-toolbar-entry">
+    <div class="zdt-toolbar-preview">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATxJREFUeNpi/P//PwMhMJuRkRVItQNxKhBzAPFOIM5O/f//MbpaFgbiAMigYiS+LxCDXOKPrpCJSAP1sYiZY1NIrIGHsYhtw6aQWC8vA2IlIM4EYn6oYRXYFDISEylokQOKlG/ACPlLsguBBggAKRUglgbi70B8EWjQS3x6sLoQaFAikLIDYjcglkKSegHEGUBDN+IyEFekeAOxJRBfAeJPSOISQDwZaKEYSS5Ec20KiEITVgW68g65yeYHAwmAGAN90PgPgPgjWQZCw8oOTXgX0LuvyXWhBxBLIvFBaW8zJV52RePfA+LdZBkI9K44kHJAEz4G9O5Pcl3IA8QyaGJHKYllRixiylDXywCxFKkGvgPiG2hiJUCDQHn5PhBbkGQgMKxABsYC8UEg/grFH4D4BBDHA/EebPoAAgwA3RZUHjvT8+IAAAAASUVORK5CYII=" alt="SESSION Data">
+        <span class="zdt-toolbar-info">
+                SessionData     
+        </span>
+    </div>
+    <div class="zdt-toolbar-detail">
+        <span class="zdt-toolbar-info zdt-toolbar-info-redundant">
+            <span class="zdt-detail-label">Session Data</span>
+        </span>
+        <span class="zdt-toolbar-info">
+            <span class="zdt-detail-pre">
+                <?php Zend\Debug\Debug::dump($collector->getSessionData()); ?>
+            </span>
+        </span>
+    </div>
+</div> 
