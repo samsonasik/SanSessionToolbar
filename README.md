@@ -1,0 +1,1 @@
+ZF2 module as session toolbar for ZendDeveloperTools
