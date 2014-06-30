@@ -47,7 +47,7 @@ class SessionCollector implements CollectorInterface
             if ($row instanceof \Zend\Stdlib\ArrayObject) {
                 $iterator = $row->getIterator();
                 while($iterator->valid()) {
-                    $data[] = $iterator->key() . ' => ' . $iterator->current() . "\n";
+                    $data[$iterator->key()] =  $iterator->current() ;
                     $iterator->next();
                 }
             }
