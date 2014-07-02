@@ -1,0 +1,24 @@
+{
+    "name": "san/san-session-toolbar",
+    "type": "library",
+    "description": "ZF2 Session Toolbar for ZendDeveloperTools ",
+    "keywords": ["captcha","zf2"],
+    "homepage": "https://github.com/samsonasik/SanSessionToolbar",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdul Malik Ikhsan",
+            "email": "samsonasik@gmail.com",
+            "homepage": "http://samsonasik.wordpress.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.23"
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    }
+}
