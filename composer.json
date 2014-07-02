@@ -2,7 +2,7 @@
     "name": "san/san-session-toolbar",
     "type": "library",
     "description": "ZF2 Session Toolbar for ZendDeveloperTools ",
-    "keywords": ["captcha","zf2"],
+    "keywords": ["session","zf2"],
     "homepage": "https://github.com/samsonasik/SanSessionToolbar",
     "license": "MIT",
     "authors": [
