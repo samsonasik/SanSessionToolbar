@@ -3,7 +3,7 @@ ZF2 module as session toolbar for ZendDeveloperTools
 What it's about ?
 -----------------
 It shows you the ZF2 session data you've been using like this :
-![Show ZF2 sessions data](http://samsonasik.files.wordpress.com/2014/06/session-toolbar-rev.png?w=720)
+![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/5303224/ff3553e2-7c19-11e4-8c20-b9eebbf559d2.png)
 
 Installation
 ------------
