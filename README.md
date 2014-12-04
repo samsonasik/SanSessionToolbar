@@ -17,4 +17,4 @@ $ php composer.phar require san/san-session-toolbar 0.*
 
 Credit
 ------
-Current Image session icon originally from : http://makemore.info.yorku.ca/files/2012/11/info.png, encoded with base64_encode.
+Current Image session icon originally from : http://png-5.findicons.com/files/icons/728/database/512/database_2_512.png, encoded with base64_encode.
