@@ -12,9 +12,21 @@ Installation of this module uses composer. For composer documentation, please re
 [getcomposer.org](http://getcomposer.org/).
 
 ```sh
-$ php composer.phar require san/san-session-toolbar 0.*
+$ composer require san/san-session-toolbar 0.*
 ```
 
+Enable this : 
+```php
+// config/application.config.php
+return [
+    'modules' => [
+        // ...
+        'ZendDeveloperTools',
+        'SanSessionToolbar',
+    ]
+    // ...
+],
+```
 Credit
 ------
 Current Image session icon originally from : http://png-5.findicons.com/files/icons/728/database/512/database_2_512.png, encoded with base64_encode.
