@@ -5,6 +5,7 @@ namespace SanSessionToolbar\Collector;
 use ZendDeveloperTools\Collector\CollectorInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
+use Zend\Stdlib\ArrayObject;
 
 /**
  * Session Data Collector.
@@ -44,7 +45,7 @@ class SessionCollector implements CollectorInterface
         
         $data = array();
         foreach($arraysession as $key => $row) {
-            if ($row instanceof \Zend\Stdlib\ArrayObject) {
+            if ($row instanceof ArrayObject) {
                 $iterator = $row->getIterator();
                 while($iterator->valid()) {
                     $data[$iterator->key()] =  $iterator->current() ;
