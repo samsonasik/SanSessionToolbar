@@ -12,7 +12,7 @@ use Zend\Session\Container;
 class SessionCollector implements CollectorInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function getName()
     {
@@ -29,7 +29,7 @@ class SessionCollector implements CollectorInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function collect(MvcEvent $mvcEvent)
     {
