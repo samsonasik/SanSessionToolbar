@@ -6,6 +6,7 @@ SanSessionToolbar
 What it's about ?
 -----------------
 This is a ZF2 module as session toolbar for ZendDeveloperTools. It shows you the ZF2 session data you've been using like this :
+
 ![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/5303224/ff3553e2-7c19-11e4-8c20-b9eebbf559d2.png)
 
 Installation
