@@ -1,7 +1,8 @@
 SanSessionToolbar
 =================
 
-[![Build Status](https://secure.travis-ci.org/samsonasik/SanSessionToolbar.png?branch=master)](http://travis-ci.org/samsonasik/SanSessionToolbar)
+[![Build Status](https://secure.travis-ci.org/samsonasik/SanSessionToolbar.svg?branch=master)](http://travis-ci.org/samsonasik/SanSessionToolbar)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 What it's about ?
 -----------------
