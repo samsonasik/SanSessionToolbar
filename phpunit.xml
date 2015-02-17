@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+    colors="true"
+    bootstrap="test/Bootstrap.php">
+    <testsuites>
+        <testsuite name="san-session-toolbar-test">
+            <directory suffix=".php">./test/SanSessionToolbarTest/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory suffix=".php">./test/</directory>
+            </exclude>
+        </whitelist>
+        <blacklist>
+            <directory suffix=".php">./vendor/</directory>
+        </blacklist>
+    </filter>
+</phpunit>

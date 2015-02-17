@@ -9,6 +9,7 @@ use Zend\Stdlib\ArrayObject;
 
 /**
  * Session Data Collector.
+ * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class SessionCollector implements CollectorInterface
 {
