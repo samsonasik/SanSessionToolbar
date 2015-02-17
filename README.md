@@ -3,6 +3,7 @@ SanSessionToolbar
 
 [![Build Status](https://secure.travis-ci.org/samsonasik/SanSessionToolbar.svg?branch=master)](http://travis-ci.org/samsonasik/SanSessionToolbar)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://poser.pugx.org/san/san-session-toolbar/downloads.svg)](https://packagist.org/packages/san/san-session-toolbar)
 
 What is it about ?
 -----------------
