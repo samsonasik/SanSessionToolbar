@@ -1,3 +1,10 @@
+### 0.0.5 - 2015-02-17
+
+- Fixes docblock
+- Add tests
+- Update installation and enable in ZF2 app
+- Update use statement
+
 ### 0.0.4 - 2014-12-05
 
 - Add detail what it is about
