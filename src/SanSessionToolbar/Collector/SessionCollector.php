@@ -17,7 +17,7 @@
  */
 namespace SanSessionToolbar\Collector;
 
-use ZendDeveloperTools\Collector\CollectorInterface;
+use ZendDeveloperTools\Collector\AbstractCollector;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\Stdlib\ArrayObject;
@@ -26,7 +26,7 @@ use Zend\Stdlib\ArrayObject;
  * Session Data Collector.
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollector implements CollectorInterface
+class SessionCollector extends AbstractCollector
 {
     /**
      * {@inheritDoc}
@@ -50,6 +50,9 @@ class SessionCollector implements CollectorInterface
      */
     public function collect(MvcEvent $mvcEvent)
     {
+        if (!isset($this->data)) {
+            $this->data = array();
+        }
     }
     
     public function getSessionData()
@@ -59,17 +62,16 @@ class SessionCollector implements CollectorInterface
         
         $arraysession = $container->getManager()->getStorage()->toArray();
         
-        $data = array();
         foreach($arraysession as $key => $row) {
             if ($row instanceof ArrayObject) {
                 $iterator = $row->getIterator();
                 while($iterator->valid()) {
-                    $data[$iterator->key()] =  $iterator->current() ;
+                    $this->data['session'][$iterator->key()] =  $iterator->current() ;
                     $iterator->next();
                 }
             }
         }
         
-        return $data;
+        return $this->data['session'];
     }
 }
