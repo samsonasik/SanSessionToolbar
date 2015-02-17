@@ -4,9 +4,9 @@ SanSessionToolbar
 [![Build Status](https://secure.travis-ci.org/samsonasik/SanSessionToolbar.svg?branch=master)](http://travis-ci.org/samsonasik/SanSessionToolbar)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-What it's about ?
+What is it about ?
 -----------------
-This is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2 session data you've been using like this :
+It is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2 session data you've been using like this :
 
 ![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/5303224/ff3553e2-7c19-11e4-8c20-b9eebbf559d2.png)
 
