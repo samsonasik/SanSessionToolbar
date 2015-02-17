@@ -55,6 +55,11 @@ class SessionCollector extends AbstractCollector
         }
     }
     
+    /**
+     * Get Session data as array
+     *
+     * @return array
+     */
     public function getSessionData()
     {
         $container = new Container;
