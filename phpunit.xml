@@ -19,4 +19,7 @@
             <directory suffix=".php">./vendor/</directory>
         </blacklist>
     </filter>
+    <logging>
+        <log type="coverage-php" target="./build/coverage/coverage-application.cov"/>
+    </logging>
 </phpunit>
