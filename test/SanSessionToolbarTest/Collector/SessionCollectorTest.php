@@ -22,6 +22,9 @@ use SanSessionToolbar\Collector\SessionCollector;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 
+/**
+ * This class test SessionCollector class
+ */
 class SessionCollectorTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -34,27 +37,42 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
      */
     protected $sessionContainer;
 
+    /**
+     * initialize properties
+     */
     protected function setUp()
     {
         $this->sessionCollector = new SessionCollector();
         $this->sessionContainer = new Container();
     }
 
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::getName
+     */
     public function testGetName()
     {
         $this->assertEquals('session.toolbar', $this->sessionCollector->getName());
     }
 
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::getPriority
+     */
     public function testGetPriority()
     {
         $this->assertEquals(10, $this->sessionCollector->getPriority());
     }
 
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::collect
+     */
     public function testCallCollect()
     {
         $this->sessionCollector->collect(new MvcEvent());
     }
 
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
+     */
     public function testGetSessionData()
     {
         $this->sessionContainer->word = 'zaf8go6i';
