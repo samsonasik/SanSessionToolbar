@@ -33,7 +33,7 @@ class SessionCollector extends AbstractCollector
      */
     public function getName()
     {
-         // this name must same with *collectors* name in the configuration
+        // this name must same with *collectors* name in the configuration
         return 'session.toolbar';
     }
 
@@ -54,7 +54,7 @@ class SessionCollector extends AbstractCollector
             $this->data = array();
         }
     }
-    
+
     /**
      * Get Session data as array
      *
@@ -62,21 +62,21 @@ class SessionCollector extends AbstractCollector
      */
     public function getSessionData()
     {
-        $container = new Container;
+        $container = new Container();
         $container->getManager()->start();
-        
+
         $arraysession = $container->getManager()->getStorage()->toArray();
-        
-        foreach($arraysession as $key => $row) {
+
+        foreach ($arraysession as $key => $row) {
             if ($row instanceof ArrayObject) {
                 $iterator = $row->getIterator();
-                while($iterator->valid()) {
-                    $this->data['session'][$iterator->key()] =  $iterator->current() ;
+                while ($iterator->valid()) {
+                    $this->data['session'][$iterator->key()] =  $iterator->current();
                     $iterator->next();
                 }
             }
         }
-        
+
         return $this->data['session'];
     }
 }

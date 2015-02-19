@@ -36,8 +36,8 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->sessionCollector = new SessionCollector;
-        $this->sessionContainer = new Container;
+        $this->sessionCollector = new SessionCollector();
+        $this->sessionContainer = new Container();
     }
 
     public function testGetName()
@@ -52,7 +52,7 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
 
     public function testCallCollect()
     {
-        $this->sessionCollector->collect(new MvcEvent);
+        $this->sessionCollector->collect(new MvcEvent());
     }
 
     public function testGetSessionData()
@@ -91,4 +91,3 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
         $this->sessionContainer->offsetUnset('bar');
     }
 }
-
