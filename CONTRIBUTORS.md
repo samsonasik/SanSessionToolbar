@@ -1,4 +1,4 @@
 CONTRIBUTORS
 ============
- - Abdul Malik Ikhsan (samsonasik)
- - Tom H. Anderson    (TomHAnderson)
+ - [Abdul Malik Ikhsan](https://github.com/samsonasik)
+ - [Tom Anderson](https://github.com/TomHAnderson)
