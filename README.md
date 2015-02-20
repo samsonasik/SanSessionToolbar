@@ -12,7 +12,7 @@ What is it about ?
 -----------------
 It is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2 session data you've been using like this :
 
-![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6304962/95fb9106-b95a-11e4-9d16-e19728da22d4.png)
+![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6305524/7be2bda4-b95e-11e4-8c18-8f97caf13a54.png)
 
 Installation
 ------------
