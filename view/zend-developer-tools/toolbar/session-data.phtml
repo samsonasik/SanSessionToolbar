@@ -29,10 +29,9 @@
         </span>
         <?php foreach ($collector->getSessionData() as $key => $session) : ?>
         <span class="zdt-toolbar-info">
-                <span class="zdt-detail-label"><?php echo $key; ?></span>
-                <span class="zdt-detail-value"><?php if (!is_string($session)) { var_dump($session); } else { echo   $session; }  ?></span>
+                <span class="zdt-detail-label" style="text-transform: none;"><?php echo $key; ?></span>
+                <span class="zdt-detail-value"><?php if (!is_scalar($session)) { var_dump($session); } else {  echo $session; }  ?></span>
         </span>
-        <hr>
         <?php endforeach; ?>
     </div>
 </div> 
