@@ -9,8 +9,16 @@ php:
 install:
   - composer install --prefer-source
 
+before_script:
+  - mkdir -p build/coverage
+  - mkdir -p build/logs
+
 script:
   - vendor/bin/phpunit --coverage-text
+
+after_script:
+  - php vendor/bin/phpcov merge --clover build/logs/clover.xml build/coverage/
+  - php vendor/bin/coveralls -v --exclude-no-stmt
 
 notifications:
   email: false

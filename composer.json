@@ -1,6 +1,5 @@
 {
     "name": "san/san-session-toolbar",
-    "version": "0.0.5",
     "type": "library",
     "description": "ZF2 Session Toolbar for ZendDeveloperTools ",
     "keywords": ["session","zf2"],
@@ -20,6 +19,8 @@
     },
     "require-dev": {
         "phpunit/PHPUnit": "~4.0",
+        "satooshi/php-coveralls": "dev-master",
+        "phpunit/phpcov": "~2.0",
         "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
