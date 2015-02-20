@@ -1,3 +1,10 @@
+### 0.0.6 - 2015-02-20
+
+- Add more widgets/badges
+- Fixes newline in yml files (travis and coveralls)
+- Update list of contributors
+- more verbose preview
+
 ### 0.0.5 - 2015-02-17
 
 - Fixes docblock
