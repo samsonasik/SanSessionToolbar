@@ -1,3 +1,7 @@
+### 0.0.7 - 2015-02-20
+
+- Using scalar check for preview session
+
 ### 0.0.6 - 2015-02-20
 
 - Add more widgets/badges
