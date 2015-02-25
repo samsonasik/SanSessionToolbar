@@ -1,3 +1,8 @@
+### 0.1.0 - 2015-02-26
+
+- Add feature Grouping Session Container
+- Add feature Remove Session by its key
+
 ### 0.0.8 - 2015-02-25
 
 - hotfix : conditional empty data
