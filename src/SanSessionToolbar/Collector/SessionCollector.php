@@ -71,7 +71,7 @@ class SessionCollector extends AbstractCollector
             if ($row instanceof ArrayObject) {
                 $iterator = $row->getIterator();
                 while ($iterator->valid()) {
-                    $this->data['san-session'][$iterator->key()] =  $iterator->current();
+                    $this->data['san-session'][$key][$iterator->key()] =  $iterator->current();
                     $iterator->next();
                 }
             }

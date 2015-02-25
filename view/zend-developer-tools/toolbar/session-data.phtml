@@ -25,15 +25,24 @@
     </div>
     <div class="zdt-toolbar-detail">
         <?php $sessionData = $collector->getSessionData();
-              if (!empty($sessionData)) : foreach ($sessionData as $key => $session) : ?>
-        <span class="zdt-toolbar-info">
-                <span class="zdt-detail-label" style="text-transform: none;"><?php echo $key; ?></span>
-                <span class="zdt-detail-value"><?php if (!is_scalar($session)) { var_dump($session); } else {  echo $session; }  ?></span>
-        </span>
-        <?php endforeach; else : ?>
-        <span class="zdt-toolbar-info">
-                <span class="zdt-detail-label" style="text-transform: none;"><a href="javascript:void(0);">No ZF2 Session Data</a></span>
-        </span>
-        <?php endif; ?>
+              if (!empty($sessionData)) {
+                    foreach ($sessionData as $key => $session) { ?>
+                        <span class="zdt-toolbar-info">
+                                <br>
+                                <span class="zdt-detail-label" style="text-transform: none;"><a><?php echo $key; ?></a></span>
+                        </span>
+                        <hr>
+                        <?php foreach ($session as $keysession => $rowsession) {  ?>
+                        <span class="zdt-toolbar-info">
+                                <span class="zdt-detail-label" style="text-transform: none;"><?php echo $keysession; ?></span>
+                                <span class="zdt-detail-value"><?php if (!is_scalar($rowsession)) { var_dump($rowsession); } else {  echo $rowsession; }  ?></span>
+                        </span>
+                        <?php }
+                    }
+              } else { ?>
+            <span class="zdt-toolbar-info">
+                    <span class="zdt-detail-label" style="text-transform: none;"><a href="javascript:void(0);">No ZF2 Session Data</a></span>
+            </span>
+        <?php } ?>
     </div>
 </div> 
