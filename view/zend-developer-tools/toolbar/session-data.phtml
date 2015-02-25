@@ -27,7 +27,7 @@
         <?php $sessionData = $collector->getSessionData();
               if (!empty($sessionData)) : foreach ($sessionData as $key => $session) : ?>
         <span class="zdt-toolbar-info">
-                <span class="zdt-detail-label" style="text-transform: none;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACRklEQVR42mNkoBAwUtWAhYyMpjLWlutenziVGvHnzw5kuaVMTB6StlZznh89ERj9589pDAPmMDCYyirL7rJMTRU4t27tj4enLgbFMzBsB8nNY2DwVDLWWWcUHsFxfN68D89u3HNLZGA4jWLAUnaWx/ZpCTJM/9gZGLg5GM7u3fFj79mrwSA5F0OttUZObhwMP34zMEoIMexraXsS/fOvLIoBkxkYPOTVZderGFtw/P31n4GRj5th79kTPxn//2dwMjJn///lOwMLNzvD3Yvnfjy6cD0wi4FhB0YY9AGdKqciuU5BWYPj77c/DP8EeMAKmD5/Z+CQl2S4ffLYjyc3HgblQ72GNRY6gIbIK4mtUxCT5vjz/R/Df2ZmBgYOBoZHT+//eP7wfVApkmasBjQDDVCUE1on9+UHx69338BibEJcDI94OX88fPg2qBqfAbVAzaryousMP3/n+PvuC8MPYV6wAva3nxmYhXkYzvNy/7j74GVQIzYvVHCye2pKiqxz/PiZg+HtJ4ZfokIMdTwcPxkYGf83AQ1ke/2OgUFEgGE/P/+Pt/+Zg4ru3duOYkCjqsyTDG5+aa4LVxl+iYkw1PHx/Lhz50HwX6Cchori2sZPnznYXr1h+Gakx7DhP/OT9PPnUaOxhIXZVFVKclegsJDAjC9ffpy6fS94CwPDNpCcF9Br1qpK61J5eTjWv3n34cGTZ27t//6dxgiDYj4ucy5x4XVP7z9LmffnL0pgZbCyenqamc65eP5CQN23b5hJmSqZiRwAABaj2REhYuqwAAAAAElFTkSuQmCC" alt="Remove Session" /><?php echo $key; ?></span>
+                <span class="zdt-detail-label" style="text-transform: none;"><?php echo $key; ?></span>
                 <span class="zdt-detail-value"><?php if (!is_scalar($session)) { var_dump($session); } else {  echo $session; }  ?></span>
         </span>
         <?php endforeach; else : ?>
