@@ -102,6 +102,19 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
         ), $this->sessionCollector->getSessionData());
     }
 
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
+     */
+    public function testGetSessionDataForEmpty()
+    {
+        $this->sessionContainer->offsetUnset('word');
+        $this->sessionContainer->offsetUnset('a');
+        $this->sessionContainer->offsetUnset('bar');
+
+        $this->sessionCollector->collect(new MvcEvent());
+        $this->assertEquals(array(), $this->sessionCollector->getSessionData());
+    }
+
     protected function tearDown()
     {
         $this->sessionContainer->offsetUnset('word');

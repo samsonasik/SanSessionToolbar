@@ -50,8 +50,8 @@ class SessionCollector extends AbstractCollector
      */
     public function collect(MvcEvent $mvcEvent)
     {
-        if (!isset($this->data)) {
-            $this->data = array();
+        if (!isset($this->data['san-session'])) {
+            $this->data['san-session'] = array();
         }
     }
 
@@ -71,12 +71,12 @@ class SessionCollector extends AbstractCollector
             if ($row instanceof ArrayObject) {
                 $iterator = $row->getIterator();
                 while ($iterator->valid()) {
-                    $this->data['session'][$iterator->key()] =  $iterator->current();
+                    $this->data['san-session'][$iterator->key()] =  $iterator->current();
                     $iterator->next();
                 }
             }
         }
 
-        return $this->data['session'];
+        return $this->data['san-session'];
     }
 }
