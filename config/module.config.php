@@ -16,6 +16,30 @@
  * and is licensed under the MIT license.
  */
 return array(
+
+    'controllers' => array(
+        'invokables' => array(
+            'SanSessionToolbar\Controller\SessionToolbar' => 'SanSessionToolbar\Controller\SessionToolbarController',
+        ),
+    ),
+
+    'router' => array(
+        'routes' => array(
+            'san-session-toolbar' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/san-session-toolbar[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'SanSessionToolbar\Controller\SessionToolbar',
+                        'action'     => 'removesession',
+                    ),
+                ),
+            ),
+        ),
+    ),
     
     'service_manager' => array(
         'invokables' => array(
@@ -27,6 +51,9 @@ return array(
         'template_map' => array(
             'zend-developer-tools/toolbar/session-data'
                 => __DIR__ . '/../view/zend-developer-tools/toolbar/session-data.phtml',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
         
