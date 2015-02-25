@@ -88,18 +88,33 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
         $this->sessionContainer->bar = 'bar';
 
         $this->assertEquals(array(
-            'word' => 'zaf8go6i',
-            'a' => array(
-                'foo' => 'bar',
-                42 => 24,
-                'multi' => array(
-                    'dimensional' => array(
-                        'array' => 'foo',
+            'Default' => array(
+                'word' => 'zaf8go6i',
+                'a' => array(
+                    'foo' => 'bar',
+                    42 => 24,
+                    'multi' => array(
+                        'dimensional' => array(
+                            'array' => 'foo',
+                        ),
                     ),
                 ),
+                'bar' => 'bar',
             ),
-            'bar' => 'bar',
         ), $this->sessionCollector->getSessionData());
+    }
+
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
+     */
+    public function testGetSessionDataForEmpty()
+    {
+        $this->sessionContainer->offsetUnset('word');
+        $this->sessionContainer->offsetUnset('a');
+        $this->sessionContainer->offsetUnset('bar');
+
+        $this->sessionCollector->collect(new MvcEvent());
+        $this->assertEquals(array(), $this->sessionCollector->getSessionData());
     }
 
     protected function tearDown()

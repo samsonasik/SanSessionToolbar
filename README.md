@@ -12,7 +12,9 @@ What is it about ?
 -----------------
 It is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2 session data you've been using like this :
 
-![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6304962/95fb9106-b95a-11e4-9d16-e19728da22d4.png)
+![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6378361/756ec5c8-bd5d-11e4-8c32-497a12806db2.png)
+
+You can remove your sessions data by click remove icons.
 
 Installation
 ------------
@@ -38,4 +40,6 @@ return [
 ```
 Credit
 ------
-Current Image session icon originally from : http://png-5.findicons.com/files/icons/728/database/512/database_2_512.png, encoded with base64_encode.
+
+- Current Image session icon originally from : http://png-5.findicons.com/files/icons/728/database/512/database_2_512.png, encoded with base64_encode.
+- Remove Icon originally from http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/16/Actions-edit-delete-icon.png

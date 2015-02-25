@@ -16,23 +16,42 @@
  * and is licensed under the MIT license.
  */
 /* @var $collector \SanSessionToolbar\Collector\SessionCollector */ ?>
+<script type="text/javascript">
+    <!--
+    var san_session_toolbar_base_url = '<?php echo $this->basePath(); ?>';
+    <?php include __DIR__ . '/session-toolbar.js'; ?>
+    //-->
+</script>
 <div class="zdt-toolbar-entry">
     <div class="zdt-toolbar-preview">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gwEETYHpO5gOAAAA+VJREFUOMuVlE1vE1cUhp97Zzwzxp8JiRM7CRQaSkGpUqSisqsEEVIXFEFLu2JZqb+n23ZXqSyqNlCkliBVFawKQbSopA04JLZx7CQ4Xx5PsGfG93ZhOyWkmx7pSOcuznO/3vfAK3Hv/n3+b/xw48aetdkrqtU1stkM31+/7qSSyUu1Wu2DuutORB1nJDs8nBzKZEimUnWt1PK26z7e2Ni4UygWpy9fvNicvnmTSxcuACB6wHz+2YRpGl9JKc4opfB9H7fh8qK2jlKKo0eOEAQB266L32qhlEIIgW1ZvyVisc/fPXXq8Z4TlsqlKxHTOqOUQrXVbsPB/gESiTh3794hFosxOjJCOpHANAwMwwAhztRd9wqwF7iyuqbfGBvD85qk0ymGhzIMDAzgODbLy8uk02nm/prj8dwciUSCzOAg2VyO/r4+nhUKuseRvUIAWoPvtwiCACcaJRp18DwPr9HAth3i8QSe55HP51lcKuA1GiitQexi/gV2mBqtQYjO02qtEUKgBWitoLuWUiKleKVRi33Ab1eChXvFKlIropaFbUUwTbPbLBFCdGBCYEiJZRqg2txbLHOt4i/sk82j7YaceThH8OxvTmX7OHt6ktMTJzmYPIBXr1MsVygsV1ksr7LieswsrVH69U8i4yfJvnlY7gOWcl/wYyPON9ujFCMn+C6/xNfVHXasBO1mG1HbwKoHRNsOKRuy1jbvq3muDt7mwpC7q79doChNMxX8xOXDvxBrziDUS2RTIwLQLQh9CMPOIwnbRCZsXqaG+bL1GR/lPwQ+3gtENPhdHeNh8xD1jRpm4GKIAGFoRLOFXt+CnRYqEkXtpAnDDEknh4iYoOv7rXd1OKIebAUsvljBNCQi3oc+4KAjFjRbYG5C3e38tGNjtEMaa1WOjGY5PxJR114HTsXD8aNpnz9KVeoHBtlI97OTPkhgxwhetlBWDOx1nLBJKqLJWAF9/ibvDeUYy0TG9wEt21Jnp6aYeGcSrRWWaSDQBH6L1RceSzs1VtxVdASSiQTZ3CGOHT/O6MgIxedl9fqVZRiGhiENLNumv7+P428dY3BwAM/zKJfL5BcWePr0KcVSCdd1afo+sqvNdrttdDWtJGAA8UqlkuuwO7ZUShGGIe12mzAMd2tgV+RdO1GpLOeAOGDIro2tmVs/z84/ma8GQYBpmhjdaSKk2OOUnvUMwyAIAuafPKnevjUzC1hAbxsiUkpHKZUGJj+58un5qXPnJk+ceHssGo0mN7c2rUKhSD6f9wvFYn29Vnvuuu6jB7Ozt4FHUsotpVQTCMSr41sIgdZ7JpHRzZ61FNDupvqPHv4BQHLIjBbFaNYAAAAASUVORK5CYII=" alt="SESSION Data" />
         <span class="zdt-toolbar-info">
-                SessionData     
+                Session Data
         </span>
     </div>
     <div class="zdt-toolbar-detail">
-        <span class="zdt-toolbar-info zdt-toolbar-info-redundant">
-            <span class="zdt-detail-label">Session Data</span>
-        </span>
-        <?php foreach ($collector->getSessionData() as $key => $session) : ?>
-        <span class="zdt-toolbar-info">
-                <span class="zdt-detail-label"><?php echo $key; ?></span>
-                <span class="zdt-detail-value"><?php if (!is_string($session)) { var_dump($session); } else { echo   $session; }  ?></span>
-        </span>
-        <hr>
-        <?php endforeach; ?>
+        <?php $sessionData = $collector->getSessionData();
+              if (!empty($sessionData)) {
+                    foreach ($sessionData as $key => $session) { ?>
+                        <span class="zdt-toolbar-info san-session-toolbar-info-key-<?php echo $key; ?>">
+                                <br>
+                                <span class="zdt-detail-label" style="text-transform: none;"><a><?php echo $key; ?></a></span>
+                        </span>
+                        <hr>
+                        <?php foreach ($session as $keysession => $rowsession) {  ?>
+                        <span class="zdt-toolbar-info san-session-toolbar-info-key-<?php echo $key; ?>-keysession-<?php echo $keysession; ?>">
+                                <span class="zdt-detail-label" style="text-transform: none;"><a href="javascript:void(0);"
+                       onclick="sanSessionToolbar_removeSessionByKey('<?php echo $key; ?>', '<?php echo $keysession; ?>');">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACRklEQVR42mNkoBAwUtWAhYyMpjLWlutenziVGvHnzw5kuaVMTB6StlZznh89ERj9589pDAPmMDCYyirL7rJMTRU4t27tj4enLgbFMzBsB8nNY2DwVDLWWWcUHsFxfN68D89u3HNLZGA4jWLAUnaWx/ZpCTJM/9gZGLg5GM7u3fFj79mrwSA5F0OttUZObhwMP34zMEoIMexraXsS/fOvLIoBkxkYPOTVZderGFtw/P31n4GRj5th79kTPxn//2dwMjJn///lOwMLNzvD3Yvnfjy6cD0wi4FhB0YY9AGdKqciuU5BWYPj77c/DP8EeMAKmD5/Z+CQl2S4ffLYjyc3HgblQ72GNRY6gIbIK4mtUxCT5vjz/R/Df2ZmBgYOBoZHT+//eP7wfVApkmasBjQDDVCUE1on9+UHx69338BibEJcDI94OX88fPg2qBqfAbVAzaryousMP3/n+PvuC8MPYV6wAva3nxmYhXkYzvNy/7j74GVQIzYvVHCye2pKiqxz/PiZg+HtJ4ZfokIMdTwcPxkYGf83AQ1ke/2OgUFEgGE/P/+Pt/+Zg4ru3duOYkCjqsyTDG5+aa4LVxl+iYkw1PHx/Lhz50HwX6Cchori2sZPnznYXr1h+Gakx7DhP/OT9PPnUaOxhIXZVFVKclegsJDAjC9ffpy6fS94CwPDNpCcF9Br1qpK61J5eTjWv3n34cGTZ27t//6dxgiDYj4ucy5x4XVP7z9LmffnL0pgZbCyenqamc65eP5CQN23b5hJmSqZiRwAABaj2REhYuqwAAAAAElFTkSuQmCC" alt="Remove Session"
+                             title="Remove Session" /></a>&nbsp;<?php echo $keysession; ?></span>
+                                <span class="zdt-detail-value"><?php if (!is_scalar($rowsession)) { var_dump($rowsession); } else {  echo $rowsession; }  ?></span>
+                        </span>
+                        <?php }
+                    }
+              } else { ?>
+            <span class="zdt-toolbar-info">
+                    <span class="zdt-detail-label" style="text-transform: none;"><a href="javascript:void(0);">No ZF2 Session Data</a></span>
+            </span>
+        <?php } ?>
     </div>
 </div> 
