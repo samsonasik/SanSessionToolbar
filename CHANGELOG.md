@@ -1,3 +1,10 @@
+### 0.0.8 - 2015-02-25
+
+- hotfix : conditional empty data
+- remove redundant label in view
+
+
+
 ### 0.0.7 - 2015-02-20
 
 - Using scalar check for preview session
