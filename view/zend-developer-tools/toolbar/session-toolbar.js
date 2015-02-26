@@ -16,7 +16,7 @@
  */
 function sanSessionToolbar_removeSessionByKey(key, keysession)
 {
-    var xmlhttp;
+    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp=new XMLHttpRequest();
     } else { // code for IE6, IE5
