@@ -15,7 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace SanSessionToolbarTest\Collector;
+namespace SanSessionToolbarTest;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Module;
