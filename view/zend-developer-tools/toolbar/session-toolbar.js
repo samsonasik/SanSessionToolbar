@@ -39,7 +39,7 @@ function sanSessionToolbar_removeSessionByKey(key, keysession)
                     elements[0].parentNode.removeChild(elements[0]);
                 }
             } else {
-                alert('No session registered with container name '+key+' and key session '+keysession+' or session already removed');
+                alert('No session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
             }
         }
     }
