@@ -29,8 +29,6 @@ final class SessionToolbarController extends AbstractActionController
 
         $success = false;
         if ($request->isPost()) {
-            $dataPost  = $request->getPost()->toArray();
-
             $containerName = $request->getPost('key', 'Default');
             $keysession    = $request->getPost('keysession', '');
             $container = new Container($containerName);
