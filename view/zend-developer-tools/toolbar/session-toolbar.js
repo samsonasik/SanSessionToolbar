@@ -16,11 +16,33 @@
  */
 function sanSessionToolbar_removeSessionByKey(key, keysession)
 {
-    $.post(san_session_toolbar_base_url+'/san-session-toolbar/removesession', { 'key' : key, 'keysession' : keysession } , function(html) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    var params = "key="+key+"&keysession="+keysession;
+    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/removesession', true);
+
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Content-length", params.length);
+    xmlhttp.setRequestHeader("Connection", "close");
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var html = JSON.parse(xmlhttp.responseText);
             if (html.success) {
-                $(".san-session-toolbar-info-key-"+key+"-keysession-"+keysession).remove();
+                var elements = document.getElementsByClassName("san-session-toolbar-info-key-"+key+"-keysession-"+keysession);
+                while(elements.length > 0){
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
             } else {
                 alert('No session registered with container name '+key+' and key session '+keysession+' or session already removed');
             }
-    }, 'json');
+        }
+    }
+
+    xmlhttp.send(params);
 }
