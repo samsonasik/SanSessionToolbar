@@ -21,8 +21,15 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
 
+/**
+ * Session Toolbar Controller
+ * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
+ */
 final class SessionToolbarController extends AbstractActionController
 {
+    /**
+     * Remove Session by Container and its key
+     */
     public function removesessionAction()
     {
         $request = $this->getRequest();
