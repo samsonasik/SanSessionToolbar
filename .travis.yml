@@ -8,7 +8,7 @@ php:
   - nightly
 
 install:
-  - if [[ $TRAVIS_PHP_VERSION != 'nightly' ]]; then pecl install xdebug; fi
+  - if [[ $TRAVIS_PHP_VERSION = 'nightly' ]]; then pecl install xdebug; fi
   - composer install --prefer-source
 
 before_script:
