@@ -6,6 +6,8 @@ php:
   - 5.5
   - 5.6
   - 7
+  - hhvm
+  - hhvm-nightly
 
 install:
   - composer install --prefer-source
@@ -15,11 +17,12 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - vendor/bin/phpunit --coverage-text
+  - if [[ $TRAVIS_PHP_VERSION != '7' && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then vendor/bin/phpunit --coverage-text --coverage-php build/coverage/coverage-san-session-toolbar.cov; fi
+  - if [[ $TRAVIS_PHP_VERSION = '7' || $TRAVIS_PHP_VERSION = 'hhvm' || $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then vendor/bin/phpunit; fi
 
 after_script:
-  - php vendor/bin/phpcov merge --clover build/logs/clover.xml build/coverage/
-  - php vendor/bin/coveralls -v --exclude-no-stmt
+  - if [[ $TRAVIS_PHP_VERSION != '7' && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php vendor/bin/phpcov merge --clover build/logs/clover.xml build/coverage/; fi
+  - if [[ $TRAVIS_PHP_VERSION != '7' && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then php vendor/bin/coveralls -v --exclude-no-stmt; fi
 
 notifications:
   email: false
