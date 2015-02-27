@@ -25,6 +25,6 @@
         </blacklist>
     </filter>
     <logging>
-        <log type="coverage-php" target="./build/coverage/coverage-application.cov"/>
+        <log type="coverage-php" target="./build/coverage/coverage-san-session-toolbar.cov"/>
     </logging>
 </phpunit>
