@@ -10,6 +10,7 @@ php:
   - hhvm-nightly
 
 install:
+  - if [[ $TRAVIS_PHP_VERSION != '7' && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 'hhvm-nightly' ]]; then phpenv config-rm xdebug.ini; fi
   - composer install --prefer-source
 
 before_script:
