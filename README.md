@@ -14,7 +14,7 @@ It is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.co
 
 ![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6427963/4f6afbf4-bfc3-11e4-9ae7-4f600b4ee94f.png)
 
-You can reload, remove, and update your sessions data.
+You can reload, clear, remove, and update your sessions data.
 
 Installation
 ------------
