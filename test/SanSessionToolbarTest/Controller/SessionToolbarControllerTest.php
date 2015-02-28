@@ -34,9 +34,9 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
             ),
             'module_listener_options' => array(
                 'module_paths' => array(
-                    dirname(dirname(dirname(__DIR__)))
+                    dirname(dirname(dirname(__DIR__))),
                 ),
-            )
+            ),
         ));
 
         parent::setUp();
