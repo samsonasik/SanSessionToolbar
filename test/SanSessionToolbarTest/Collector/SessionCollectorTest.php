@@ -23,7 +23,7 @@ use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 
 /**
- * This class test SessionCollector class
+ * This class tests SessionCollector class
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class SessionCollectorTest extends PHPUnit_Framework_TestCase

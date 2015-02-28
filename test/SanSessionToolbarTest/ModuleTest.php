@@ -21,7 +21,7 @@ use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Module;
 
 /**
- * This class test Module class
+ * This class tests Module class
  */
 class ModuleTest extends PHPUnit_Framework_TestCase
 {

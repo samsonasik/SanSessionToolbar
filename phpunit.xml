@@ -13,11 +13,6 @@
             <directory suffix=".php">./src</directory>
             <exclude>
                 <directory suffix=".php">./test/</directory>
-                <!--
-                    TODO : add test for this file in ZF2 2.4.0, because
-                    current Zend\Test require PHPUnit 3.7.*
-                -->
-                <file>./src/SanSessionToolbar/Controller/SessionToolbarController.php</file>
             </exclude>
         </whitelist>
         <blacklist>
