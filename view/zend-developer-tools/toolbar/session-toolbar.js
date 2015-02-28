@@ -27,6 +27,7 @@ function sanSessionToolbar_removeSessionByKey(key, keysession)
     xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/removesession', true);
 
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Accept", "application/json");
     xmlhttp.setRequestHeader("Content-length", params.length);
     xmlhttp.setRequestHeader("Connection", "close");
 
