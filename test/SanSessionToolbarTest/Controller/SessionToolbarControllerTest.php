@@ -96,4 +96,38 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->assertContains('fooValue', $this->getResponse()->getBody());
         $this->assertNotContains('No ZF2 Session Data', $this->getResponse()->getBody());
     }
+
+    public function testClearSessionByContainer()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $container = new Container('OtherContainer');
+        $container->foo = 'fooValue';
+
+        $postData = array(
+            'byContainer' => 'Default',
+        );
+
+        $this->dispatch('/san-session-toolbar/clearsession', 'POST', $postData);
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertContains('OtherContainer', $this->getResponse()->getBody());
+        $this->assertNotContains('Default', $this->getResponse()->getBody());
+    }
+
+    public function testClearSessionAllSessionData()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $container = new Container('OtherContainer');
+        $container->foo = 'fooValue';
+
+        $this->dispatch('/san-session-toolbar/clearsession', 'POST');
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertNotContains('OtherContainer', $this->getResponse()->getBody());
+        $this->assertNotContains('Default', $this->getResponse()->getBody());
+    }
 }

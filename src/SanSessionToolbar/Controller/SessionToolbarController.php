@@ -69,4 +69,43 @@ final class SessionToolbarController extends AbstractActionController
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
     }
+
+    /**
+     * Clear Session data
+     */
+    public function clearsessionAction()
+    {
+        $sessionCollector = new SessionCollector();
+        $sessionCollector->collect(new MvcEvent());
+        $sessionData = $sessionCollector->getSessionData();
+
+        $request = $this->getRequest();
+        if ($request->isPost() && !empty($sessionData)) {
+            foreach ($sessionData as $key => $session) {
+                $container = new Container($key);
+                foreach ($session as $keysession => $rowsession) {
+                    if (!$request->getPost('byContainer')) {
+                        $container->offsetUnset($keysession);
+                    } else {
+                        if ($key === $request->getPost('byContainer')) {
+                            $container->offsetUnset($keysession);
+                        }
+                    }
+                }
+            }
+        }
+
+        // re-collect Session Data
+        $sessionCollector = new SessionCollector();
+        $sessionCollector->collect(new MvcEvent());
+        $sessionData = $sessionCollector->getSessionData();
+
+        // @todo :inject instead!
+        $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
+                                ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
+
+        return new JsonModel(array(
+            'san_sessiontoolbar_data_renderedContent' => $renderedContent,
+        ));
+    }
 }
