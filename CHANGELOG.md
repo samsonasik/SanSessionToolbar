@@ -1,3 +1,10 @@
+### 0.1.1 - 2015-03-01
+
+- Add feature Reload All session data
+- Add feature Clear Session data by its Container
+- Add feature Clear All Session data in All Container
+- Add feature Update Session data
+
 ### 0.1.0 - 2015-02-26
 
 - Add feature Grouping Session Container

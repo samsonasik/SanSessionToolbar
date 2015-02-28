@@ -1,6 +1,0 @@
-new icons :
-- http://findicons.com/icon/261541/arrow_refresh under  Creative Commons Attribution Momenticons
-- http://findicons.com/icon/66997/gnome_edit_clear under GNU/GPL of  GNOME icon artists
-
-todo :
-- need new screenshot

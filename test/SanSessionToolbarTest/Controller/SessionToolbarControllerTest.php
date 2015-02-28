@@ -130,4 +130,42 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->assertNotContains('OtherContainer', $this->getResponse()->getBody());
         $this->assertNotContains('Default', $this->getResponse()->getBody());
     }
+
+    public function testUpdateSessionData()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $container = new Container('OtherContainer');
+        $container->foo = 'fux';
+
+        $postData = array(
+            'key' => 'Default',
+            'keysession' => 'foo',
+            'sessionvalue' => 'barbar',
+        );
+
+        $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertContains('barbar', $this->getResponse()->getBody());
+        $this->assertNotContains('fooValue', $this->getResponse()->getBody());
+    }
+
+    public function testUpdateSessionDataNotExists()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $postData = array(
+            'key' => 'Default',
+            'keysession' => 'bazbazbadabum',
+            'sessionvalue' => 'barbar',
+        );
+
+        $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertNotContains('barbar', $this->getResponse()->getBody());
+    }
 }

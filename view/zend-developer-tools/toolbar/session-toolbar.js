@@ -125,3 +125,49 @@ function sanSessionToolbar_clearSessionOfContainer(byContainer)
     xmlhttp.send(params);
 }
 
+function editSessionByKey(key, keysession)
+{
+    document.getElementById("san-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'none';
+    document.getElementById("san-edit-mode-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'block';
+
+
+}
+
+function sanSessionToolbar_cancelSaveSessionByKey(key, keysession)
+{
+    document.getElementById("san-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'block';
+    document.getElementById("san-edit-mode-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'none';
+}
+
+function sanSessionToolbar_saveSessionByKey(key, keysession)
+{
+    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    var params = "key="+key+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-key-'+key+'-keysesion-'+keysession).value;
+    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/savesession', true);
+
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Accept", "application/json");
+    xmlhttp.setRequestHeader("Content-length", params.length);
+    xmlhttp.setRequestHeader("Connection", "close");
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var html = JSON.parse(xmlhttp.responseText);
+            var html = JSON.parse(xmlhttp.responseText);
+            if (html.success) {
+                document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+            } else {
+                alert('Save session failed, check if no session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
+            }
+        }
+    }
+
+    xmlhttp.send(params);
+}
+
