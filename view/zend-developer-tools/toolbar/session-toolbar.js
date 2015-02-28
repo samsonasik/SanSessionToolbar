@@ -47,3 +47,29 @@ function sanSessionToolbar_removeSessionByKey(key, keysession)
 
     xmlhttp.send(params);
 }
+
+function sanSessionToolbar_reloadSession()
+{
+    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/reloadsession', true);
+
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Accept", "application/json");
+    xmlhttp.setRequestHeader("Connection", "close");
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var html = JSON.parse(xmlhttp.responseText);
+            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+        }
+    }
+
+    xmlhttp.send();
+}
+

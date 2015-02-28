@@ -51,6 +51,8 @@ return array(
         'template_map' => array(
             'zend-developer-tools/toolbar/session-data'
                 => __DIR__ . '/../view/zend-developer-tools/toolbar/session-data.phtml',
+            'zend-developer-tools/toolbar/session-data-reload'
+                => __DIR__ . '/../view/zend-developer-tools/toolbar/session-data-reload.phtml',
         ),
         'strategies' => array(
             'ViewJsonStrategy',

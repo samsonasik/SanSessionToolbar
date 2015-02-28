@@ -76,4 +76,24 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertEquals('{"success":true}', $this->getResponse()->getBody());
     }
+
+    public function testReloadWithSessionNonExists()
+    {
+        $this->dispatch('/san-session-toolbar/reloadsession', 'POST');
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertContains('No ZF2 Session Data', $this->getResponse()->getBody());
+    }
+
+    public function testReloadWithSessionExists()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $this->dispatch('/san-session-toolbar/reloadsession', 'POST');
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertContains('fooValue', $this->getResponse()->getBody());
+        $this->assertNotContains('No ZF2 Session Data', $this->getResponse()->getBody());
+    }
 }

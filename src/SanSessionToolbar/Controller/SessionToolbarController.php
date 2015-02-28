@@ -17,7 +17,9 @@
  */
 namespace SanSessionToolbar\Controller;
 
+use SanSessionToolbar\Collector\SessionCollector;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
 
@@ -47,6 +49,24 @@ final class SessionToolbarController extends AbstractActionController
 
         return new JsonModel(array(
             'success' => $success,
+        ));
+    }
+
+    /**
+     * Reload Session data
+     */
+    public function reloadsessionAction()
+    {
+        $sessionCollector = new SessionCollector();
+        $sessionCollector->collect(new MvcEvent());
+        $sessionData = $sessionCollector->getSessionData();
+
+        // @todo :inject instead!
+        $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
+                                ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
+
+        return new JsonModel(array(
+            'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
     }
 }
