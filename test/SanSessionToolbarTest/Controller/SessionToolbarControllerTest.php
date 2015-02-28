@@ -52,10 +52,10 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostDataWithSessionNotExists()
     {
-        $postData = [
+        $postData = array(
             'key' => 'Default',
             'keysession' => 'foo',
-        ];
+        );
         $this->dispatch('/san-session-toolbar/removesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
@@ -67,10 +67,10 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('Default');
         $container->foo = 'fooValue';
 
-        $postData = [
+        $postData = array(
             'key' => 'Default',
             'keysession' => 'foo',
-        ];
+        );
         $this->dispatch('/san-session-toolbar/removesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
