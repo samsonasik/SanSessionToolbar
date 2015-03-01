@@ -18,8 +18,8 @@
 return array(
 
     'controllers' => array(
-        'invokables' => array(
-            'SanSessionToolbar\Controller\SessionToolbar' => 'SanSessionToolbar\Controller\SessionToolbarController',
+        'factories' => array(
+            'SanSessionToolbar\Controller\SessionToolbar' => 'SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory',
         ),
     ),
 

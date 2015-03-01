@@ -22,6 +22,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
+use Zend\View\Renderer\PhpRenderer;
 
 /**
  * Session Toolbar Controller
@@ -29,6 +30,20 @@ use Zend\View\Model\JsonModel;
  */
 final class SessionToolbarController extends AbstractActionController
 {
+    /**
+     * @var PhpRenderer
+     */
+    private $viewRenderer;
+
+    /**
+     * Construct
+     * @param PhpRenderer $viewRenderer
+     */
+    public function __construct(PhpRenderer $viewRenderer)
+    {
+        $this->viewRenderer = $viewRenderer;
+    }
+
     /**
      * Remove Session by Container and its key
      */
@@ -61,7 +76,7 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
+        $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
         return new JsonModel(array(
@@ -99,7 +114,7 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
+        $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
         return new JsonModel(array(
@@ -129,7 +144,7 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
+        $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
         return new JsonModel(array(
