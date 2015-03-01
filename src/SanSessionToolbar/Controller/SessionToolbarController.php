@@ -22,7 +22,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
-use Zend\View\Renderer\PhpRenderer;
+use Zend\View\Renderer\RendererInterface;
 
 /**
  * Session Toolbar Controller
@@ -31,15 +31,15 @@ use Zend\View\Renderer\PhpRenderer;
 final class SessionToolbarController extends AbstractActionController
 {
     /**
-     * @var PhpRenderer
+     * @var RendererInterface
      */
     private $viewRenderer;
 
     /**
      * Construct
-     * @param PhpRenderer $viewRenderer
+     * @param RendererInterface $viewRenderer
      */
-    public function __construct(PhpRenderer $viewRenderer)
+    public function __construct(RendererInterface $viewRenderer)
     {
         $this->viewRenderer = $viewRenderer;
     }
