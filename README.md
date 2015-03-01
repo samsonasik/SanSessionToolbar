@@ -44,7 +44,7 @@ Credit
 - Toolbar Session icon from : http://png-5.findicons.com/files/icons/728/database/512/database_2_512.png, encoded with base64_encode.
 - Remove Session icon from http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/16/Actions-edit-delete-icon.png, encoded with base64_encode.
 - Reload session icon from http://findicons.com/icon/261541/arrow_refresh, encoded with base64_encode.
-- Edit Session icon from http://findicons.com/files/icons/140/toolbar_icons_3_by_ruby_softwar/128/edit.png
-- Clear session icon from http://findicons.com/icon/66997/gnome_edit_clear
-- Save Session icon from http://findicons.com/files/icons/980/yuuminco/48/3_disc.png
-- Cancel save session from http://findicons.com/files/icons/734/phuzion/128/stop.png
+- Edit Session icon from http://findicons.com/files/icons/140/toolbar_icons_3_by_ruby_softwar/128/edit.png, encoded with base64_encode.
+- Clear session icon from http://findicons.com/icon/66997/gnome_edit_clear, encoded with base64_encode.
+- Save Session icon from http://findicons.com/files/icons/980/yuuminco/48/3_disc.png, encoded with base64_encode.
+- Cancel save session from http://findicons.com/files/icons/734/phuzion/128/stop.png, encoded with base64_encode.
