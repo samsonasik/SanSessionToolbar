@@ -18,7 +18,7 @@
 namespace SanSessionToolbar\Controller;
 
 use SanSessionToolbar\Collector\SessionCollector;
-use Zend\Http\PhpEnvironment\Request;
+use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
