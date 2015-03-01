@@ -149,14 +149,16 @@ final class SessionToolbarController extends AbstractActionController
         if ($request->isPost()) {
             $containerName = $request->getPost($containerName, 'Default');
             $keysession    = $request->getPost($keysesion, '');
-            $container = new Container($containerName);
-            if (is_string($keysession) && $container->offsetExists($keysession)) {
-                if ($set) {
-                    $container->offsetSet($keysession, $request->getPost($value, ''));
-                } else {
-                    $container->offsetUnset($keysession);
+            if (is_string($containerName) && is_string($keysession)) {
+                $container = new Container($containerName);
+                if ($container->offsetExists($keysession)) {
+                    if ($set) {
+                        $container->offsetSet($keysession, $request->getPost($value, ''));
+                    } else {
+                        $container->offsetUnset($keysession);
+                    }
+                    $success = true;
                 }
-                $success = true;
             }
         }
 
