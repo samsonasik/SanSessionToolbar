@@ -137,11 +137,11 @@ final class SessionToolbarController extends AbstractActionController
 
     /**
      * Set/Unset Session by Container and its key
-     * @param string                        $containerName
-     * @param string                        $keysesion
-     * @param string                        $value
-     * @param \Zend\Stdlib\RequestInterface $request
-     * @param bool                          $set
+     * @param string                            $containerName
+     * @param string                            $keysesion
+     * @param string                            $value
+     * @param \Zend\Http\PhpEnvironment\Request $request
+     * @param bool                              $set
      */
     private function sessionSetting($containerName, $keysesion, $value = null, $request, $set = true)
     {
