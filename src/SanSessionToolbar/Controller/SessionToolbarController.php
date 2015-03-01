@@ -49,8 +49,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function removesessionAction()
     {
-        $request = $this->getRequest();
-        $success = $this->sessionSetting('key', 'keysession', null, $request, false);
+        $success = $this->sessionSetting('containerName', 'keysession', null, $this->request, false);
 
         return new JsonModel(array(
             'success' => $success,
@@ -83,15 +82,15 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        $request = $this->getRequest();
+        $request = $this->request;
         if ($request->isPost() && !empty($sessionData)) {
-            foreach ($sessionData as $key => $session) {
-                $container = new Container($key);
+            foreach ($sessionData as $containerName => $session) {
+                $container = new Container($containerName);
                 foreach ($session as $keysession => $rowsession) {
                     if (!$request->getPost('byContainer')) {
                         $container->offsetUnset($keysession);
                     } else {
-                        if ($key === $request->getPost('byContainer')) {
+                        if ($containerName === $request->getPost('byContainer')) {
                             $container->offsetUnset($keysession);
                         } else {
                             // skip current container check
@@ -121,8 +120,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function savesessionAction()
     {
-        $request = $this->getRequest();
-        $success = $this->sessionSetting('key', 'keysession', 'sessionvalue', $request, true);
+        $success = $this->sessionSetting('containerName', 'keysession', 'sessionvalue', $this->request, true);
 
         $sessionCollector = new SessionCollector();
         $sessionCollector->collect(new MvcEvent());
@@ -139,20 +137,20 @@ final class SessionToolbarController extends AbstractActionController
 
     /**
      * Set/Unset Session by Container and its key
-     * @param string             $containerName
-     * @param string             $key
-     * @param string             $value
-     * @param \Zend\Http\Request $request
-     * @param bool               $set
+     * @param string                        $containerName
+     * @param string                        $keysesion
+     * @param string                        $value
+     * @param \Zend\Stdlib\RequestInterface $request
+     * @param bool                          $set
      */
-    private function sessionSetting($containerName, $key, $value = null, $request, $set = true)
+    private function sessionSetting($containerName, $keysesion, $value = null, $request, $set = true)
     {
         $success = false;
         if ($request->isPost()) {
-            $containerName = $request->getPost('key', 'Default');
-            $keysession    = $request->getPost('keysession', '');
+            $containerName = $request->getPost($containerName, 'Default');
+            $keysession    = $request->getPost($keysesion, '');
             $container = new Container($containerName);
-            if ($container->offsetExists($keysession)) {
+            if (is_string($keysession) && $container->offsetExists($keysession)) {
                 if ($set) {
                     $container->offsetSet($keysession, $request->getPost($value, ''));
                 } else {

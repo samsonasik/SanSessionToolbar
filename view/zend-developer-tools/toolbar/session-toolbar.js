@@ -46,17 +46,17 @@ function sansessionToolbar_postDataWithAjax(url, setViewCallBack, params)
     }
 }
 
-function sanSessionToolbar_removeSessionByKey(key, keysession)
+function sanSessionToolbar_removeSessionByKey(containerName, keysession)
 {
-    var params = "key="+key+"&keysession="+keysession;
+    var params = "containerName="+containerName+"&keysession="+keysession;
     sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/removesession', function(html) {
         if (html.success) {
-            var elements = document.getElementsByClassName("san-session-toolbar-info-key-"+key+"-keysession-"+keysession);
+            var elements = document.getElementsByClassName("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession);
             while (elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
         } else {
-            alert('No session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
+            alert('No session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
         }
     }, params);
 }
@@ -83,26 +83,26 @@ function sanSessionToolbar_clearSessionOfContainer(byContainer)
     }, params);
 }
 
-function editSessionByKey(key, keysession)
+function editSessionByKey(containerName, keysession)
 {
-    document.getElementById("san-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'none';
-    document.getElementById("san-edit-mode-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'block';
+    document.getElementById("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
+    document.getElementById("san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
 }
 
-function sanSessionToolbar_cancelSaveSessionByKey(key, keysession)
+function sanSessionToolbar_cancelSaveSessionByKey(containerName, keysession)
 {
-    document.getElementById("san-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'block';
-    document.getElementById("san-edit-mode-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'none';
+    document.getElementById("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
+    document.getElementById("san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
 }
 
-function sanSessionToolbar_saveSessionByKey(key, keysession)
+function sanSessionToolbar_saveSessionByKey(containerName, keysession)
 {
-    var params = "key="+key+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-key-'+key+'-keysesion-'+keysession).value;
+    var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-containerName-'+containerName+'-keysesion-'+keysession).value;
     sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/savesession', function(html) {
         if (html.success) {
             document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
         } else {
-            alert('Save session failed, check if no session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
+            alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
         }
     }, params);
 }
