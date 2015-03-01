@@ -103,6 +103,10 @@ final class SessionToolbarController extends AbstractActionController
                     } else {
                         if ($key === $request->getPost('byContainer')) {
                             $container->offsetUnset($keysession);
+                        } else {
+                            // skip current container check
+                            // continue to next container
+                            continue 2;
                         }
                     }
                 }
