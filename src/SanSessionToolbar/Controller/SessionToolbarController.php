@@ -50,17 +50,7 @@ final class SessionToolbarController extends AbstractActionController
     public function removesessionAction()
     {
         $request = $this->getRequest();
-
-        $success = false;
-        if ($request->isPost()) {
-            $containerName = $request->getPost('key', 'Default');
-            $keysession    = $request->getPost('keysession', '');
-            $container = new Container($containerName);
-            if ($container->offsetExists($keysession)) {
-                $container->offsetUnset($keysession);
-                $success = true;
-            }
-        }
+        $success = $this->sessionSetting('key', 'keysession', null, $request, false);
 
         return new JsonModel(array(
             'success' => $success,
@@ -132,17 +122,7 @@ final class SessionToolbarController extends AbstractActionController
     public function savesessionAction()
     {
         $request = $this->getRequest();
-
-        $success = false;
-        if ($request->isPost()) {
-            $containerName = $request->getPost('key', 'Default');
-            $keysession    = $request->getPost('keysession', '');
-            $container = new Container($containerName);
-            if ($container->offsetExists($keysession)) {
-                $container->offsetSet($keysession, $request->getPost('sessionvalue', ''));
-                $success = true;
-            }
-        }
+        $success = $this->sessionSetting('key', 'keysession', 'sessionvalue', $request, true);
 
         $sessionCollector = new SessionCollector();
         $sessionCollector->collect(new MvcEvent());
@@ -155,5 +135,33 @@ final class SessionToolbarController extends AbstractActionController
             'success' => $success,
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
+    }
+
+    /**
+     * Set/Unset Session by Container and its key
+     * @param string             $containerName
+     * @param string             $key
+     * @param string             $value
+     * @param \Zend\Http\Request $request
+     * @param bool               $set
+     */
+    private function sessionSetting($containerName, $key, $value = null, $request, $set = true)
+    {
+        $success = false;
+        if ($request->isPost()) {
+            $containerName = $request->getPost('key', 'Default');
+            $keysession    = $request->getPost('keysession', '');
+            $container = new Container($containerName);
+            if ($container->offsetExists($keysession)) {
+                if ($set) {
+                    $container->offsetSet($keysession, $request->getPost($value, ''));
+                } else {
+                    $container->offsetUnset($keysession);
+                }
+                $success = true;
+            }
+        }
+
+        return $success;
     }
 }
