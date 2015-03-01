@@ -14,7 +14,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-function sanSessionToolbar_removeSessionByKey(key, keysession)
+function sansessionToolbar_postDataWithAjax(url, setViewCallBack, params)
 {
     var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -23,114 +23,70 @@ function sanSessionToolbar_removeSessionByKey(key, keysession)
         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    var params = "key="+key+"&keysession="+keysession;
-    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/removesession', true);
+    xmlhttp.open("POST", url, true);
 
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.setRequestHeader("Accept", "application/json");
-    xmlhttp.setRequestHeader("Content-length", params.length);
+
+    if (params != undefined) {
+        xmlhttp.setRequestHeader("Content-length", params.length);
+    }
+
     xmlhttp.setRequestHeader("Connection", "close");
+    if (params != undefined) {
+        xmlhttp.send(params);
+    } else {
+        xmlhttp.send(null);
+    }
 
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var html = JSON.parse(xmlhttp.responseText);
-            if (html.success) {
-                var elements = document.getElementsByClassName("san-session-toolbar-info-key-"+key+"-keysession-"+keysession);
-                while(elements.length > 0){
-                    elements[0].parentNode.removeChild(elements[0]);
-                }
-            } else {
-                alert('No session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
-            }
+            setViewCallBack(JSON.parse(xmlhttp.responseText))
         }
     }
+}
 
-    xmlhttp.send(params);
+function sanSessionToolbar_removeSessionByKey(key, keysession)
+{
+    var params = "key="+key+"&keysession="+keysession;
+    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/removesession', function(html) {
+        if (html.success) {
+            var elements = document.getElementsByClassName("san-session-toolbar-info-key-"+key+"-keysession-"+keysession);
+            while (elements.length > 0) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+        } else {
+            alert('No session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
+        }
+    }, params);
 }
 
 function sanSessionToolbar_reloadSession()
 {
-    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/reloadsession', true);
-
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.setRequestHeader("Accept", "application/json");
-    xmlhttp.setRequestHeader("Connection", "close");
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var html = JSON.parse(xmlhttp.responseText);
-            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-        }
-    }
-
-    xmlhttp.send();
+    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/reloadsession', function(html) {
+        document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+    });
 }
 
 function sanSessionToolbar_clearAllSession()
 {
-    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/clearsession', true);
-
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.setRequestHeader("Accept", "application/json");
-    xmlhttp.setRequestHeader("Connection", "close");
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var html = JSON.parse(xmlhttp.responseText);
-            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-        }
-    }
-
-    xmlhttp.send();
+    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/clearsession', function(html) {
+        document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+    });
 }
 
 function sanSessionToolbar_clearSessionOfContainer(byContainer)
 {
-    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
     var params = "byContainer="+byContainer;
-    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/clearsession', true);
-
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.setRequestHeader("Accept", "application/json");
-    xmlhttp.setRequestHeader("Content-length", params.length);
-    xmlhttp.setRequestHeader("Connection", "close");
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var html = JSON.parse(xmlhttp.responseText);
-            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-        }
-    }
-
-    xmlhttp.send(params);
+    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/clearsession', function(html) {
+        document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+    }, params);
 }
 
 function editSessionByKey(key, keysession)
 {
     document.getElementById("san-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'none';
     document.getElementById("san-edit-mode-session-toolbar-info-key-"+key+"-keysession-"+keysession).style.display = 'block';
-
-
 }
 
 function sanSessionToolbar_cancelSaveSessionByKey(key, keysession)
@@ -141,33 +97,12 @@ function sanSessionToolbar_cancelSaveSessionByKey(key, keysession)
 
 function sanSessionToolbar_saveSessionByKey(key, keysession)
 {
-    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
     var params = "key="+key+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-key-'+key+'-keysesion-'+keysession).value;
-    xmlhttp.open("POST",san_session_toolbar_base_url+'/san-session-toolbar/savesession', true);
-
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.setRequestHeader("Accept", "application/json");
-    xmlhttp.setRequestHeader("Content-length", params.length);
-    xmlhttp.setRequestHeader("Connection", "close");
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var html = JSON.parse(xmlhttp.responseText);
-            var html = JSON.parse(xmlhttp.responseText);
-            if (html.success) {
-                document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-            } else {
-                alert('Save session failed, check if no session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
-            }
+    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/savesession', function(html) {
+        if (html.success) {
+            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+        } else {
+            alert('Save session failed, check if no session registered with container named "'+key+'" and key session "'+keysession+'" or session already removed');
         }
-    }
-
-    xmlhttp.send(params);
+    }, params);
 }
-
