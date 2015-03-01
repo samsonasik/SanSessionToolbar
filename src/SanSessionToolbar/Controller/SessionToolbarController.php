@@ -61,7 +61,6 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        // @todo :inject instead!
         $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
@@ -100,7 +99,6 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        // @todo :inject instead!
         $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
@@ -131,7 +129,6 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        // @todo :inject instead!
         $renderedContent = $this->getServiceLocator()->get('ViewRenderer')
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
