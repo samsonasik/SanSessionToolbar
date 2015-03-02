@@ -30,6 +30,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
     {
         $this->setApplicationConfig(array(
             'modules' => array(
+                'ZendDeveloperTools',
                 'SanSessionToolbar',
             ),
             'module_listener_options' => array(

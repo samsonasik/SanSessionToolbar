@@ -42,4 +42,12 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_array($this->module->getConfig()));
     }
+
+    /**
+     * @covers SanSessionToolbar\Module::getModuleDependencies()
+     */
+    public function testGetModuleDependencies()
+    {
+        $this->assertEquals(array('ZendDeveloperTools'), $this->module->getModuleDependencies());
+    }
 }
