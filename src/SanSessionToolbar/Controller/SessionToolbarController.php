@@ -50,7 +50,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function removesessionAction()
     {
-        $success = $this->sessionSetting('containerName', 'keysession', null, $this->request, false);
+        $success = $this->sessionSetting('containerName', 'keysession', null, false);
 
         return new JsonModel(array(
             'success' => $success,
@@ -120,7 +120,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function savesessionAction()
     {
-        $success = $this->sessionSetting('containerName', 'keysession', 'sessionvalue', $this->request, true);
+        $success = $this->sessionSetting('containerName', 'keysession', 'sessionvalue', true);
 
         $sessionCollector = new SessionCollector();
         $sessionCollector->collect(new MvcEvent());
@@ -140,20 +140,19 @@ final class SessionToolbarController extends AbstractActionController
      * @param string  $containerName
      * @param string  $keysesion
      * @param string  $value
-     * @param Request $request
      * @param bool    $set
      */
-    private function sessionSetting($containerName, $keysesion, $value = null, Request $request, $set = true)
+    private function sessionSetting($containerName, $keysesion, $value = null, $set = true)
     {
         $success = false;
-        if ($request->isPost()) {
-            $containerName = $request->getPost($containerName, 'Default');
-            $keysession    = $request->getPost($keysesion, '');
+        if ($this->request->isPost()) {
+            $containerName = $this->request->getPost($containerName, 'Default');
+            $keysession    = $this->request->getPost($keysesion, '');
             if (is_string($containerName) && is_string($keysession)) {
                 $container = new Container($containerName);
                 if ($container->offsetExists($keysession)) {
                     if ($set) {
-                        $container->offsetSet($keysession, $request->getPost($value, ''));
+                        $container->offsetSet($keysession, $this->request->getPost($value, ''));
                     } else {
                         $container->offsetUnset($keysession);
                     }
