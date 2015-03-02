@@ -83,15 +83,14 @@ final class SessionToolbarController extends AbstractActionController
         $sessionCollector->collect(new MvcEvent());
         $sessionData = $sessionCollector->getSessionData();
 
-        $request = $this->request;
-        if ($request->isPost() && !empty($sessionData)) {
+        if ($this->request->isPost() && !empty($sessionData)) {
             foreach ($sessionData as $containerName => $session) {
                 $container = new Container($containerName);
                 foreach ($session as $keysession => $rowsession) {
-                    if (!$request->getPost('byContainer')) {
+                    if (!$this->request->getPost('byContainer')) {
                         $container->offsetUnset($keysession);
                     } else {
-                        if ($containerName === $request->getPost('byContainer')) {
+                        if ($containerName === $this->request->getPost('byContainer')) {
                             $container->offsetUnset($keysession);
                         } else {
                             // skip current container check
