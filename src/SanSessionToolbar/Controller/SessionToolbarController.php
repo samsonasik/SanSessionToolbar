@@ -18,7 +18,6 @@
 namespace SanSessionToolbar\Controller;
 
 use SanSessionToolbar\Collector\SessionCollector;
-use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
@@ -137,10 +136,10 @@ final class SessionToolbarController extends AbstractActionController
 
     /**
      * Set/Unset Session by Container and its key
-     * @param string  $containerName
-     * @param string  $keysesion
-     * @param string  $value
-     * @param bool    $set
+     * @param string $containerName
+     * @param string $keysesion
+     * @param string $value
+     * @param bool   $set
      */
     private function sessionSetting($containerName, $keysesion, $value = null, $set = true)
     {
