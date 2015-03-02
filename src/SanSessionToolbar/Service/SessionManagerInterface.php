@@ -17,8 +17,6 @@
  */
 namespace SanSessionToolbar\Service;
 
-use Zend\Session\Container;
-
 /**
  * Interface for SessionManager
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
