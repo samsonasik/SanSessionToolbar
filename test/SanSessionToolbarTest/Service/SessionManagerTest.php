@@ -54,7 +54,7 @@ class SessionManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSessionData()
     {
-        $this->assertTrue(is_array($this->sessionManager->getSessionData()));
+        $this->assertEquals(array(), $this->sessionManager->getSessionData());
     }
 
     /**
@@ -62,11 +62,11 @@ class SessionManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testSessionSettingSessionExists()
     {
-        $container = new Container('Boom');
+        $container = new Container('Default');
         $container->foofoo = 'fooValue';
 
-        $this->assertTrue($this->sessionManager->sessionSetting('Boom', 'foofoo', 'bar', true));
-        $this->assertTrue($this->sessionManager->sessionSetting('Boom', 'foofoo', null, false));
+        $this->assertTrue($this->sessionManager->sessionSetting('Default', 'foofoo', 'bar', true));
+        $this->assertTrue($this->sessionManager->sessionSetting('Default', 'foofoo', null, false));
     }
 
     /**
@@ -74,17 +74,8 @@ class SessionManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testSessionSettingSessionNotExists()
     {
-        $this->assertFalse($this->sessionManager->sessionSetting('Boom', 'foofoo', 'bar', true));
-        $this->assertFalse($this->sessionManager->sessionSetting('Boom', 'foofoo', null, false));
-    }
-
-    /**
-     * @covers SanSessionToolbar\Service\SessionManager::clearSession()
-     */
-    public function testClearSessionExists()
-    {
-        $this->sessionManager->clearSession(false);
-        $this->sessionManager->clearSession('Boom');
+        $this->assertFalse($this->sessionManager->sessionSetting('Default', 'foofoo', 'bar', true));
+        $this->assertFalse($this->sessionManager->sessionSetting('Default', 'foofoo', null, false));
     }
 
     /**
@@ -92,12 +83,25 @@ class SessionManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testClearSessionNotExists()
     {
-        $container = new Container('Boom');
-        $container->foofoo = 'fooValue';
-        $this->sessionManager->clearSession(false);
+        $this->assertEquals(array(), $this->sessionManager->clearSession(false));
+        $this->assertEquals(array(), $this->sessionManager->clearSession('Default'));
+    }
 
-        $container = new Container('Boom');
+    /**
+     * @covers SanSessionToolbar\Service\SessionManager::clearSession()
+     */
+    public function testClearSessionExists()
+    {
+        $container = new Container('Default');
         $container->foofoo = 'fooValue';
-        $this->sessionManager->clearSession('Boom');
+        $container = new Container('OtherContainer');
+        $container->foofoo = 'fooValue';
+        $this->assertEquals(array(), $this->sessionManager->clearSession(null));
+
+        $container = new Container('Default');
+        $container->foofoo = 'fooValue';
+        $container = new Container('OtherContainer');
+        $container->foofoo = 'fooValue';
+        $this->assertEquals(array('Default' => array('foofoo' => 'fooValue')), $this->sessionManager->clearSession('OtherContainer'));
     }
 }

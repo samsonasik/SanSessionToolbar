@@ -81,7 +81,8 @@ final class SessionManager implements SessionManagerInterface
 
     /**
      * Clear Session
-     * @param null|string $byContainer
+     * @param  null|string $byContainer
+     * @return array
      */
     public function clearSession($byContainer = null)
     {
@@ -96,5 +97,7 @@ final class SessionManager implements SessionManagerInterface
                 $container->offsetUnset($keysession);
             }
         }
+
+        return $this->getSessionData();
     }
 }
