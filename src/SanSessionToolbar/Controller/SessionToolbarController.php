@@ -17,10 +17,8 @@
  */
 namespace SanSessionToolbar\Controller;
 
-use SanSessionToolbar\Collector\SessionCollector;
+use SanSessionToolbar\Service\SessionManagerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
 use Zend\View\Renderer\RendererInterface;
 
@@ -36,12 +34,19 @@ final class SessionToolbarController extends AbstractActionController
     private $viewRenderer;
 
     /**
+     * @var SessionManagerInterface
+     */
+    private $sessionManager;
+
+    /**
      * Construct
      * @param RendererInterface $viewRenderer
+     * @param SessionManager    $sessionManager
      */
-    public function __construct(RendererInterface $viewRenderer)
+    public function __construct(RendererInterface $viewRenderer, SessionManagerInterface $sessionManager)
     {
-        $this->viewRenderer = $viewRenderer;
+        $this->viewRenderer   = $viewRenderer;
+        $this->sessionManager = $sessionManager;
     }
 
     /**
@@ -49,7 +54,14 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function removesessionAction()
     {
-        $success = $this->sessionSetting('containerName', 'keysession', null, false);
+        $success = false;
+        if ($this->request->isPost()) {
+            $containerName = $this->request->getPost('containerName', 'Default');
+            $keysession    = $this->request->getPost('keysession', '');
+
+            $success = $this->sessionManager
+                            ->sessionSetting($containerName, $keysession, null, false);
+        }
 
         return new JsonModel(array(
             'success' => $success,
@@ -61,7 +73,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function reloadsessionAction()
     {
-        $sessionData = $this->collectSessionData();
+        $sessionData = $this->sessionManager->getSessionData();
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
@@ -76,24 +88,14 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function clearsessionAction()
     {
-        $sessionData = $this->collectSessionData();
+        $sessionData = $this->sessionManager->getSessionData();
 
         if ($this->request->isPost() && !empty($sessionData)) {
-            foreach ($sessionData as $containerName => $session) {
-                if ($this->request->getPost('byContainer')
-                    && $containerName !== $this->request->getPost('byContainer')) {
-                    continue;
-                }
-
-                $container = new Container($containerName);
-                foreach ($session as $keysession => $rowsession) {
-                    $container->offsetUnset($keysession);
-                }
-            }
+            $this->sessionManager->clearSession($this->request->getPost('byContainer'));
         }
 
         // re-collect Session Data
-        $sessionData = $this->collectSessionData();
+        $sessionData = $this->sessionManager->getSessionData();
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
@@ -108,8 +110,16 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function savesessionAction()
     {
-        $success = $this->sessionSetting('containerName', 'keysession', 'sessionvalue', true);
-        $sessionData = $this->collectSessionData();
+        $success = false;
+        if ($this->request->isPost()) {
+            $containerName = $this->request->getPost('containerName', 'Default');
+            $keysession    = $this->request->getPost('keysession', '');
+            $sessionValue  = $this->request->getPost('sessionvalue');
+
+            $success = $this->sessionManager
+                            ->sessionSetting($containerName, $keysession, $sessionValue, true);
+        }
+        $sessionData = $this->sessionManager->getSessionData();
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
@@ -118,46 +128,5 @@ final class SessionToolbarController extends AbstractActionController
             'success' => $success,
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
-    }
-
-    /**
-     * Collect Session Data
-     * @return array
-     */
-    private function collectSessionData()
-    {
-        $sessionCollector = new SessionCollector();
-        $sessionCollector->collect(new MvcEvent());
-
-        return $sessionCollector->getSessionData();
-    }
-
-    /**
-     * Set/Unset Session by Container and its key
-     * @param string $containerName
-     * @param string $keysesion
-     * @param string $value
-     * @param bool   $set
-     */
-    private function sessionSetting($containerName, $keysesion, $value = null, $set = true)
-    {
-        $success = false;
-        if ($this->request->isPost()) {
-            $containerName = $this->request->getPost($containerName, 'Default');
-            $keysession    = $this->request->getPost($keysesion, '');
-            if (is_string($containerName) && is_string($keysession)) {
-                $container = new Container($containerName);
-                if ($container->offsetExists($keysession)) {
-                    if ($set) {
-                        $container->offsetSet($keysession, $this->request->getPost($value, ''));
-                    } else {
-                        $container->offsetUnset($keysession);
-                    }
-                    $success = true;
-                }
-            }
-        }
-
-        return $success;
     }
 }

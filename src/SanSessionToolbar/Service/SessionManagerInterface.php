@@ -15,28 +15,34 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace SanSessionToolbar\Factory\Controller;
+namespace SanSessionToolbar\Service;
 
-use SanSessionToolbar\Controller\SessionToolbarController;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Session\Container;
 
 /**
- * Factory class for SessionToolbarController creation
+ * Interface for SessionManager
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionToolbarControllerFactory implements FactoryInterface
+interface SessionManagerInterface
 {
     /**
-     * {@inheritDoc}
+     * Get Session Data
+     * @return array
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        $services = $serviceLocator->getServiceLocator();
+    public function getSessionData();
 
-        return new SessionToolbarController(
-            $services->get('ViewRenderer'),
-            $services->get('SanSessionToolbar\Service\SessionManager')
-        );
-    }
+    /**
+     * Set/Unset Session by Container and its key
+     * @param string $containerName
+     * @param string $keysession
+     * @param string $value
+     * @param bool   $set
+     */
+    public function sessionSetting($containerName, $keysession, $value = null, $set = true);
+
+    /**
+     * Clear Session
+     * @param bool|String $byContainer
+     */
+    public function clearSession($byContainer = false);
 }

@@ -15,28 +15,41 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace SanSessionToolbar\Factory\Controller;
+namespace SanSessionToolbarTest\Factory\Service;
 
-use SanSessionToolbar\Controller\SessionToolbarController;
-use Zend\ServiceManager\FactoryInterface;
+use PHPUnit_Framework_TestCase;
+use SanSessionToolbar\Factory\Service\SessionManagerFactory;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Factory class for SessionToolbarController creation
+ * This class tests SessionToolbarControllerFactory class
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionToolbarControllerFactory implements FactoryInterface
+class SessionManagerTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        $services = $serviceLocator->getServiceLocator();
+    /** @var SessionManagerFactory */
+    protected $factory;
 
-        return new SessionToolbarController(
-            $services->get('ViewRenderer'),
-            $services->get('SanSessionToolbar\Service\SessionManager')
-        );
+    /** @var ServiceLocatorInterface */
+    protected $serviceLocator;
+
+    protected function setUp()
+    {
+        /** @var ServiceLocatorInterface $serviceLocator */
+        $this->serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+
+        $factory = new SessionManagerFactory();
+        $this->factory = $factory;
+    }
+
+    /**
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::createService
+     */
+    public function testCreateService()
+    {
+        $this->getMock('SanSessionToolbar\Collector\SessionCollector');
+
+        $result = $this->factory->createService($this->serviceLocator);
+        $this->assertInstanceOf('SanSessionToolbar\Service\SessionManager', $result);
     }
 }

@@ -15,28 +15,24 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace SanSessionToolbar\Factory\Controller;
+namespace SanSessionToolbar\Factory\Service;
 
-use SanSessionToolbar\Controller\SessionToolbarController;
+use SanSessionToolbar\Collector\SessionCollector;
+use SanSessionToolbar\Service\SessionManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Factory class for SessionToolbarController creation
+ * Factory class for SessionManager creation
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionToolbarControllerFactory implements FactoryInterface
+class SessionManagerFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $serviceLocator->getServiceLocator();
-
-        return new SessionToolbarController(
-            $services->get('ViewRenderer'),
-            $services->get('SanSessionToolbar\Service\SessionManager')
-        );
+        return new SessionManager(new SessionCollector());
     }
 }
