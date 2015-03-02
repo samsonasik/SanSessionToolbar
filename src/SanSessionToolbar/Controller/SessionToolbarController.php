@@ -61,9 +61,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function reloadsessionAction()
     {
-        $sessionCollector = new SessionCollector();
-        $sessionCollector->collect(new MvcEvent());
-        $sessionData = $sessionCollector->getSessionData();
+        $sessionData = $this->collectSessionData();
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
@@ -78,9 +76,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function clearsessionAction()
     {
-        $sessionCollector = new SessionCollector();
-        $sessionCollector->collect(new MvcEvent());
-        $sessionData = $sessionCollector->getSessionData();
+        $sessionData = $this->collectSessionData();
 
         if ($this->request->isPost() && !empty($sessionData)) {
             foreach ($sessionData as $containerName => $session) {
@@ -97,9 +93,7 @@ final class SessionToolbarController extends AbstractActionController
         }
 
         // re-collect Session Data
-        $sessionCollector = new SessionCollector();
-        $sessionCollector->collect(new MvcEvent());
-        $sessionData = $sessionCollector->getSessionData();
+        $sessionData = $this->collectSessionData();
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
@@ -115,10 +109,7 @@ final class SessionToolbarController extends AbstractActionController
     public function savesessionAction()
     {
         $success = $this->sessionSetting('containerName', 'keysession', 'sessionvalue', true);
-
-        $sessionCollector = new SessionCollector();
-        $sessionCollector->collect(new MvcEvent());
-        $sessionData = $sessionCollector->getSessionData();
+        $sessionData = $this->collectSessionData();
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
@@ -127,6 +118,18 @@ final class SessionToolbarController extends AbstractActionController
             'success' => $success,
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
+    }
+
+    /**
+     * Collect Session Data
+     * @return array
+     */
+    private function collectSessionData()
+    {
+        $sessionCollector = new SessionCollector();
+        $sessionCollector->collect(new MvcEvent());
+
+        return $sessionCollector->getSessionData();
     }
 
     /**
