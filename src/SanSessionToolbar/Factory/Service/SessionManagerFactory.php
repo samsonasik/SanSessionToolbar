@@ -17,7 +17,6 @@
  */
 namespace SanSessionToolbar\Factory\Service;
 
-use SanSessionToolbar\Collector\SessionCollector;
 use SanSessionToolbar\Service\SessionManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -33,6 +32,6 @@ class SessionManagerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new SessionManager(new SessionCollector());
+        return new SessionManager($serviceLocator->get('session.toolbar'));
     }
 }

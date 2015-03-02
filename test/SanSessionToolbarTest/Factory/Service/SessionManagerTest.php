@@ -47,7 +47,11 @@ class SessionManagerTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateService()
     {
-        $this->getMock('SanSessionToolbar\Collector\SessionCollector');
+        $mockSessionToolbar = $this->getMock('SanSessionToolbar\Collector\SessionCollector');
+        $this->serviceLocator->expects($this->at(0))
+                             ->method('get')
+                             ->with('session.toolbar')
+                             ->willReturn($mockSessionToolbar);
 
         $result = $this->factory->createService($this->serviceLocator);
         $this->assertInstanceOf('SanSessionToolbar\Service\SessionManager', $result);
