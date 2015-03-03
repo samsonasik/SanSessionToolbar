@@ -19,6 +19,7 @@ namespace SanSessionToolbarTest\Collector;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Collector\SessionCollector;
+use SanSessionToolbar\Manager\SessionManager;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 
@@ -43,8 +44,16 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->sessionCollector = new SessionCollector();
+        $this->sessionCollector = new SessionCollector(new SessionManager());
         $this->sessionContainer = new Container();
+    }
+
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::__construct
+     */
+    public function testConstruct()
+    {
+        new SessionCollector(new SessionManager());
     }
 
     /**

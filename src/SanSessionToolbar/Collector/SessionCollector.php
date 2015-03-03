@@ -17,10 +17,9 @@
  */
 namespace SanSessionToolbar\Collector;
 
+use SanSessionToolbar\Manager\SessionManager;
 use ZendDeveloperTools\Collector\AbstractCollector;
 use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
-use Zend\Stdlib\ArrayObject;
 
 /**
  * Session Data Collector.
@@ -29,11 +28,24 @@ use Zend\Stdlib\ArrayObject;
 class SessionCollector extends AbstractCollector
 {
     /**
+     * @var SessionManager
+     */
+    protected $sessionManager;
+
+    /**
+     * Construct
+     * @param SessionManager $sessionManager
+     */
+    public function __construct(SessionManager $sessionManager)
+    {
+        $this->sessionManager = $sessionManager;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getName()
     {
-        // this name must same with *collectors* name in the configuration
         return 'session.toolbar';
     }
 
@@ -62,20 +74,7 @@ class SessionCollector extends AbstractCollector
      */
     public function getSessionData()
     {
-        $container = new Container();
-        $container->getManager()->start();
-
-        $arraysession = $container->getManager()->getStorage()->toArray();
-
-        foreach ($arraysession as $key => $row) {
-            if ($row instanceof ArrayObject) {
-                $iterator = $row->getIterator();
-                while ($iterator->valid()) {
-                    $this->data['san-session'][$key][$iterator->key()] =  $iterator->current();
-                    $iterator->next();
-                }
-            }
-        }
+        $this->data['san-session'] = $this->sessionManager->getSessionData();
 
         return $this->data['san-session'];
     }

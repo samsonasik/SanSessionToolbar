@@ -17,9 +17,8 @@
  */
 namespace SanSessionToolbar\Manager;
 
-use SanSessionToolbar\Collector\SessionCollector;
-use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
+use Zend\Stdlib\ArrayObject;
 
 /**
  * A class to manage session data
@@ -33,10 +32,24 @@ final class SessionManager implements SessionManagerInterface
      */
     public function getSessionData()
     {
-        $sessionCollector = new SessionCollector();
-        $sessionCollector->collect(new MvcEvent());
+        $data = array();
 
-        return $sessionCollector->getSessionData();
+        $container = new Container();
+        $container->getManager()->start();
+
+        $arraysession = $container->getManager()->getStorage()->toArray();
+
+        foreach ($arraysession as $key => $row) {
+            if ($row instanceof ArrayObject) {
+                $iterator = $row->getIterator();
+                while ($iterator->valid()) {
+                    $data[$key][$iterator->key()] =  $iterator->current();
+                    $iterator->next();
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
