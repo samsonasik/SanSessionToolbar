@@ -41,6 +41,7 @@ interface SessionManagerInterface
     /**
      * Clear Session
      * @param bool|String $byContainer
+     * @return array
      */
     public function clearSession($byContainer = false);
 }
