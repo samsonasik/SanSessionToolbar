@@ -17,7 +17,7 @@
  */
 namespace SanSessionToolbar\Controller;
 
-use SanSessionToolbar\Service\SessionManagerInterface;
+use SanSessionToolbar\Manager\SessionManagerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Renderer\RendererInterface;

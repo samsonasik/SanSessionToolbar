@@ -15,7 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace SanSessionToolbar\Service;
+namespace SanSessionToolbar\Manager;
 
 /**
  * Interface for SessionManager
@@ -40,7 +40,7 @@ interface SessionManagerInterface
 
     /**
      * Clear Session
-     * @param bool|String $byContainer
+     * @param  bool|String $byContainer
      * @return array
      */
     public function clearSession($byContainer = false);

@@ -66,11 +66,7 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
                              ->with('ViewRenderer')
                              ->willReturn($mockViewRenderer);
 
-        $sessionManager = $this->getMock('SanSessionToolbar\Service\SessionManagerInterface');
-        $this->serviceLocator->expects($this->at(1))
-                             ->method('get')
-                             ->with('SanSessionToolbar\Service\SessionManager')
-                             ->willReturn($sessionManager);
+        $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
 
         $result = $this->factory->createService($this->controllerManager);
         $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);

@@ -18,6 +18,7 @@
 namespace SanSessionToolbar\Factory\Controller;
 
 use SanSessionToolbar\Controller\SessionToolbarController;
+use SanSessionToolbar\Manager\SessionManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -36,7 +37,7 @@ class SessionToolbarControllerFactory implements FactoryInterface
 
         return new SessionToolbarController(
             $services->get('ViewRenderer'),
-            $services->get('SanSessionToolbar\Service\SessionManager')
+            new SessionManager()
         );
     }
 }

@@ -40,28 +40,23 @@ return array(
             ),
         ),
     ),
-    
+
     'service_manager' => array(
         'invokables' => array(
             'session.toolbar' => 'SanSessionToolbar\Collector\SessionCollector',
         ),
-        'factories' => array(
-            'SanSessionToolbar\Service\SessionManager' => 'SanSessionToolbar\Factory\Service\SessionManagerFactory',
-        ),
     ),
-    
+
     'view_manager' => array(
         'template_map' => array(
-            'zend-developer-tools/toolbar/session-data'
-                => __DIR__ . '/../view/zend-developer-tools/toolbar/session-data.phtml',
-            'zend-developer-tools/toolbar/session-data-reload'
-                => __DIR__ . '/../view/zend-developer-tools/toolbar/session-data-reload.phtml',
+            'zend-developer-tools/toolbar/session-data' => __DIR__.'/../view/zend-developer-tools/toolbar/session-data.phtml',
+            'zend-developer-tools/toolbar/session-data-reload' => __DIR__.'/../view/zend-developer-tools/toolbar/session-data-reload.phtml',
         ),
         'strategies' => array(
             'ViewJsonStrategy',
         ),
     ),
-        
+
     'zenddevelopertools' => array(
         'profiler' => array(
             'collectors' => array(
@@ -74,5 +69,5 @@ return array(
             ),
         ),
     ),
-    
+
 );

@@ -15,7 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace SanSessionToolbar\Service;
+namespace SanSessionToolbar\Manager;
 
 use SanSessionToolbar\Collector\SessionCollector;
 use Zend\Mvc\MvcEvent;
@@ -28,30 +28,15 @@ use Zend\Session\Container;
 final class SessionManager implements SessionManagerInterface
 {
     /**
-     * @var SessionCollector
-     */
-    private $sessionCollector;
-
-    /**
-     * Construct
-     * @param SessionCollector $sessionCollector
-     */
-    public function __construct(SessionCollector $sessionCollector)
-    {
-        $this->sessionCollector = $sessionCollector;
-    }
-
-    /**
      * Get Session Data
      * @return array
      */
     public function getSessionData()
     {
-        // re-instantiate for reload session data
-        $this->sessionCollector = new SessionCollector();
-        $this->sessionCollector->collect(new MvcEvent());
+        $sessionCollector = new SessionCollector();
+        $sessionCollector->collect(new MvcEvent());
 
-        return $this->sessionCollector->getSessionData();
+        return $sessionCollector->getSessionData();
     }
 
     /**
