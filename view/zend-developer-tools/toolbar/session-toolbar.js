@@ -97,7 +97,7 @@ function sanSessionToolbar_cancelSaveSessionByKey(containerName, keysession)
 
 function sanSessionToolbar_saveSessionByKey(containerName, keysession)
 {
-    var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-containerName-'+containerName+'-keysesion-'+keysession).value;
+    var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value;
     sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/savesession', function(html) {
         if (html.success) {
             document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
