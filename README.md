@@ -38,9 +38,16 @@ return [
     // ...
 ],
 ```
+
+Contributing
+------------
+Contributions are very welcome. Please read [CONTRIBUTING.md](https://github.com/samsonasik/SanSessionToolbar/blob/master/CONTRIBUTING.md)
+
 Credit
 ------
 
+- [Abdul Malik Ikhsan](https://github.com/samsonasik)
+- [All SanSessionToolbar contributors](https://github.com/samsonasik/SanSessionToolbar/contributors)
 - Toolbar Session icon from : http://png-5.findicons.com/files/icons/728/database/512/database_2_512.png, encoded with base64_encode.
 - Remove Session icon from http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/16/Actions-edit-delete-icon.png, encoded with base64_encode.
 - Reload session icon from http://findicons.com/icon/261541/arrow_refresh, encoded with base64_encode.
