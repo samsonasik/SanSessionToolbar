@@ -74,6 +74,14 @@ class SessionCollector extends AbstractCollector
      */
     public function getSessionData()
     {
+        // need this because current ZDT can't detect service that instantiate via factory
+        // so, no need to covers it in test
+        // @codeCoverageIgnoreStart
+        if (! $this->sessionManager) {
+            $this->sessionManager = new SessionManager();
+        }
+        // @codeCoverageIgnoreEnd
+
         $this->data['san-session'] = $this->sessionManager->getSessionData();
 
         return $this->data['san-session'];
