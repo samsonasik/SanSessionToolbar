@@ -74,7 +74,7 @@ class SessionCollector extends AbstractCollector
      */
     public function getSessionData()
     {
-        // need this because current ZDT can't detect service that instantiate via factory
+        // need this because current ZDT can't detect property of object that setted via via factory
         // so, no need to covers it in test
         // @codeCoverageIgnoreStart
         if (! $this->sessionManager) {
