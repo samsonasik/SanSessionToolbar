@@ -93,6 +93,9 @@ function sanSessionToolbar_cancelSaveSessionByKey(containerName, keysession)
 {
     document.getElementById("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
     document.getElementById("san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
+
+    // empty error
+    $('.errorMessage-containerName-'+containerName+'-keysession-'+keysession).html('');
 }
 
 function sanSessionToolbar_saveSessionByKey(containerName, keysession)
@@ -102,7 +105,11 @@ function sanSessionToolbar_saveSessionByKey(containerName, keysession)
         if (html.success) {
             document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
         } else {
-            alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
+            if (JSON.stringify(html.errorMessages) === '[]') {
+                alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
+            } else {
+                $('.errorMessage-containerName-'+containerName+'-keysession-'+keysession).html(html.errorMessages[keysession][0]['isEmpty']);
+            }
         }
     }, params);
 }

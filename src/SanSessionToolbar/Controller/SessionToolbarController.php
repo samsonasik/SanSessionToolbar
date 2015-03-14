@@ -19,6 +19,7 @@ namespace SanSessionToolbar\Controller;
 
 use SanSessionToolbar\Manager\SessionManagerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Validator\NotEmpty;
 use Zend\View\Model\JsonModel;
 use Zend\View\Renderer\RendererInterface;
 
@@ -108,21 +109,30 @@ final class SessionToolbarController extends AbstractActionController
     public function savesessionAction()
     {
         $success = false;
+        $errorMessages = array();
+
         if ($this->request->isPost()) {
             $containerName = $this->request->getPost('containerName', 'Default');
             $keysession    = $this->request->getPost('keysession', '');
             $sessionValue  = $this->request->getPost('sessionvalue');
 
-            $success = $this->sessionManager
+            $notEmptyValidator = new NotEmpty();
+            if (! $notEmptyValidator->isValid($sessionValue)) {
+                $success = false;
+                $errorMessages[$keysession][] = $notEmptyValidator->getMessages();
+            } else {
+                $success = $this->sessionManager
                             ->sessionSetting($containerName, $keysession, $sessionValue, true);
+            }
         }
-        $sessionData = $this->sessionManager->getSessionData();
 
+        $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
         return new JsonModel(array(
             'success' => $success,
+            'errorMessages' => $errorMessages,
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
     }
