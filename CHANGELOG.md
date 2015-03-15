@@ -1,3 +1,10 @@
+### 0.1.2 - 2015-03-16
+
+- Refactor Js to make it re-usable
+- Make Controller slimmer, move logics to service
+- Add CONTRIBUTING.md
+- var_dump data presentation fix ( https://github.com/samsonasik/SanSessionToolbar/pull/21 ) 
+
 ### 0.1.1 - 2015-03-01
 
 - Add feature Reload All session data
