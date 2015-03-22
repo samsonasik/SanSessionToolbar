@@ -74,13 +74,10 @@ class SessionCollector extends AbstractCollector
      */
     public function getSessionData()
     {
-        // need this because current ZDT can't detect property of object that setted via via factory
-        // so, no need to covers it in test
-        // @codeCoverageIgnoreStart
+        // need this because current ZDT can't detect property of object that setted via factory
         if (! $this->sessionManager) {
             $this->sessionManager = new SessionManager();
         }
-        // @codeCoverageIgnoreEnd
 
         $this->data['san-session'] = $this->sessionManager->getSessionData();
 
