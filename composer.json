@@ -25,9 +25,12 @@
         "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
-        "classmap": [
-            "./"
-        ]
+        "psr-0": {
+            "SanSessionToolbar\\": "src/"
+        },
+        "psr-4": {
+            "SanSessionToolbarTest\\": "test/"
+        }
     },
     "extra": {
         "branch-alias": {
