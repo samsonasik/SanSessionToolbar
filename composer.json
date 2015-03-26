@@ -27,7 +27,9 @@
     "autoload": {
         "psr-0": {
             "SanSessionToolbar\\": "src/"
-        },
+        }
+    },
+    "autoload-dev": {
         "psr-4": {
             "SanSessionToolbarTest\\": "test/"
         }
