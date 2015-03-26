@@ -5,7 +5,7 @@
     bootstrap="test/Bootstrap.php">
     <testsuites>
         <testsuite name="san-session-toolbar-test">
-            <directory suffix=".php">./test/SanSessionToolbarTest/</directory>
+            <directory suffix=".php">./test/</directory>
         </testsuite>
     </testsuites>
     <filter>
