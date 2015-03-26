@@ -25,13 +25,13 @@
         "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "SanSessionToolbar\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SanSessionToolbarTest\\": "test/"
+            "SanSessionToolbarTest\\": "test/SanSessionToolbarTest/"
         }
     },
     "extra": {
