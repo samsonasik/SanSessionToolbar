@@ -47,7 +47,7 @@ final class SessionManager implements SessionManagerInterface
             if ($row instanceof ArrayObject) {
                 $iterator = $row->getIterator();
                 while ($iterator->valid()) {
-                    $data[$key][$iterator->key()] =  $iterator->current();
+                    $data[$key][$iterator->key()] = $iterator->current();
                     $iterator->next();
                 }
             }

@@ -79,7 +79,7 @@ class SessionCollector extends AbstractCollector
     public function getSessionData()
     {
         // need this because current ZDT can't detect property of object that setted via factory
-        if (! $this->sessionManager) {
+        if (!$this->sessionManager) {
             $this->sessionManager = new SessionManager();
         }
 
