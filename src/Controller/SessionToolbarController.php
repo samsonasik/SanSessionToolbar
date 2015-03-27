@@ -56,9 +56,10 @@ final class SessionToolbarController extends AbstractActionController
     public function removesessionAction()
     {
         $success = false;
-        if ($this->request->isPost()) {
-            $containerName = $this->request->getPost('containerName', 'Default');
-            $keysession    = $this->request->getPost('keysession', '');
+        $request = $this->getEvent()->getRequest();
+        if ($request->isPost()) {
+            $containerName = $request->getPost('containerName', 'Default');
+            $keysession    = $request->getPost('keysession', '');
 
             $success = $this->sessionManager
                             ->sessionSetting($containerName, $keysession);
@@ -90,9 +91,9 @@ final class SessionToolbarController extends AbstractActionController
     public function clearsessionAction()
     {
         $sessionData = $this->sessionManager->getSessionData();
-
-        if ($this->request->isPost() && !empty($sessionData)) {
-            $sessionData = $this->sessionManager->clearSession($this->request->getPost('byContainer'));
+        $request = $this->getEvent()->getRequest();
+        if ($request->isPost() && !empty($sessionData)) {
+            $sessionData = $this->sessionManager->clearSession($request->getPost('byContainer'));
         }
 
         $renderedContent = $this->viewRenderer
@@ -110,18 +111,19 @@ final class SessionToolbarController extends AbstractActionController
     {
         $success = false;
         $errorMessages = array();
+        $request = $this->getEvent()->getRequest();
 
-        if ($this->request->isPost()) {
-            $containerName = $this->request->getPost('containerName', 'Default');
-            $keysession    = $this->request->getPost('keysession', '');
-            $sessionValue  = $this->request->getPost('sessionvalue');
+        if ($request->isPost()) {
+            $containerName = $request->getPost('containerName', 'Default');
+            $keysession    = $request->getPost('keysession', '');
+            $sessionValue  = $request->getPost('sessionvalue');
 
             $notEmptyValidator         = new NotEmpty();
             if (! $notEmptyValidator->isValid($keysession) ||  ! $notEmptyValidator->isValid($sessionValue)) {
                 $errorMessages[] = 'Value is required and can\'t be empty';
                 $success = false;
             } else {
-                $new     = $this->request->getPost('new', false);
+                $new     = $request->getPost('new', false);
                 $success = $this->sessionManager
                             ->sessionSetting($containerName, $keysession, $sessionValue, array('set' => true, 'new' => (bool) $new));
             }
