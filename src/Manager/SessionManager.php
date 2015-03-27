@@ -66,36 +66,59 @@ final class SessionManager implements SessionManagerInterface
      */
     public function sessionSetting($containerName, $keysession, $value = null, $options = array())
     {
-        if (is_string($containerName) && is_string($keysession)) {
-            $container = new Container($containerName);
-            $set = (!empty($options['set'])) ? $options['set'] : false;
-            $new = (!empty($options['new'])) ? $options['new'] : false;
+        $container = new Container($containerName);
+        $set = (!empty($options['set'])) ? $options['set'] : false;
+        $new = (!empty($options['new'])) ? $options['new'] : false;
 
-            // user can't add new existing data
-            if ($container->offsetExists($keysession) && $new) {
-                return false;
-            }
+        if ($new) {
+            return $this->addSession($container, $keysession, $value);
+        }
 
-            // user can add new non-existing data
-            if (!$container->offsetExists($keysession) && $new) {
-                $container->offsetSet($keysession, $value);
+        return $this->setUnset($container, $keysession, $value, $set);
+    }
 
-                return true;
-            }
+    /**
+     * Add new session data.
+     *
+     * @param Container $container
+     * @param string    $keysession
+     * @param string    $value
+     *
+     * @return bool
+     */
+    private function addSession(Container $container, $keysession, $value)
+    {
+        if ($container->offsetExists($keysession)) {
+            return false;
+        }
 
-            // user can update existing data
-            if ($container->offsetExists($keysession) && $set) {
-                $container->offsetSet($keysession, $value);
+        $container->offsetSet($keysession, $value);
 
-                return true;
-            }
+        return true;
+    }
 
-            // user can remove existing data
-            if ($container->offsetExists($keysession) && !$set) {
-                $container->offsetUnset($keysession);
+    /**
+     * Set/Unset session data.
+     *
+     * @param Container   $container
+     * @param string      $keysession
+     * @param string|bool $value
+     * @param bool|false  $set
+     *
+     * @return bool
+     */
+    private function setUnset(Container $container, $keysession, $value = null, $set = false)
+    {
+        if ($container->offsetExists($keysession) && $set) {
+            $container->offsetSet($keysession, $value);
 
-                return true;
-            }
+            return true;
+        }
+
+        if ($container->offsetExists($keysession) && !$set) {
+            $container->offsetUnset($keysession);
+
+            return true;
         }
 
         return false;
