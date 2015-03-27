@@ -57,7 +57,7 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * Set/Unset Session by Container and its key.
+     * Add/Set/Unset Session by Container and its key.
      *
      * @param string $containerName
      * @param string $keysession
@@ -71,24 +71,30 @@ final class SessionManager implements SessionManagerInterface
             $set = (!empty($options['set'])) ? $options['set'] : false;
             $new = (!empty($options['new'])) ? $options['new'] : false;
 
-            if ($new) {
-                if ($container->offsetExists($keysession)) {
-                    return false;
-                } else {
-                    $container->offsetSet($keysession, $value);
+            // user can't add new existing data
+            if ($container->offsetExists($keysession) && $new) {
+                return false;
+            }
 
-                    return true;
-                }
-            } else {
-                if ($container->offsetExists($keysession)) {
-                    if ($set) {
-                        $container->offsetSet($keysession, $value);
-                    } else {
-                        $container->offsetUnset($keysession);
-                    }
+            // user can add new non-existing data
+            if (!$container->offsetExists($keysession) && $new) {
+                $container->offsetSet($keysession, $value);
 
-                    return true;
-                }
+                return true;
+            }
+
+            // user can update existing data
+            if ($container->offsetExists($keysession) && $set) {
+                $container->offsetSet($keysession, $value);
+
+                return true;
+            }
+
+            // user can remove existing data
+            if ($container->offsetExists($keysession) && !$set) {
+                $container->offsetUnset($keysession);
+
+                return true;
             }
         }
 
