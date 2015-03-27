@@ -124,8 +124,8 @@ final class SessionToolbarController extends AbstractActionController
             $new           = $request->getPost('new', false);
 
             $processSetOrAddSessionData = $this->setOrAddSession($containerName, $keysession, $sessionValue, (bool) $new);
-            $success                    = (!is_array($processSetOrAddSessionData)) ? $processSetOrAddSessionData : $processSetOrAddSessionData[1];
-            $errorMessages              = (!is_array($processSetOrAddSessionData)) ? array() : $processSetOrAddSessionData[0];
+            $success                    = (!is_string($processSetOrAddSessionData)) ? $processSetOrAddSessionData : false;
+            $errorMessages[]            = (!is_string($processSetOrAddSessionData)) ? array() : $processSetOrAddSessionData;
         }
 
         $sessionData     = $this->sessionManager->getSessionData();
@@ -147,7 +147,7 @@ final class SessionToolbarController extends AbstractActionController
      * @param string $sessionValue
      * @param bool   $new
      *
-     * @return bool|array
+     * @return bool|string
      */
     private function setOrAddSession($containerName, $keysession, $sessionValue, $new)
     {
@@ -159,8 +159,6 @@ final class SessionToolbarController extends AbstractActionController
             return $success;
         }
 
-        $errorMessages[] = 'Value is required and can\'t be empty';
-
-        return array($errorMessages, false);
+        return 'Value is required and can\'t be empty';
     }
 }
