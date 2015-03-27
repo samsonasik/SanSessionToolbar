@@ -96,6 +96,8 @@ function sanSessionToolbar_cancelSaveSessionByKey(containerName, keysession)
 
     // empty error
     document.getElementById('errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = '';
+    // re-fill input with current content
+    document.getElementById('san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value = document.getElementById('san-session-toolbar-detail-value-'+containerName+'-'+keysession).innerHTML.trim();
 }
 
 function sanSessionToolbar_saveSessionByKey(containerName, keysession)
