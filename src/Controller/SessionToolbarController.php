@@ -61,7 +61,7 @@ final class SessionToolbarController extends AbstractActionController
             $keysession    = $this->request->getPost('keysession', '');
 
             $success = $this->sessionManager
-                            ->sessionSetting($containerName, $keysession, null, false);
+                            ->sessionSetting($containerName, $keysession);
         }
 
         return new JsonModel(array(
