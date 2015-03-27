@@ -34,9 +34,9 @@ interface SessionManagerInterface
      * @param string $containerName
      * @param string $keysession
      * @param string $value
-     * @param bool   $set
+     * @param array  $options
      */
-    public function sessionSetting($containerName, $keysession, $value = null, $set = true);
+    public function sessionSetting($containerName, $keysession, $value = null, $options = array());
 
     /**
      * Clear Session
