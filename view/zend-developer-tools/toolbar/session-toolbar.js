@@ -95,7 +95,7 @@ function sanSessionToolbar_cancelSaveSessionByKey(containerName, keysession)
     document.getElementById("san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
 
     // empty error
-    $('.errorMessage-containerName-'+containerName+'-keysession-'+keysession).html('');
+    document.getElementById('errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = '';
 }
 
 function sanSessionToolbar_saveSessionByKey(containerName, keysession)
@@ -116,6 +116,8 @@ function sanSessionToolbar_saveSessionByKey(containerName, keysession)
 
 function sanSessionToolbar_cancelNewSessionData(containerName) {
     document.getElementById("san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'none';
+    // empty error
+    document.getElementById('errorMessage-add-new-data-containerName-'+containerName).innerHTML = '';
 }
 
 function sanSessionToolbar_addNewSessionData(containerName)
