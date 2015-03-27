@@ -209,4 +209,41 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertNotContains('barbar', $this->getResponse()->getBody());
     }
+
+    public function testNewSessionDataNotExists()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $postData = array(
+            'key' => 'Default',
+            'keysession' => 'bazbazbadabum',
+            'sessionvalue' => 'barbar',
+            'new' => 1
+        );
+
+        $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertContains('barbar', $this->getResponse()->getBody());
+    }
+
+    public function testNewSessionDataExists()
+    {
+        $container = new Container('Default');
+        $container->foo = 'fooValue';
+
+        $postData = array(
+            'key' => 'Default',
+            'keysession' => 'foo',
+            'sessionvalue' => 'barbar',
+            'new' => 1
+        );
+
+        $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
+        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
+
+        $this->assertNotContains('barbar', $this->getResponse()->getBody());
+    }
+
 }

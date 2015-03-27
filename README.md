@@ -12,9 +12,9 @@ What is it about ?
 -----------------
 It is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2 session data you've been using like this :
 
-![Show ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6427963/4f6afbf4-bfc3-11e4-9ae7-4f600b4ee94f.png)
+![Fully Crud ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6867548/cad28e40-d4b5-11e4-911c-ffd8b88fd41f.png)
 
-You can reload, clear, remove, and update your sessions data.
+You can reload, clear, add, update, and remove your sessions data.
 
 Installation
 ------------
@@ -55,3 +55,4 @@ Credit
 - Clear session icon from http://findicons.com/icon/66997/gnome_edit_clear, encoded with base64_encode.
 - Save Session icon from http://findicons.com/files/icons/980/yuuminco/48/3_disc.png, encoded with base64_encode.
 - Cancel save session from http://findicons.com/files/icons/734/phuzion/128/stop.png, encoded with base64_encode.
+- Add new session data from http://findicons.com/icon/248302/add?id=325782, encoded with base64_encode.

@@ -1,3 +1,10 @@
+### 0.1.3 - 2015-03-27
+
+- Add new feature Add New Session Data
+- Remove redundance view
+- Enhance composer autoload
+- Update Travis config for composer self-update on before_install
+
 ### 0.1.2 - 2015-03-16
 
 - Refactor Js to make it re-usable
