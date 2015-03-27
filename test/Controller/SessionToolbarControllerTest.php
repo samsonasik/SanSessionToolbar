@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,13 +16,15 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbarTest\Controller;
 
 use Zend\Session\Container;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
- * This class tests SessionToolbarController access
+ * This class tests SessionToolbarController access.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
@@ -219,7 +222,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
             'key' => 'Default',
             'keysession' => 'bazbazbadabum',
             'sessionvalue' => 'barbar',
-            'new' => 1
+            'new' => 1,
         );
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
@@ -237,7 +240,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
             'key' => 'Default',
             'keysession' => 'foo',
             'sessionvalue' => 'barbar',
-            'new' => 1
+            'new' => 1,
         );
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
@@ -245,5 +248,4 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 
         $this->assertNotContains('barbar', $this->getResponse()->getBody());
     }
-
 }

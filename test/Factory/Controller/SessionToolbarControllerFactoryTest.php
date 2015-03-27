@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbarTest\Factory\Controller;
 
 use PHPUnit_Framework_TestCase;
@@ -23,7 +25,8 @@ use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * This class tests SessionToolbarControllerFactory class
+ * This class tests SessionToolbarControllerFactory class.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase

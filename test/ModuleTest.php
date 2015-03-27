@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,13 +16,14 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbarTest;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Module;
 
 /**
- * This class tests Module class
+ * This class tests Module class.
  */
 class ModuleTest extends PHPUnit_Framework_TestCase
 {

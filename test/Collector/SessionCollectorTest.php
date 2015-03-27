@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbarTest\Collector;
 
 use PHPUnit_Framework_TestCase;
@@ -25,7 +27,8 @@ use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 
 /**
- * This class tests SessionCollector class
+ * This class tests SessionCollector class.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class SessionCollectorTest extends PHPUnit_Framework_TestCase
@@ -41,7 +44,7 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
     protected $sessionContainer;
 
     /**
-     * initialize properties
+     * initialize properties.
      */
     protected function setUp()
     {

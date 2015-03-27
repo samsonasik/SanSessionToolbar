@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,19 +16,22 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbar\Manager;
 
 use Zend\Session\Container;
 use Zend\Stdlib\ArrayObject;
 
 /**
- * A class to manage session data
+ * A class to manage session data.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 final class SessionManager implements SessionManagerInterface
 {
     /**
-     * Get Session Data
+     * Get Session Data.
+     *
      * @return array
      */
     public function getSessionData()
@@ -53,7 +57,8 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * Set/Unset Session by Container and its key
+     * Set/Unset Session by Container and its key.
+     *
      * @param string $containerName
      * @param string $keysession
      * @param string $value
@@ -71,6 +76,7 @@ final class SessionManager implements SessionManagerInterface
                     return false;
                 } else {
                     $container->offsetSet($keysession, $value);
+
                     return true;
                 }
             } else {
@@ -80,6 +86,7 @@ final class SessionManager implements SessionManagerInterface
                     } else {
                         $container->offsetUnset($keysession);
                     }
+
                     return true;
                 }
             }
@@ -89,8 +96,10 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * Clear Session
-     * @param  null|string $byContainer
+     * Clear Session.
+     *
+     * @param null|string $byContainer
+     *
      * @return array
      */
     public function clearSession($byContainer = null)

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,22 +16,26 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbar\Manager;
 
 /**
- * Interface for SessionManager
+ * Interface for SessionManager.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 interface SessionManagerInterface
 {
     /**
-     * Get Session Data
+     * Get Session Data.
+     *
      * @return array
      */
     public function getSessionData();
 
     /**
-     * Set/Unset Session by Container and its key
+     * Set/Unset Session by Container and its key.
+     *
      * @param string $containerName
      * @param string $keysession
      * @param string $value
@@ -39,8 +44,10 @@ interface SessionManagerInterface
     public function sessionSetting($containerName, $keysession, $value = null, $options = array());
 
     /**
-     * Clear Session
-     * @param  bool|String $byContainer
+     * Clear Session.
+     *
+     * @param bool|String $byContainer
+     *
      * @return array
      */
     public function clearSession($byContainer = false);

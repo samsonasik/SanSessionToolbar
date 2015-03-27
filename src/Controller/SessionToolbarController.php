@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbar\Controller;
 
 use SanSessionToolbar\Manager\SessionManagerInterface;
@@ -24,7 +26,8 @@ use Zend\View\Model\JsonModel;
 use Zend\View\Renderer\RendererInterface;
 
 /**
- * Session Toolbar Controller
+ * Session Toolbar Controller.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 final class SessionToolbarController extends AbstractActionController
@@ -40,7 +43,8 @@ final class SessionToolbarController extends AbstractActionController
     private $sessionManager;
 
     /**
-     * Construct
+     * Construct.
+     *
      * @param RendererInterface $viewRenderer
      * @param SessionManager    $sessionManager
      */
@@ -51,7 +55,7 @@ final class SessionToolbarController extends AbstractActionController
     }
 
     /**
-     * Remove Session by Container and its key
+     * Remove Session by Container and its key.
      */
     public function removesessionAction()
     {
@@ -71,7 +75,7 @@ final class SessionToolbarController extends AbstractActionController
     }
 
     /**
-     * Reload Session data
+     * Reload Session data.
      */
     public function reloadsessionAction()
     {
@@ -86,7 +90,7 @@ final class SessionToolbarController extends AbstractActionController
     }
 
     /**
-     * Clear Session data
+     * Clear Session data.
      */
     public function clearsessionAction()
     {
@@ -105,7 +109,7 @@ final class SessionToolbarController extends AbstractActionController
     }
 
     /**
-     * Save Session by Container and its key
+     * Save Session by Container and its key.
      */
     public function savesessionAction()
     {

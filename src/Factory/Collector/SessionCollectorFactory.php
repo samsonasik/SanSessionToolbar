@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace SanSessionToolbar\Factory\Collector;
 
 use SanSessionToolbar\Collector\SessionCollector;
@@ -23,7 +25,8 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Factory class for SessionCollector creation
+ * Factory class for SessionCollector creation.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class SessionCollectorFactory implements FactoryInterface
