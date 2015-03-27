@@ -105,7 +105,7 @@ function sanSessionToolbar_saveSessionByKey(containerName, keysession)
         if (html.success) {
             document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
         } else {
-            if (JSON.stringify(html.errorMessages) === '[]') {
+            if (html.errorMessage == '') {
                 alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
             } else {
                 document.getElementById('errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = html.errorMessages[0];
@@ -135,7 +135,7 @@ function sanSessionToolbar_saveNewSessionData(containerName)
         if (html.success) {
             document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
         } else {
-            if (JSON.stringify(html.errorMessages) === '[]') {
+            if (html.errorMessage == '') {
                 alert('Save new session failed, check if session with container named "'+containerName+'" and key session "'+newSessionKey+'" already registered');
             } else {
                 document.getElementById('errorMessage-add-new-data-containerName-'+containerName).innerHTML = html.errorMessages[0];

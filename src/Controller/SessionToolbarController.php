@@ -114,7 +114,7 @@ final class SessionToolbarController extends AbstractActionController
     public function savesessionAction()
     {
         $success = false;
-        $errorMessages = array();
+        $errorMessage = '';
         $request = $this->getEvent()->getRequest();
 
         if ($request->isPost()) {
@@ -125,7 +125,7 @@ final class SessionToolbarController extends AbstractActionController
 
             $processSetOrAddSessionData = $this->setOrAddSession($containerName, $keysession, $sessionValue, (bool) $new);
             $success                    = (!is_string($processSetOrAddSessionData)) ? $processSetOrAddSessionData : false;
-            $errorMessages[]            = (!is_string($processSetOrAddSessionData)) ? array() : $processSetOrAddSessionData;
+            $errorMessage            = (!is_string($processSetOrAddSessionData)) ? '' : $processSetOrAddSessionData;
         }
 
         $sessionData     = $this->sessionManager->getSessionData();
@@ -134,7 +134,7 @@ final class SessionToolbarController extends AbstractActionController
 
         return new JsonModel(array(
             'success' => $success,
-            'errorMessages' => $errorMessages,
+            'errorMessage' => $errorMessage,
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
     }
