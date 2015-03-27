@@ -121,19 +121,14 @@ final class SessionToolbarController extends AbstractActionController
             $containerName = $request->getPost('containerName', 'Default');
             $keysession    = $request->getPost('keysession', '');
             $sessionValue  = $request->getPost('sessionvalue');
+            $new           = $request->getPost('new', false);
 
-            $notEmptyValidator = new NotEmpty();
-            if (!$notEmptyValidator->isValid($keysession) || !$notEmptyValidator->isValid($sessionValue)) {
-                $errorMessages[] = 'Value is required and can\'t be empty';
-                $success = false;
-            } else {
-                $new     = $request->getPost('new', false);
-                $success = $this->sessionManager
-                            ->sessionSetting($containerName, $keysession, $sessionValue, array('set' => true, 'new' => (bool) $new));
-            }
+            $processSetOrAddSessionData = $this->setOrAddSession($containerName, $keysession, $sessionValue, (bool) $new);
+            $success                    = (!is_array($processSetOrAddSessionData)) ? $processSetOrAddSessionData : $processSetOrAddSessionData[1];
+            $errorMessages              = (!is_array($processSetOrAddSessionData)) ? array() : $processSetOrAddSessionData[0];
         }
 
-        $sessionData = $this->sessionManager->getSessionData();
+        $sessionData     = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
@@ -142,5 +137,30 @@ final class SessionToolbarController extends AbstractActionController
             'errorMessages' => $errorMessages,
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
         ));
+    }
+
+    /**
+     * Set or Add Session Data Process.
+     *
+     * @param string $containerName
+     * @param string $keysession
+     * @param string $sessionValue
+     * @param bool   $new
+     *
+     * @return bool|array
+     */
+    private function setOrAddSession($containerName, $keysession, $sessionValue, $new)
+    {
+        $notEmptyValidator = new NotEmpty();
+        if ($notEmptyValidator->isValid($keysession) && $notEmptyValidator->isValid($sessionValue)) {
+            $success = $this->sessionManager
+                            ->sessionSetting($containerName, $keysession, $sessionValue, array('set' => true, 'new' => $new));
+
+            return $success;
+        }
+
+        $errorMessages[] = 'Value is required and can\'t be empty';
+
+        return array($errorMessages, false);
     }
 }
