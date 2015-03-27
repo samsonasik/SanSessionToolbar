@@ -123,7 +123,7 @@ final class SessionToolbarController extends AbstractActionController
             $sessionValue  = $request->getPost('sessionvalue');
 
             $notEmptyValidator         = new NotEmpty();
-            if (!$notEmptyValidator->isValid($keysession) ||  !$notEmptyValidator->isValid($sessionValue)) {
+            if (!$notEmptyValidator->isValid($keysession) || !$notEmptyValidator->isValid($sessionValue)) {
                 $errorMessages[] = 'Value is required and can\'t be empty';
                 $success = false;
             } else {
