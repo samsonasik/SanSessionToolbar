@@ -57,12 +57,15 @@ final class SessionManager implements SessionManagerInterface
      * @param string $containerName
      * @param string $keysession
      * @param string $value
-     * @param bool   $set
+     * @param array  $options
      */
-    public function sessionSetting($containerName, $keysession, $value = null, $set = true, $new = false)
+    public function sessionSetting($containerName, $keysession, $value = null, $options = array())
     {
         if (is_string($containerName) && is_string($keysession)) {
             $container = new Container($containerName);
+            $set = (!empty($options['set'])) ? $options['set'] : false;
+            $new = (!empty($options['new'])) ? $options['new'] : false;
+
             if ($new) {
                 if ($container->offsetExists($keysession)) {
                     return false;

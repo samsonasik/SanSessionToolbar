@@ -123,7 +123,7 @@ final class SessionToolbarController extends AbstractActionController
             } else {
                 $new     = $this->request->getPost('new', false);
                 $success = $this->sessionManager
-                            ->sessionSetting($containerName, $keysession, $sessionValue, true, (bool) $new);
+                            ->sessionSetting($containerName, $keysession, $sessionValue, array('set' => true, 'new' => (bool) $new));
             }
         }
 
