@@ -125,7 +125,7 @@ final class SessionToolbarController extends AbstractActionController
 
             $processSetOrAddSessionData = $this->setOrAddSession($containerName, $keysession, $sessionValue, (bool) $new);
             $success                    = (!is_string($processSetOrAddSessionData)) ? $processSetOrAddSessionData : false;
-            $errorMessage            = (!is_string($processSetOrAddSessionData)) ? '' : $processSetOrAddSessionData;
+            $errorMessage = (!is_string($processSetOrAddSessionData)) ? '' : $processSetOrAddSessionData;
         }
 
         $sessionData     = $this->sessionManager->getSessionData();
