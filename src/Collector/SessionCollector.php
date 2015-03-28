@@ -19,6 +19,7 @@
 
 namespace SanSessionToolbar\Collector;
 
+use SanSessionToolbar\Manager\SessionManagerInterface;
 use SanSessionToolbar\Manager\SessionManager;
 use ZendDeveloperTools\Collector\AbstractCollector;
 use Zend\Mvc\MvcEvent;
@@ -31,7 +32,7 @@ use Zend\Mvc\MvcEvent;
 class SessionCollector extends AbstractCollector
 {
     /**
-     * @var SessionManager
+     * @var SessionManagerInterface
      */
     protected $sessionManager;
 
@@ -40,7 +41,7 @@ class SessionCollector extends AbstractCollector
      *
      * @param SessionManager $sessionManager
      */
-    public function __construct(SessionManager $sessionManager)
+    public function __construct(SessionManagerInterface $sessionManager)
     {
         $this->sessionManager = $sessionManager;
     }

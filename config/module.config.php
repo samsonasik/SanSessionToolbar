@@ -44,6 +44,9 @@ return array(
     ),
 
     'service_manager' => array(
+        'invokables' => array(
+            'SanSessionManager' => 'SanSessionToolbar\Manager\SessionManager',
+        ),
         'factories' => array(
             'session.toolbar' => 'SanSessionToolbar\Factory\Collector\SessionCollectorFactory',
         ),
