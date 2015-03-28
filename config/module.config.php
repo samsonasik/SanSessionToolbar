@@ -50,9 +50,6 @@ return array(
         'factories' => array(
             'session.toolbar' => 'SanSessionToolbar\Factory\Collector\SessionCollectorFactory',
         ),
-        'alias' => array(
-            'SanSessionToolbar\Manager\SessionManagerInterface' => 'SanSessionManager'
-        ),
     ),
 
     'view_manager' => array(

@@ -29,8 +29,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  */
 class SessionCollectorFactory
 {
-    public function __invoke(ServiceLocatorInterface $services)
+    public function __invoke(ServiceLocatorInterface $serviceLocator)
     {
-        return new SessionCollector($services->get('SanSessionManager'));
+        return new SessionCollector($serviceLocator->get('SanSessionManager'));
     }
 }

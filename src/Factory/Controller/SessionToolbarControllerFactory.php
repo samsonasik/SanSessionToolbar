@@ -20,7 +20,6 @@
 namespace SanSessionToolbar\Factory\Controller;
 
 use SanSessionToolbar\Controller\SessionToolbarController;
-use SanSessionToolbar\Manager\SessionManager;
 use Zend\Mvc\Controller\ControllerManager;
 
 /**
@@ -36,7 +35,7 @@ class SessionToolbarControllerFactory
 
         return new SessionToolbarController(
             $services->get('ViewRenderer'),
-            new SessionManager()
+            $services->get('SanSessionManager')
         );
     }
 }
