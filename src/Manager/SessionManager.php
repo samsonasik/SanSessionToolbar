@@ -109,14 +109,12 @@ final class SessionManager implements SessionManagerInterface
      */
     private function setUnset(Container $container, $keysession, $value = null, $set = false)
     {
-        if ($container->offsetExists($keysession) && $set) {
-            $container->offsetSet($keysession, $value);
-
-            return true;
-        }
-
-        if ($container->offsetExists($keysession) && !$set) {
-            $container->offsetUnset($keysession);
+        if ($container->offsetExists($keysession)) {
+            if ($set) {
+                $container->offsetSet($keysession, $value);
+            } else {
+                $container->offsetUnset($keysession);
+            }
 
             return true;
         }
