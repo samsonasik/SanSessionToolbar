@@ -14,5 +14,6 @@ return Symfony\CS\Config\Config::create()
     ->finder($finder)
     ->fixers(array(
         FixerInterface::PSR2_LEVEL,
-        '-concat_without_spaces'
+        '-concat_without_spaces',
+        '-no_empty_lines_after_phpdocs'
     ));
