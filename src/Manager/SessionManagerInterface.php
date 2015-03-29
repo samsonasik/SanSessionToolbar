@@ -40,6 +40,8 @@ interface SessionManagerInterface
      * @param string $keysession
      * @param string $value
      * @param array  $options
+     *
+     * @return bool
      */
     public function sessionSetting($containerName, $keysession, $value = null, $options = array());
 
