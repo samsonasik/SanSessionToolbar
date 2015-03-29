@@ -18,11 +18,12 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - vendor/bin/phpunit --coverage-text
+  - php ./vendor/bin/php-cs-fixer fix {} -v --diff --dry-run --config-file=.php_cs
+  - ./vendor/bin/phpunit --coverage-text
 
 after_script:
-  - php vendor/bin/phpcov merge --clover build/logs/clover.xml build/coverage/
-  - php vendor/bin/coveralls -v --exclude-no-stmt
+  - php ./vendor/bin/phpcov merge --clover ./build/logs/clover.xml ./build/coverage/
+  - php ./vendor/bin/coveralls -v --exclude-no-stmt
 
 notifications:
   email: false
