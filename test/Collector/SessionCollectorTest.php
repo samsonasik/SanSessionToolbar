@@ -86,6 +86,7 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
+     * @runInSeparateProcess
      */
     public function testGetSessionData()
     {
@@ -118,6 +119,10 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
         ), $this->sessionCollector->getSessionData());
     }
 
+    /**
+     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
+     * @runInSeparateProcess
+     */
     public function testGetSessionDataWithSessionManagerIsNull()
     {
         $this->sessionContainer->word = 'zaf8go6i';
@@ -156,6 +161,7 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
+     * @runInSeparateProcess
      */
     public function testGetSessionDataForEmpty()
     {
