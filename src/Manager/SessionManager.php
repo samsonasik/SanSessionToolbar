@@ -147,7 +147,7 @@ final class SessionManager implements SessionManagerInterface
      * Unset All session data in Container.
      *
      * @param string $containerName
-     * @param string $session
+     * @param string $sessions
      */
     private function unsetAllSessionDataInContainer($containerName, $sessions)
     {
