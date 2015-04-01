@@ -113,8 +113,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function savesessionAction()
     {
-        $success = false;
-        $errorMessage = '';
+        $processSetOrAddSessionData = array('success' => false, 'errorMessage' => '');
         $request = $this->getEvent()->getRequest();
 
         if ($request->isPost()) {
