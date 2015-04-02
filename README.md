@@ -1,7 +1,7 @@
 SanSessionToolbar
 =================
 
-[![Latest Version](https://img.shields.io/github/release/samsonasik/SanSessionToolbar.svg?style=flat-square)](https://github.com/san/san-session-toolbar/releases)
+[![Latest Version](https://img.shields.io/github/release/samsonasik/SanSessionToolbar.svg?style=flat-square)](https://github.com/samsonasik/SanSessionToolbar/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/build-status/master)
 [![Coverage Status](https://coveralls.io/repos/samsonasik/SanSessionToolbar/badge.svg?branch=master)](https://coveralls.io/r/samsonasik/SanSessionToolbar)
