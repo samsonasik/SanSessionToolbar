@@ -21,8 +21,7 @@
         "satooshi/php-coveralls": "dev-master",
         "phpunit/phpcov": "~2.0",
         "zendframework/zend-test": "2.*",
-        "zendframework/zend-developer-tools": "dev-master",
-        "fabpot/php-cs-fixer": "1.*"
+        "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
         "psr-4": {
