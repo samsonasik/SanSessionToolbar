@@ -20,8 +20,7 @@
     "require-dev": {
         "satooshi/php-coveralls": "dev-master",
         "phpunit/phpcov": "~2.0",
-        "zendframework/zend-test": "~2.4.0",
-        "zendframework/zend-modulemanager": "~2.4.0",
+        "zendframework/zendframework": "~2.4.0",
         "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
