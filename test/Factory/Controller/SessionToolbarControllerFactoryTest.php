@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace SanSessionToolbarTest\Factory\Controller;
+namespace SanSessionToolbartest\Factory\Controller;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory;
