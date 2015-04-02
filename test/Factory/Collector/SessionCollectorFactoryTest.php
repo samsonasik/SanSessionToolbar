@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace SanSessionToolbarTest\Factory\Collector;
+namespace SanSessionToolbartest\Factory\Collector;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;

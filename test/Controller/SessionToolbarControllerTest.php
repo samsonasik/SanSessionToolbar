@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace SanSessionToolbarTest\Controller;
+namespace SanSessionToolbartest\Controller;
 
 use Zend\Session\Container;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;

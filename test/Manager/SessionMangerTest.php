@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace SanSessionToolbarTest\Manager;
+namespace SanSessionToolbartest\Manager;
 
 use PHPUnit_Framework_TestCase;
 use Zend\Session\Container;

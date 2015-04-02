@@ -20,7 +20,6 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - php ./vendor/bin/php-cs-fixer fix {} -v --diff --dry-run --config-file=.php_cs
   - ./vendor/bin/phpunit --coverage-text
 
 after_script:
