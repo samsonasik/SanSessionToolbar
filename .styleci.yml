@@ -6,3 +6,5 @@ enabled:
 
 disabled:
   - short_array_syntax
+  - concat_without_spaces
+  - no_empty_lines_after_phpdocs
