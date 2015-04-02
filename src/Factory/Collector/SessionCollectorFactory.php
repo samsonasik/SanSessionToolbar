@@ -31,6 +31,6 @@ class SessionCollectorFactory
 {
     public function __invoke(ServiceLocatorInterface $serviceLocator)
     {
-        return new SessionCollector($serviceLocator->get('SanSessionManager'));
+        return new SessionCollector((object) $serviceLocator->get('SanSessionManager'));
     }
 }

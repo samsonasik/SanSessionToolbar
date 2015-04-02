@@ -45,8 +45,8 @@ final class SessionToolbarController extends AbstractActionController
     /**
      * Construct.
      *
-     * @param RendererInterface $viewRenderer
-     * @param SessionManager    $sessionManager
+     * @param RendererInterface       $viewRenderer
+     * @param SessionManagerInterface $sessionManager
      */
     public function __construct(RendererInterface $viewRenderer, SessionManagerInterface $sessionManager)
     {

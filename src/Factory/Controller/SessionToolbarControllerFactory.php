@@ -35,7 +35,7 @@ class SessionToolbarControllerFactory
 
         return new SessionToolbarController(
             $services->get('ViewRenderer'),
-            $services->get('SanSessionManager')
+            (object) $services->get('SanSessionManager')
         );
     }
 }
