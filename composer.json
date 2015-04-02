@@ -15,12 +15,13 @@
     ],
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zend-session": "2.*"
+        "zendframework/zend-session": "~2.4.0"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master",
         "phpunit/phpcov": "~2.0",
-        "zendframework/zend-test": "2.*",
+        "zendframework/zend-test": "~2.4.0",
+        "zendframework/zend-modulemanager": "~2.4.0",
         "zendframework/zend-developer-tools": "dev-master"
     },
     "autoload": {
