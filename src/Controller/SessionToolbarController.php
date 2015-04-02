@@ -20,6 +20,7 @@
 namespace SanSessionToolbar\Controller;
 
 use SanSessionToolbar\Manager\SessionManagerInterface;
+use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Validator\NotEmpty;
 use Zend\View\Model\JsonModel;
@@ -117,12 +118,7 @@ final class SessionToolbarController extends AbstractActionController
         $request = $this->getEvent()->getRequest();
 
         if ($request->isPost()) {
-            $containerName = $request->getPost('containerName', 'Default');
-            $keysession    = $request->getPost('keysession', '');
-            $sessionValue  = $request->getPost('sessionvalue');
-            $new           = $request->getPost('new', false);
-
-            $processSetOrAddSessionData = $this->setOrAddSession($containerName, $keysession, $sessionValue, (bool) $new);
+            $processSetOrAddSessionData = $this->setOrAddSession($request);
         }
 
         $sessionData     = $this->sessionManager->getSessionData();
@@ -139,15 +135,17 @@ final class SessionToolbarController extends AbstractActionController
     /**
      * Set or Add Session Data Process.
      *
-     * @param string $containerName
-     * @param string $keysession
-     * @param string $sessionValue
-     * @param bool   $new
+     * @param Request $request
      *
      * @return bool|string
      */
-    private function setOrAddSession($containerName, $keysession, $sessionValue, $new)
+    private function setOrAddSession(Request $request)
     {
+        $containerName = $request->getPost('containerName', 'Default');
+        $keysession    = $request->getPost('keysession', '');
+        $sessionValue  = $request->getPost('sessionvalue');
+        $new           = (bool) $request->getPost('new', false);
+
         $notEmptyValidator = new NotEmpty();
         if ($notEmptyValidator->isValid($keysession) && $notEmptyValidator->isValid($sessionValue)) {
             $success = $this->sessionManager
