@@ -75,7 +75,7 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
                              ->with('SanSessionManager')
                              ->willReturn($sessionManager);
 
-        $result = $this->factory->__invoke($this->controllerManager);
+        $result = $this->factory->createService($this->controllerManager);
         $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
     }
 }
