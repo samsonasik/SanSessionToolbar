@@ -59,7 +59,7 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::__invoke
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::createService
      */
     public function testCreateService()
     {
