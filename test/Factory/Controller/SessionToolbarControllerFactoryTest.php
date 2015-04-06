@@ -61,21 +61,34 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::createService
      */
-    public function testCreateService()
+    public function testCreateServiceWithControllerManager()
+    {
+        $this->doTestCreateService($this->controllerManager);
+    }
+
+    /**
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::createService
+     */
+    public function testCreateServiceWithServiceLocator()
+    {
+        $this->doTestCreateService($this->serviceLocator);
+    }
+
+    protected function doTestCreateService(ServiceLocatorInterface $serviceLocator)
     {
         $mockViewRenderer = $this->getMock('Zend\View\Renderer\RendererInterface');
         $this->serviceLocator->expects($this->at(0))
-                             ->method('get')
-                             ->with('ViewRenderer')
-                             ->willReturn($mockViewRenderer);
+            ->method('get')
+            ->with('ViewRenderer')
+            ->willReturn($mockViewRenderer);
 
         $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
         $this->serviceLocator->expects($this->at(1))
-                             ->method('get')
-                             ->with('SanSessionManager')
-                             ->willReturn($sessionManager);
+            ->method('get')
+            ->with('SanSessionManager')
+            ->willReturn($sessionManager);
 
-        $result = $this->factory->createService($this->controllerManager);
+        $result = $this->factory->createService($serviceLocator);
         $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
     }
 }
