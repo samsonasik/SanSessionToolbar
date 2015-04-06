@@ -9,6 +9,8 @@ SanSessionToolbar
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9/mini.png)](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9)
 [![StyleCI](https://styleci.io/repos/21261604/shield)](https://styleci.io/repos/21261604)
 [![Dependency Status](https://www.versioneye.com/php/san:san-session-toolbar/badge.svg)](https://www.versioneye.com/php/san:san-session-toolbar)
+[![Reference Status](https://www.versioneye.com/php/san:san-session-toolbar/reference_badge.svg?style=flat)](https://www.versioneye.com/php/san:san-session-toolbar/references)
+[![HHVM Status](http://hhvm.h4cc.de/badge/san/san-session-toolbar.svg)](http://hhvm.h4cc.de/package/san/san-session-toolbar)
 [![Total Downloads](https://img.shields.io/packagist/dt/san/san-session-toolbar.svg?style=flat-square)](https://packagist.org/packages/san/san-session-toolbar)
 
 What is it about ?
