@@ -41,8 +41,12 @@ class SessionToolbarControllerFactory implements FactoryInterface
         );
     }
 
-    protected function getInnerServiceLocator(ServiceLocatorAwareInterface $sla)
+    protected function getInnerServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
-        return $sla->getServiceLocator();
+        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
+            return $serviceLocator->getServiceLocator();
+        }
+
+        return $serviceLocator;
     }
 }
