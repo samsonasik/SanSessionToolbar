@@ -39,7 +39,7 @@ class SessionToolbarControllerFactory implements FactoryInterface
         $services = $this->getParentServiceLocator($serviceLocator);
 
         return new SessionToolbarController(
-            $services->get('ViewRenderer'),
+            (object) $services->get('ViewRenderer'),
             (object) $services->get('SanSessionManager')
         );
     }
