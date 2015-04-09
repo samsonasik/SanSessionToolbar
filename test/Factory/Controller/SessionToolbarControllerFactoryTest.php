@@ -59,6 +59,7 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::getParentServiceLocator
      * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::createService
      */
     public function testCreateServiceWithControllerManager()
@@ -67,6 +68,7 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::getParentServiceLocator
      * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::createService
      */
     public function testCreateServiceWithServiceLocator()
@@ -74,7 +76,7 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
         $this->doTestCreateService($this->serviceLocator);
     }
 
-    protected function doTestCreateService(ServiceLocatorInterface $serviceLocator)
+    private function doTestCreateService(ServiceLocatorInterface $serviceLocator)
     {
         $mockViewRenderer = $this->getMock('Zend\View\Renderer\RendererInterface');
         $this->serviceLocator->expects($this->at(0))

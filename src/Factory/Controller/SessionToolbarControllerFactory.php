@@ -31,9 +31,12 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
  */
 class SessionToolbarControllerFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $this->getInnerServiceLocator($serviceLocator);
+        $services = $this->getParentServiceLocator($serviceLocator);
 
         return new SessionToolbarController(
             $services->get('ViewRenderer'),
@@ -41,7 +44,14 @@ class SessionToolbarControllerFactory implements FactoryInterface
         );
     }
 
-    protected function getInnerServiceLocator(ServiceLocatorInterface $serviceLocator)
+    /**
+     * Get Parent ServiceLocator.
+     *
+     * @param ServiceLocatorInterface
+     *
+     * @return ServiceLocatorInterface
+     */
+    private function getParentServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
         if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
             return $serviceLocator->getServiceLocator();

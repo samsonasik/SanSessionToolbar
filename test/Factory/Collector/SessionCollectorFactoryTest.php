@@ -47,7 +47,7 @@ class SessionCollectorFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SanSessionToolbar\Factory\Collector\SessionCollectorFactory::__invoke
+     * @covers SanSessionToolbar\Factory\Collector\SessionCollectorFactory::createService
      */
     public function testCreateService()
     {
@@ -57,7 +57,7 @@ class SessionCollectorFactoryTest extends PHPUnit_Framework_TestCase
                              ->with('SanSessionManager')
                              ->willReturn($sessionManager);
 
-        $result = $this->factory->__invoke($this->serviceLocator);
+        $result = $this->factory->createService($this->serviceLocator);
         $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
     }
 }
