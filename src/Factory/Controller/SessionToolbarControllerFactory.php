@@ -20,22 +20,43 @@
 namespace SanSessionToolbar\Factory\Controller;
 
 use SanSessionToolbar\Controller\SessionToolbarController;
-use Zend\Mvc\Controller\ControllerManager;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
 /**
  * Factory class for SessionToolbarController creation.
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionToolbarControllerFactory
+class SessionToolbarControllerFactory implements FactoryInterface
 {
-    public function __invoke(ControllerManager $controllerManager)
+    /**
+     * {@inheritDoc}
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $controllerManager->getServiceLocator();
+        $services = $this->getParentServiceLocator($serviceLocator);
 
         return new SessionToolbarController(
             $services->get('ViewRenderer'),
             (object) $services->get('SanSessionManager')
         );
+    }
+
+    /**
+     * Get Parent ServiceLocator.
+     *
+     * @param ServiceLocatorInterface
+     *
+     * @return ServiceLocatorInterface
+     */
+    private function getParentServiceLocator(ServiceLocatorInterface $serviceLocator)
+    {
+        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
+            return $serviceLocator->getServiceLocator();
+        }
+
+        return $serviceLocator;
     }
 }
