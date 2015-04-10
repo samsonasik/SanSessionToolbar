@@ -5,7 +5,7 @@ SanSessionToolbar
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/build-status/master)
 [![Coverage Status](https://coveralls.io/repos/samsonasik/SanSessionToolbar/badge.svg?branch=master)](https://coveralls.io/r/samsonasik/SanSessionToolbar)
-[![Quality Score](https://img.shields.io/scrutinizer/g/samsonasik/SanSessionToolbar.svg?style=flat-square)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9/mini.png)](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9)
 [![StyleCI](https://styleci.io/repos/21261604/shield)](https://styleci.io/repos/21261604)
 [![Dependency Status](https://www.versioneye.com/php/san:san-session-toolbar/badge.svg)](https://www.versioneye.com/php/san:san-session-toolbar)
