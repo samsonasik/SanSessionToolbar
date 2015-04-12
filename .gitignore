@@ -1,3 +1,4 @@
+config/san-session-toolbar.local.php
 vendor/
 composer.lock
 test/html-report/
