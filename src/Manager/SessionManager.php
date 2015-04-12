@@ -30,6 +30,20 @@ use Zend\Stdlib\ArrayObject;
 final class SessionManager implements SessionManagerInterface
 {
     /**
+     * @var array
+     */
+    private $options;
+
+    /**
+     * Construct SessionManager
+     * @param array $options
+     */
+    public function __construct($options = array())
+    {
+        $this->options = $options;
+    }
+
+    /**
      * Get Session Data.
      *
      * @return array
