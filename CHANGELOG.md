@@ -1,3 +1,11 @@
+### 0.1.4 - 2015-04-13
+
+- Add more tests
+- Add more badges
+- Scrutinizer fixes
+- Refactor Factory using ServiceLocatorAwareInterface
+
+
 ### 0.1.3 - 2015-03-27
 
 - Add new feature Add New Session Data
