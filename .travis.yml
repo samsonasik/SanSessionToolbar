@@ -13,7 +13,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --prefer-source
+  - composer install --prefer-dist
 
 before_script:
   - mkdir -p build/coverage
