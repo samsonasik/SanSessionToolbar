@@ -12,5 +12,6 @@ Tests
 You can run test with :
 ```shell
 $ composer install
-$ ./vendor/bin/phpunit
+$ ./vendor/bin/phpunit --coverage-text
 ```
+and make sure there is no regression.
