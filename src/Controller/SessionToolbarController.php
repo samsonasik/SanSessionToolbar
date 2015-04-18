@@ -117,7 +117,7 @@ final class SessionToolbarController extends AbstractActionController
         $processSetOrAddSessionData = array('success' => false, 'errorMessage' => '');
         $request = $this->getEvent()->getRequest();
 
-        if ($request->isPost()) {
+        if ($request instanceof Request && $request->isPost()) {
             $processSetOrAddSessionData = $this->setOrAddSession($request);
         }
 
