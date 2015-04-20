@@ -1,3 +1,10 @@
+### 0.1.5 - 2015-04-21
+
+- update zf2 requirement to ~2.4
+- update phpunit.xml blacklist
+- update composer install command on .travis.yml to use --prefer-dist
+- update composer timeout command in .travis.yml
+
 ### 0.1.4 - 2015-04-13
 
 - Add more tests
