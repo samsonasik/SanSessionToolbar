@@ -1,3 +1,7 @@
+### 0.1.6 - 2015-05-06
+
+- improvement on clear() method by container or all containers
+
 ### 0.1.5 - 2015-04-21
 
 - update zf2 requirement to ~2.4
@@ -25,7 +29,7 @@
 - Refactor Js to make it re-usable
 - Make Controller slimmer, move logics to service
 - Add CONTRIBUTING.md
-- var_dump data presentation fix ( https://github.com/samsonasik/SanSessionToolbar/pull/21 ) 
+- var_dump data presentation fix ( https://github.com/samsonasik/SanSessionToolbar/pull/21 )
 
 ### 0.1.1 - 2015-03-01
 
