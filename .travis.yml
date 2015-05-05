@@ -15,10 +15,6 @@ before_install:
 install:
   - composer install --prefer-dist
 
-before_script:
-  - mkdir -p build/coverage
-  - mkdir -p build/logs
-
 script:
   - ./vendor/bin/phpunit --coverage-text
 
