@@ -133,24 +133,9 @@ final class SessionManager implements SessionManagerInterface
      */
     public function clearSession($byContainer = null)
     {
-        foreach ($this->getSessionData() as $containerName => $sessionData) {
-            if ($byContainer !== null && $containerName !== $byContainer) {
-                continue;
-            }
-            $this->unsetAllSessionDataInContainer($containerName);
-        }
+        $container = new Container();
+        $container->getManager()->getStorage()->clear($byContainer);
 
         return $this->getSessionData();
-    }
-
-    /**
-     * Unset All session data in Container.
-     *
-     * @param string $containerName
-     */
-    private function unsetAllSessionDataInContainer($containerName)
-    {
-        $container = new Container();
-        $container->getManager()->getStorage()->clear($containerName);
     }
 }
