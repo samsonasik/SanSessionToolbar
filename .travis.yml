@@ -13,7 +13,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --prefer-dist
+  - composer install
 
 script:
   - ./vendor/bin/phpunit --coverage-text
