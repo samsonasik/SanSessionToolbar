@@ -101,25 +101,6 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->assertNotContains('No ZF2 Session Data', $this->getResponse()->getBody());
     }
 
-    public function testClearSessionByContainerSkippedLoopContinueNextContainerWhenFirstIsNotMet()
-    {
-        $container = new Container('Default');
-        $container->foo = 'fooValue';
-
-        $container = new Container('OtherContainer');
-        $container->foo = 'fooValue';
-
-        $postData = array(
-            'byContainer' => 'OtherContainer',
-        );
-
-        $this->dispatch('/san-session-toolbar/clearsession', 'POST', $postData);
-        $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
-
-        $this->assertContains('Default', $this->getResponse()->getBody());
-        $this->assertNotContains('OtherContainer', $this->getResponse()->getBody());
-    }
-
     public function testClearSessionByContainerExecuteCurrentContainerWhenItMet()
     {
         $container = new Container('Default');
