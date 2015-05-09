@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace SanSessionToolbartest;
+namespace SanSessionToolbar\Test;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Module;
