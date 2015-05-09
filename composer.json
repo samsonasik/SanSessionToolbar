@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SanSessionToolbartest\\": "test/"
+            "SanSessionToolbar\\Test\\": "test/"
         }
     },
     "extra": {
