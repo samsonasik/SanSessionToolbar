@@ -38,7 +38,7 @@ interface SessionManagerInterface
      *
      * @param string $containerName
      * @param string $keysession
-     * @param string $value
+     * @param null|string $value
      * @param array  $options
      *
      * @return bool
