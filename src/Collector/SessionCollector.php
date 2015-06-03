@@ -39,7 +39,7 @@ class SessionCollector extends AbstractCollector
     /**
      * Construct.
      *
-     * @param SessionManager $sessionManager
+     * @param SessionManagerInterface $sessionManager
      */
     public function __construct(SessionManagerInterface $sessionManager)
     {
@@ -79,11 +79,6 @@ class SessionCollector extends AbstractCollector
      */
     public function getSessionData()
     {
-        // need this because current ZDT can't detect property of object that setted via factory
-        if (!$this->sessionManager) {
-            $this->sessionManager = new SessionManager();
-        }
-
         $this->data['san-session'] = $this->sessionManager->getSessionData();
 
         return $this->data['san-session'];

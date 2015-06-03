@@ -123,46 +123,6 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
      * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
      * @runInSeparateProcess
      */
-    public function testGetSessionDataWithSessionManagerIsNull()
-    {
-        $this->sessionContainer->word = 'zaf8go6i';
-        $this->sessionContainer->a = array(
-            'foo' => 'bar',
-            42 => 24,
-            'multi' => array(
-                'dimensional' => array(
-                    'array' => 'foo',
-                ),
-            ),
-        );
-        $this->sessionContainer->bar = 'bar';
-
-        $class = new ReflectionClass('SanSessionToolbar\Collector\SessionCollector');
-        $property = $class->getProperty('sessionManager');
-        $property->setAccessible(true);
-        $property->setValue($this->sessionCollector, null);
-
-        $this->assertEquals(array(
-            'Default' => array(
-                'word' => 'zaf8go6i',
-                'a' => array(
-                    'foo' => 'bar',
-                    42 => 24,
-                    'multi' => array(
-                        'dimensional' => array(
-                            'array' => 'foo',
-                        ),
-                    ),
-                ),
-                'bar' => 'bar',
-            ),
-        ), $this->sessionCollector->getSessionData());
-    }
-
-    /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
-     * @runInSeparateProcess
-     */
     public function testGetSessionDataForEmpty()
     {
         $this->sessionContainer->offsetUnset('word');
