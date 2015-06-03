@@ -1,3 +1,12 @@
+### 0.1.7 - 2015-06-03
+
+- remove hhvm-nightly as now ubuntu don't support it
+- composer using prefer-source
+- using {@inheritDoc} in Manager
+- update badge for dependency status
+- using https for composer url
+- fixes docblock parameter and remove lazy load as latest ZDT master for serialize collector is updated
+
 ### 0.1.6 - 2015-05-06
 
 - improvement on clear() method by container or all containers
