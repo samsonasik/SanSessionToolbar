@@ -23,6 +23,9 @@
         "zendframework/zendframework": "~2.4",
         "zendframework/zend-developer-tools": "dev-master"
     },
+    "suggest": {
+        "ext-xdebug": "For better output format of session data, Xdebug should already installed"  
+    },
     "autoload": {
         "psr-4": {
             "SanSessionToolbar\\": "src/"
