@@ -42,6 +42,8 @@ return [
 ],
 ```
 
+> **Note** : for better ouput format, you need to have Xdebug installed in your system.
+
 Contributing
 ------------
 Contributions are very welcome. Please read [CONTRIBUTING.md](https://github.com/samsonasik/SanSessionToolbar/blob/master/CONTRIBUTING.md)
