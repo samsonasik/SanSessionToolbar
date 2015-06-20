@@ -14,134 +14,247 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-function sansessionToolbar_postDataWithAjax(url, setViewCallBack, params)
-{
-    var xmlhttp; // @see http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
 
-    xmlhttp.open("POST", url, true);
+/**
+ * The ';' is places there for wrong closed modules
+ *
+ * @this win
+ * document is now doc, which reffers only to the local scope
+ * @instance
+ * The value of undefined is guaranteed as being truly
+ * undefined. This is to avoid issues with undefined being
+ * mutable pre-ES5. Comment was taking from http://addyosmani.com/blog/essential-js-namespacing/
+ */
+;(function (win, doc, undefined) {
+    'use strict';
 
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.setRequestHeader("Accept", "application/json");
+    /**
+     * IE 8+
+     */
+    win.fakejQuery = doc.querySelectorAll.bind(doc)
+    var baseURL = doc.getElementById("basePath").innerHTML;
 
-    if (params != undefined) {
-        xmlhttp.setRequestHeader("Content-length", params.length);
-    }
+    var sanSessionToolbar = {
+        init: function () {
+            sanSessionToolbar.eventHandler('.removeSessionByKey', "click", sanSessionToolbar.removeSessionByKey);
+            sanSessionToolbar.eventHandler('.reloadSession', "click", sanSessionToolbar.reloadSession);
+            sanSessionToolbar.eventHandler('.clearAllSession', "click", sanSessionToolbar.clearAllSession);
+            sanSessionToolbar.eventHandler('.clearSessionOfContainer', "click", sanSessionToolbar.clearSessionOfContainer);
+            sanSessionToolbar.eventHandler('.editSessionByKey', "click", sanSessionToolbar.editSessionByKey);
+            sanSessionToolbar.eventHandler('.cancelSaveSessionByKey', "click", sanSessionToolbar.cancelSaveSessionByKey);
+            sanSessionToolbar.eventHandler('.saveSessionByKey', "click", sanSessionToolbar.saveSessionByKey);
+            sanSessionToolbar.eventHandler('.cancelNewSessionData', "click", sanSessionToolbar.cancelNewSessionData);
+            sanSessionToolbar.eventHandler('.addNewSessionData', "click", sanSessionToolbar.addNewSessionData);
+            sanSessionToolbar.eventHandler('.saveNewSessionData', "click", sanSessionToolbar.saveNewSessionData);
+        },
 
-    xmlhttp.setRequestHeader("Connection", "close");
-    if (params != undefined) {
-        xmlhttp.send(params);
+        removeSessionByKey: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+
+            var containerName = trg.parentNode.getAttribute("data-container");
+            var keysession = trg.parentNode.getAttribute("data-keysession");
+            var params = "containerName="+containerName+"&keysession="+keysession;
+            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/removesession', function (html) {
+                if (html.success) {
+                    // top parent level for this session key - span tag
+                    var elements = doc.querySelector(".san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession);
+                    var length = elements.length;
+                    while (length--) {
+                        elements[length].removeChild(elements[length]);
+                    }
+                } else {
+                    alert('No session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
+                }
+            }, params);
+        },
+
+        reloadSession: function () {
+            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/reloadsession', function (html) {
+                doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+            }, null);
+        },
+
+        clearAllSession: function () {
+            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/clearsession', function (html) {
+                doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+            }, null);
+        },
+
+        clearSessionOfContainer: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+            var params = "byContainer="+trg.getAttribute("data-container");
+
+            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/clearsession', function (html) {
+                doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+            }, params);
+        },
+
+        editSessionByKey: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+            var containerName = trg.parentNode.getAttribute("data-container");
+            var keysession = trg.parentNode.getAttribute("data-keysession");
+
+            doc.querySelector("#san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
+            doc.querySelector("#san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
+        },
+
+        cancelSaveSessionByKey: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+            var containerName = trg.parentNode.getAttribute("data-container");
+            var keysession = trg.parentNode.getAttribute("data-keysession");
+
+            doc.querySelector("#san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
+            doc.querySelector("#san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
+
+            // empty error
+            doc.querySelector('#errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = '';
+            // re-fill input with current content
+            doc.querySelector('#san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value = doc.querySelector('#san-session-toolbar-detail-value-'+containerName+'-'+keysession).innerHTML.trim();
+        },
+
+        saveSessionByKey: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+
+            var containerName = trg.parentNode.getAttribute("data-container");
+            var keysession = trg.parentNode.getAttribute("data-keysession");
+            var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+doc.querySelector('#san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value+"&new=0";
+            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/savesession', function (html) {
+                if (html.success) {
+                    doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+                } else {
+                    if (html.errorMessage === '') {
+                        alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
+                    } else {
+                        doc.querySelector('#errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = html.errorMessage;
+                    }
+                }
+            }, params);
+        },
+
+        cancelNewSessionData: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+            var containerName = trg.parentNode.getAttribute("data-container");
+
+            doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'none';
+            // empty error
+            doc.querySelector('#errorMessage-add-new-data-containerName-'+containerName).innerHTML = '';
+        },
+
+        addNewSessionData: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+            var containerName = trg.getAttribute("data-container");
+            doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'block';
+        },
+
+        saveNewSessionData: function (e) {
+            // IE hack
+            e = e || window.event;
+
+            // cross-browser event target
+            var trg = e.target ? e.target : e.srcElement;
+            var containerName = trg.parentNode.getAttribute("data-container");
+            var newSessionKey  = doc.querySelector('#san-add-value-sessionkey-containerName-'+containerName).value;
+            var newSessionData = doc.querySelector('#san-add-value-sessiondata-containerName-'+containerName).value;
+            var params = "containerName="+containerName+"&keysession="+newSessionKey+"&sessionvalue="+newSessionData+"&new=1";
+
+            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/savesession', function (html) {
+                if (html.success) {
+                    doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
+                } else {
+                    if (html.errorMessage === '') {
+                        alert('Save new session failed, check if session with container named "'+containerName+'" and key session "'+newSessionKey+'" already registered');
+                    } else {
+                        doc.querySelector('#errorMessage-add-new-data-containerName-'+containerName).innerHTML = html.errorMessage;
+                    }
+                }
+            }, params);
+        },
+
+        /**
+         * @param {string} element The element that's going to be selected
+         * @param {string} event type (click, change, hover etc)
+         * @callback setViewCallBack The callback that handles the request.
+         */
+        eventHandler: function (element, eventType, fn) {
+            if (doc.addEventListener) {
+                for (var i = fakejQuery(element).length - 1; i >= 0; i--) {
+                    fakejQuery(element)[i].addEventListener(eventType, fn, false)
+                }
+            } else if (doc.attachEvent) {
+                for (var i = fakejQuery(element).length - 1; i >= 0; i--) {
+                    fakejQuery(element)[i].attachEvent("on" + eventType, fn)
+                }
+            } else {
+                alert("Ooops, no event listener methods found!");
+            }
+        },
+
+        /**
+         * @param {string} url where the POST will be send
+         * @callback setViewCallBack The callback that handles the response.
+         * @param {string} params holds the container name and the keysession
+         */
+        postDataWithAjax: function (url, setViewCallBack, params) {
+            var xhr = new(window.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+
+            xhr.open("POST", url, true);
+
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    if (this.status >= 200 && this.status < 400) {
+                        setViewCallBack(JSON.parse(this.responseText));
+                    } else {
+                        console.log(this.statusText);
+                        console.log(this.status);
+                        console.log(this.responseText);
+                    }
+                }
+            }
+            xhr.send(params);
+            xhr = null;
+        },
+    };
+
+    /**
+     * Init everything => $(document).ready(function(){});
+     */
+    if (doc.readyState === 'complete') {
+        setTimeout(sanSessionToolbar.init);
+    } else if (doc.addEventListener) {
+        doc.addEventListener("DOMContentLoaded", sanSessionToolbar.init, false);
+        doc.addEventListener("load", sanSessionToolbar.init, false);
     } else {
-        xmlhttp.send(null);
+        doc.attachEvent('onreadystatechange', sanSessionToolbar.init);
+        win.attachEvent("onload", sanSessionToolbar.init);
     }
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            setViewCallBack(JSON.parse(xmlhttp.responseText))
-        }
-    }
-}
-
-function sanSessionToolbar_removeSessionByKey(containerName, keysession)
-{
-    var params = "containerName="+containerName+"&keysession="+keysession;
-    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/removesession', function(html) {
-        if (html.success) {
-            var elements = document.getElementsByClassName("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession);
-            while (elements.length > 0) {
-                elements[0].parentNode.removeChild(elements[0]);
-            }
-        } else {
-            alert('No session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
-        }
-    }, params);
-}
-
-function sanSessionToolbar_reloadSession()
-{
-    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/reloadsession', function(html) {
-        document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-    });
-}
-
-function sanSessionToolbar_clearAllSession()
-{
-    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/clearsession', function(html) {
-        document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-    });
-}
-
-function sanSessionToolbar_clearSessionOfContainer(byContainer)
-{
-    var params = "byContainer="+byContainer;
-    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/clearsession', function(html) {
-        document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-    }, params);
-}
-
-function editSessionByKey(containerName, keysession)
-{
-    document.getElementById("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
-    document.getElementById("san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
-}
-
-function sanSessionToolbar_cancelSaveSessionByKey(containerName, keysession)
-{
-    document.getElementById("san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
-    document.getElementById("san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
-
-    // empty error
-    document.getElementById('errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = '';
-    // re-fill input with current content
-    document.getElementById('san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value = document.getElementById('san-session-toolbar-detail-value-'+containerName+'-'+keysession).innerHTML.trim();
-}
-
-function sanSessionToolbar_saveSessionByKey(containerName, keysession)
-{
-    var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+document.getElementById('san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value+"&new=0";
-    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/savesession', function(html) {
-        if (html.success) {
-            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-        } else {
-            if (html.errorMessage == '') {
-                alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
-            } else {
-                document.getElementById('errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = html.errorMessage;
-            }
-        }
-    }, params);
-}
-
-function sanSessionToolbar_cancelNewSessionData(containerName) {
-    document.getElementById("san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'none';
-    // empty error
-    document.getElementById('errorMessage-add-new-data-containerName-'+containerName).innerHTML = '';
-}
-
-function sanSessionToolbar_addNewSessionData(containerName)
-{
-    document.getElementById("san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'block';
-}
-
-function sanSessionToolbar_saveNewSessionData(containerName)
-{
-    var newSessionKey  = document.getElementById('san-add-value-sessionkey-containerName-'+containerName).value;
-    var newSessionData = document.getElementById('san-add-value-sessiondata-containerName-'+containerName).value;
-
-    var params = "containerName="+containerName+"&keysession="+newSessionKey+"&sessionvalue="+newSessionData+"&new=1";
-    sansessionToolbar_postDataWithAjax(san_session_toolbar_base_url+'/san-session-toolbar/savesession', function(html) {
-        if (html.success) {
-            document.getElementById('san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
-        } else {
-            if (html.errorMessage == '') {
-                alert('Save new session failed, check if session with container named "'+containerName+'" and key session "'+newSessionKey+'" already registered');
-            } else {
-                document.getElementById('errorMessage-add-new-data-containerName-'+containerName).innerHTML = html.errorMessage;
-            }
-        }
-    }, params);
-}
+})(this, document);
