@@ -51,6 +51,7 @@
         removeSessionByKey: function (e) {
             // IE hack
             e = e || window.event;
+            e.preventDefault();
 
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
@@ -72,13 +73,19 @@
             }, params);
         },
 
-        reloadSession: function () {
+        reloadSession: function (e) {
+            // IE hack
+            e = e || window.event;
+            e.preventDefault();
             sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/reloadsession', function (html) {
                 doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
             }, null);
         },
 
-        clearAllSession: function () {
+        clearAllSession: function (e) {
+            // IE hack
+            e = e || window.event;
+            e.preventDefault();
             sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/clearsession', function (html) {
                 doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
             }, null);
@@ -87,7 +94,7 @@
         clearSessionOfContainer: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var params = "byContainer="+trg.getAttribute("data-container");
@@ -100,7 +107,7 @@
         editSessionByKey: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var containerName = trg.parentNode.getAttribute("data-container");
@@ -113,7 +120,7 @@
         cancelSaveSessionByKey: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var containerName = trg.parentNode.getAttribute("data-container");
@@ -131,7 +138,7 @@
         saveSessionByKey: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
 
@@ -154,7 +161,7 @@
         cancelNewSessionData: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var containerName = trg.parentNode.getAttribute("data-container");
@@ -167,7 +174,7 @@
         addNewSessionData: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var containerName = trg.getAttribute("data-container");
@@ -177,7 +184,7 @@
         saveNewSessionData: function (e) {
             // IE hack
             e = e || window.event;
-
+            e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var containerName = trg.parentNode.getAttribute("data-container");
@@ -229,10 +236,12 @@
 
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
             xhr.setRequestHeader("Accept", "application/json");
+            xhr.timeout = 30000;
             xhr.onreadystatechange = function () {
                 if (this.readyState === 4) {
                     if (this.status >= 200 && this.status < 400) {
                         setViewCallBack(JSON.parse(this.responseText));
+                        sanSessionToolbar.init();
                     } else {
                         console.log(this.statusText);
                         console.log(this.status);
