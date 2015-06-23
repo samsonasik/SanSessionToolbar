@@ -9,10 +9,9 @@
         </testsuite>
     </testsuites>
     <filter>
-        <blacklist>
-            <directory suffix=".php">./test</directory>
-            <directory suffix=".php">./vendor</directory>
-        </blacklist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
     </filter>
     <logging>
         <log type="coverage-php" target="./build/coverage/coverage-san-session-toolbar.cov"/>
