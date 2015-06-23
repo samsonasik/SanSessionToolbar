@@ -63,9 +63,8 @@
                 if (html.success) {
                     // top parent level for this session key - span tag
                     var elements = doc.querySelector(".san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession);
-                    var length = elements.length;
-                    while (length--) {
-                        elements[length].removeChild(elements[length]);
+                    if (elements !== undefined) {
+                        elements.parentNode.removeChild(elements);
                     }
                 } else {
                     alert('No session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
