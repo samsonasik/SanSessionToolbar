@@ -18,12 +18,7 @@
 /* @var $collector \SanSessionToolbar\Collector\SessionCollector */
 $sessionData = $collector->getSessionData();
 ?>
-<script type="text/javascript">
-    <!--
-    var san_session_toolbar_base_url = '<?php echo $this->basePath(); ?>';
-    <?php include __DIR__ . '/session-toolbar.js'; ?>
-    //-->
-</script>
+<span style="display: none !important;" id="basePath"><?php echo $this->basePath(); ?></span>
 <div class="zdt-toolbar-entry">
     <div class="zdt-toolbar-preview">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gwEETYHpO5gOAAAA+VJREFUOMuVlE1vE1cUhp97Zzwzxp8JiRM7CRQaSkGpUqSisqsEEVIXFEFLu2JZqb+n23ZXqSyqNlCkliBVFawKQbSopA04JLZx7CQ4Xx5PsGfG93ZhOyWkmx7pSOcuznO/3vfAK3Hv/n3+b/xw48aetdkrqtU1stkM31+/7qSSyUu1Wu2DuutORB1nJDs8nBzKZEimUnWt1PK26z7e2Ni4UygWpy9fvNicvnmTSxcuACB6wHz+2YRpGl9JKc4opfB9H7fh8qK2jlKKo0eOEAQB266L32qhlEIIgW1ZvyVisc/fPXXq8Z4TlsqlKxHTOqOUQrXVbsPB/gESiTh3794hFosxOjJCOpHANAwMwwAhztRd9wqwF7iyuqbfGBvD85qk0ymGhzIMDAzgODbLy8uk02nm/prj8dwciUSCzOAg2VyO/r4+nhUKuseRvUIAWoPvtwiCACcaJRp18DwPr9HAth3i8QSe55HP51lcKuA1GiitQexi/gV2mBqtQYjO02qtEUKgBWitoLuWUiKleKVRi33Ab1eChXvFKlIropaFbUUwTbPbLBFCdGBCYEiJZRqg2txbLHOt4i/sk82j7YaceThH8OxvTmX7OHt6ktMTJzmYPIBXr1MsVygsV1ksr7LieswsrVH69U8i4yfJvnlY7gOWcl/wYyPON9ujFCMn+C6/xNfVHXasBO1mG1HbwKoHRNsOKRuy1jbvq3muDt7mwpC7q79doChNMxX8xOXDvxBrziDUS2RTIwLQLQh9CMPOIwnbRCZsXqaG+bL1GR/lPwQ+3gtENPhdHeNh8xD1jRpm4GKIAGFoRLOFXt+CnRYqEkXtpAnDDEknh4iYoOv7rXd1OKIebAUsvljBNCQi3oc+4KAjFjRbYG5C3e38tGNjtEMaa1WOjGY5PxJR114HTsXD8aNpnz9KVeoHBtlI97OTPkhgxwhetlBWDOx1nLBJKqLJWAF9/ibvDeUYy0TG9wEt21Jnp6aYeGcSrRWWaSDQBH6L1RceSzs1VtxVdASSiQTZ3CGOHT/O6MgIxedl9fqVZRiGhiENLNumv7+P428dY3BwAM/zKJfL5BcWePr0KcVSCdd1afo+sqvNdrttdDWtJGAA8UqlkuuwO7ZUShGGIe12mzAMd2tgV+RdO1GpLOeAOGDIro2tmVs/z84/ma8GQYBpmhjdaSKk2OOUnvUMwyAIAuafPKnevjUzC1hAbxsiUkpHKZUGJj+58un5qXPnJk+ceHssGo0mN7c2rUKhSD6f9wvFYn29Vnvuuu6jB7Ozt4FHUsotpVQTCMSr41sIgdZ7JpHRzZ61FNDupvqPHv4BQHLIjBbFaNYAAAAASUVORK5CYII=" alt="SESSION Data" />
@@ -34,4 +29,7 @@ $sessionData = $collector->getSessionData();
     <div class="zdt-toolbar-detail" id="san-session-toolbar-detail">
         <?php include __DIR__ . '/session-data-list.phtml'; ?>
     </div>
-</div> 
+</div>
+<script type="text/javascript">
+    <?php $this->escapeJs(include __DIR__ . '/session-toolbar.js'); ?>
+</script>
