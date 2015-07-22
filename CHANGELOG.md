@@ -1,3 +1,7 @@
+### 0.2.0 - 2015-07-22
+
+-  use individual zf components to anticipate moving components of zf to suggest
+
 ### 0.1.9 - 2015-07-22
 
 - Added space before data-container attribute ( #35 )
