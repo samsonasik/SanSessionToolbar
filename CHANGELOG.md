@@ -1,3 +1,13 @@
+### 0.1.9 - 2015-07-22
+
+- Added space before data-container attribute ( #35 )
+
+### 0.1.8 - 2015-06-23
+
+- refactor js and html ( #33 )
+- drop zf requirement to ~2.3
+- add xdebug to suggested extension to be installed already for better output
+
 ### 0.1.7 - 2015-06-03
 
 - remove hhvm-nightly as now ubuntu don't support it
