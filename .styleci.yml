@@ -1,8 +1,6 @@
-preset: psr2
+preset: recommended
 
-enabled:
-  - strict
-  - strict_param
+linting: true
 
 enabled:
   - long_array_syntax
@@ -10,6 +8,13 @@ enabled:
   - unalign_double_arrow
 
 disabled:
+  - align_double_arrow
   - short_array_syntax
-  - concat_without_spaces
-  - no_empty_lines_after_phpdocs
+
+finder:
+  exclude:
+    - "test"
+  name:
+    - "*.php"
+  path:
+    - "src"
