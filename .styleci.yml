@@ -4,6 +4,11 @@ enabled:
   - strict
   - strict_param
 
+enabled:
+  - long_array_syntax
+  - strict
+  - unalign_double_arrow
+
 disabled:
   - short_array_syntax
   - concat_without_spaces
