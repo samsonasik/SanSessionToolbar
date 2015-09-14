@@ -36,10 +36,10 @@ interface SessionManagerInterface
     /**
      * Set/Unset Session by Container and its key.
      *
-     * @param string $containerName
-     * @param string $keysession
+     * @param string      $containerName
+     * @param string      $keysession
      * @param null|string $value
-     * @param array  $options
+     * @param array       $options
      *
      * @return bool
      */

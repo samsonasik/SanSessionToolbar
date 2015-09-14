@@ -31,7 +31,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class SessionCollectorFactory implements FactoryInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

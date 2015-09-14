@@ -19,10 +19,10 @@
 
 namespace SanSessionToolbar\Collector;
 
-use SanSessionToolbar\Manager\SessionManagerInterface;
 use SanSessionToolbar\Manager\SessionManager;
-use ZendDeveloperTools\Collector\AbstractCollector;
+use SanSessionToolbar\Manager\SessionManagerInterface;
 use Zend\Mvc\MvcEvent;
+use ZendDeveloperTools\Collector\AbstractCollector;
 
 /**
  * Session Data Collector.
@@ -47,7 +47,7 @@ class SessionCollector extends AbstractCollector
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -55,7 +55,7 @@ class SessionCollector extends AbstractCollector
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPriority()
     {
@@ -63,7 +63,7 @@ class SessionCollector extends AbstractCollector
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function collect(MvcEvent $mvcEvent)
     {
