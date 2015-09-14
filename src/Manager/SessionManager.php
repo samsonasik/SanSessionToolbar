@@ -30,7 +30,7 @@ use Zend\Stdlib\ArrayObject;
 final class SessionManager implements SessionManagerInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSessionData()
     {
@@ -55,7 +55,7 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function sessionSetting($containerName, $keysession, $value = null, $options = array())
     {
@@ -116,7 +116,7 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function clearSession($byContainer = null)
     {

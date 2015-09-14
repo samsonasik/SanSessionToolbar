@@ -51,7 +51,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function __construct(RendererInterface $viewRenderer, SessionManagerInterface $sessionManager)
     {
-        $this->viewRenderer   = $viewRenderer;
+        $this->viewRenderer = $viewRenderer;
         $this->sessionManager = $sessionManager;
     }
 
@@ -64,7 +64,7 @@ final class SessionToolbarController extends AbstractActionController
         $request = $this->getEvent()->getRequest();
         if ($request->isPost()) {
             $containerName = $request->getPost('containerName', 'Default');
-            $keysession    = $request->getPost('keysession', '');
+            $keysession = $request->getPost('keysession', '');
 
             $success = $this->sessionManager
                             ->sessionSetting($containerName, $keysession);
@@ -121,7 +121,7 @@ final class SessionToolbarController extends AbstractActionController
             $processSetOrAddSessionData = $this->setOrAddSession($request);
         }
 
-        $sessionData     = $this->sessionManager->getSessionData();
+        $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 
@@ -142,9 +142,9 @@ final class SessionToolbarController extends AbstractActionController
     private function setOrAddSession(Request $request)
     {
         $containerName = $request->getPost('containerName', 'Default');
-        $keysession    = $request->getPost('keysession', '');
-        $sessionValue  = $request->getPost('sessionvalue');
-        $new           = (bool) $request->getPost('new', false);
+        $keysession = $request->getPost('keysession', '');
+        $sessionValue = $request->getPost('sessionvalue');
+        $new = (bool) $request->getPost('new', false);
 
         $notEmptyValidator = new NotEmpty();
         if ($notEmptyValidator->isValid($keysession) && $notEmptyValidator->isValid($sessionValue)) {
