@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace SanSessionToolbartest\Collector;
+namespace SanSessionToolbarTest\Collector;
 
 use PHPUnit_Framework_TestCase;
 use ReflectionClass;
