@@ -1,12 +1,16 @@
-preset: PSR2
+preset: recommended
 
 linting: true
 
 enabled:
+  - long_array_syntax
   - strict
+  - unalign_double_arrow
+  - psr4
 
 disabled:
-  - psr0
+  - align_double_arrow
+  - short_array_syntax
 
 finder:
   exclude:
