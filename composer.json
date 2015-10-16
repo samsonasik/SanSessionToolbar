@@ -28,7 +28,7 @@
         "zendframework/zend-developer-tools": "dev-master"
     },
     "suggest": {
-        "ext-xdebug": "For better output format of session data, Xdebug should already installed"  
+        "ext-xdebug": "For better output format of session data, Xdebug should already installed"
     },
     "autoload": {
         "psr-4": {
@@ -37,7 +37,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SanSessionToolbartest\\": "test/"
+            "SanSessionToolbarTest\\": "test/"
         }
     },
     "extra": {

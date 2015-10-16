@@ -2,7 +2,7 @@
 
 <phpunit
     colors="true"
-    bootstrap="test/Bootstrap.php">
+    bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="san-session-toolbar-test">
             <directory suffix=".php">./test</directory>
