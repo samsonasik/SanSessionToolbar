@@ -6,7 +6,6 @@ enabled:
   - long_array_syntax
   - strict
   - unalign_double_arrow
-  - psr4
 
 disabled:
   - align_double_arrow
