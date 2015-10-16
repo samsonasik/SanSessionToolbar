@@ -48,7 +48,7 @@ interface SessionManagerInterface
     /**
      * Clear Session.
      *
-     * @param bool|String $byContainer
+     * @param bool|string $byContainer
      *
      * @return array
      */
