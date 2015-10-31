@@ -73,6 +73,7 @@ return array(
                 'session.toolbar' => 'zend-developer-tools/toolbar/session-data',
             ),
         ),
+        'base_url' => '',
     ),
 
 );
