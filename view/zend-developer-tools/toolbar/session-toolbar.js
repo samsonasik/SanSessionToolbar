@@ -32,7 +32,7 @@
      * IE 8+
      */
     win.fakejQuery = doc.querySelectorAll.bind(doc)
-    var sanSessionToolbarURL = doc.getElementById("basePath").innerHTML;
+    var sanSessionToolbarURL = doc.getElementById("sanSessionToolbarURL").innerHTML;
 
     var sanSessionToolbar = {
         init: function () {
