@@ -60,6 +60,7 @@ return array(
         'strategies' => array(
             'ViewJsonStrategy',
         ),
+        'base_path' => '',
     ),
 
     'zenddevelopertools' => array(
@@ -73,7 +74,6 @@ return array(
                 'session.toolbar' => 'zend-developer-tools/toolbar/session-data',
             ),
         ),
-        'base_path' => '',
     ),
 
 );
