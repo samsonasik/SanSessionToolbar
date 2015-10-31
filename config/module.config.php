@@ -60,6 +60,7 @@ return array(
         'strategies' => array(
             'ViewJsonStrategy',
         ),
+        'base_path' => '',
     ),
 
     'zenddevelopertools' => array(
