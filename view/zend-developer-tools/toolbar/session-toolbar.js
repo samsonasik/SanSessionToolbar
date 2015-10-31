@@ -32,7 +32,7 @@
      * IE 8+
      */
     win.fakejQuery = doc.querySelectorAll.bind(doc)
-    var baseURL = doc.getElementById("basePath").innerHTML;
+    var sanSessionToolbarURL = doc.getElementById("basePath").innerHTML;
 
     var sanSessionToolbar = {
         init: function () {
@@ -59,7 +59,7 @@
             var containerName = trg.parentNode.getAttribute("data-container");
             var keysession = trg.parentNode.getAttribute("data-keysession");
             var params = "containerName="+containerName+"&keysession="+keysession;
-            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/removesession', function (html) {
+            sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/removesession', function (html) {
                 if (html.success) {
                     // top parent level for this session key - span tag
                     var elements = doc.querySelector(".san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession);
@@ -76,7 +76,7 @@
             // IE hack
             e = e || window.event;
             e.preventDefault();
-            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/reloadsession', function (html) {
+            sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/reloadsession', function (html) {
                 doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
             }, null);
         },
@@ -85,7 +85,7 @@
             // IE hack
             e = e || window.event;
             e.preventDefault();
-            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/clearsession', function (html) {
+            sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/clearsession', function (html) {
                 doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
             }, null);
         },
@@ -98,7 +98,7 @@
             var trg = e.target ? e.target : e.srcElement;
             var params = "byContainer="+trg.getAttribute("data-container");
 
-            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/clearsession', function (html) {
+            sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/clearsession', function (html) {
                 doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
             }, params);
         },
@@ -144,7 +144,7 @@
             var containerName = trg.parentNode.getAttribute("data-container");
             var keysession = trg.parentNode.getAttribute("data-keysession");
             var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+doc.querySelector('#san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value+"&new=0";
-            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/savesession', function (html) {
+            sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/savesession', function (html) {
                 if (html.success) {
                     doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
                 } else {
@@ -191,7 +191,7 @@
             var newSessionData = doc.querySelector('#san-add-value-sessiondata-containerName-'+containerName).value;
             var params = "containerName="+containerName+"&keysession="+newSessionKey+"&sessionvalue="+newSessionData+"&new=1";
 
-            sanSessionToolbar.postDataWithAjax(baseURL+'/san-session-toolbar/savesession', function (html) {
+            sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/savesession', function (html) {
                 if (html.success) {
                     doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
                 } else {
