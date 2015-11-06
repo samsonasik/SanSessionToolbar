@@ -1,3 +1,7 @@
+### 0.2.1 - 0.2.2 ( bug fix of 0.2.1 )- 2015-11-01
+
+- Fixes base_path issue [#39](https://github.com/samsonasik/SanSessionToolbar/issues/39)
+
 ### 0.2.0 - 2015-07-22
 
 -  use individual zf components to anticipate moving components of zf to suggest
