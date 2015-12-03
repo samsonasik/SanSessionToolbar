@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.23",
+        "php": ">=5.3.23,<8",
         "zendframework/zend-session": "~2.3",
         "zendframework/zend-debug": "~2.3"
     },
