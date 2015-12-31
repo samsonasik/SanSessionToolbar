@@ -24,9 +24,7 @@ use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class Module implements
-    ConfigProviderInterface,
-    DependencyIndicatorInterface
+class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 {
     /**
      * {@inheritdoc}
