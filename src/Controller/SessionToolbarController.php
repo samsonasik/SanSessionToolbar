@@ -94,12 +94,12 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function clearsessionAction()
     {
-        $sessionData = $this->sessionManager->getSessionData();
         $request = $this->getEvent()->getRequest();
-        if ($request->isPost() && !empty($sessionData)) {
-            $sessionData = $this->sessionManager->clearSession($request->getPost('byContainer'));
+        if ($request->isPost()) {
+            $this->sessionManager->clearSession($request->getPost('byContainer'));
         }
 
+        $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
 

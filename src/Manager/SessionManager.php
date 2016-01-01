@@ -121,7 +121,5 @@ final class SessionManager implements SessionManagerInterface
     {
         $container = new Container();
         $container->getManager()->getStorage()->clear($byContainer);
-
-        return $this->getSessionData();
     }
 }
