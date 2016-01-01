@@ -87,7 +87,8 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
      */
     public function testClearSession($byContainer, $result)
     {
-        $this->assertEquals($result, $this->manager->clearSession($byContainer));
+        $this->manager->clearSession($byContainer);
+        $this->assertEquals($result, $this->manager->getSessionData());
     }
 
     public function provideClearSession()
