@@ -1,3 +1,17 @@
+### 0.3.2 - 2016-01-02
+
+- refactor SessionManager::clearSession() to not return session data
+
+### 0.3.1 - 2016-01-01
+
+- update satooshi/php-coveralls to use ~1.0.0 to support php 5.3 usage
+- update license
+- update versioneye dependency status to rely on project id
+
+### 0.3.0 -  2015-12-04
+
+- update php requirement to allow php < 8
+
 ### 0.2.1 - 0.2.2 ( bug fix of 0.2.1 )- 2015-11-01
 
 - Fixes base_path issue [#39](https://github.com/samsonasik/SanSessionToolbar/issues/39)
