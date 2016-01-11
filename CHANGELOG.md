@@ -1,3 +1,7 @@
+### 0.3.3 - 2016-01-11
+
+- [remove not needed session-data-reload.phtml view](https://github.com/samsonasik/SanSessionToolbar/pull/48)
+
 ### 0.3.2 - 2016-01-02
 
 - refactor SessionManager::clearSession() to not return session data
