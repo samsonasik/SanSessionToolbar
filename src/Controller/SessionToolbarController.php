@@ -82,7 +82,7 @@ final class SessionToolbarController extends AbstractActionController
         $sessionData = $this->sessionManager->getSessionData();
 
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
+                                ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));
 
         return new JsonModel(array(
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
@@ -101,7 +101,7 @@ final class SessionToolbarController extends AbstractActionController
 
         $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
+                                ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));
 
         return new JsonModel(array(
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
@@ -122,7 +122,7 @@ final class SessionToolbarController extends AbstractActionController
 
         $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-reload', array('san_sessiontoolbar_data' => $sessionData));
+                                ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));
 
         return new JsonModel(array(
             'success' => $processSetOrAddSessionData['success'],
