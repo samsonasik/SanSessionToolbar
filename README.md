@@ -8,6 +8,7 @@ SanSessionToolbar
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9/mini.png)](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9)
 [![StyleCI](https://styleci.io/repos/21261604/shield)](https://styleci.io/repos/21261604)
+[![PHP 7 ready](http://php7ready.timesplinter.ch/samsonasik/SanSessionToolbar/badge.svg)](https://travis-ci.org/samsonasik/SanSessionToolbar)
 [![Dependency Status](https://www.versioneye.com/user/projects/54e421a6d1ec5734f4000242/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54e421a6d1ec5734f4000242)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/samsonasik/SanSessionToolbar.svg)](http://isitmaintained.com/project/samsonasik/SanSessionToolbar "Percentage of issues still open")
 [![Total Downloads](https://img.shields.io/packagist/dt/san/san-session-toolbar.svg?style=flat-square)](https://packagist.org/packages/san/san-session-toolbar)
