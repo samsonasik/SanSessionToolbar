@@ -21,6 +21,8 @@ namespace SanSessionToolbarTest;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Module;
+use Zend\Session\Container;
+use Zend\Stdlib\SplQueue;
 
 /**
  * This class tests Module class.
@@ -35,6 +37,59 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->module = new Module();
+    }
+
+    public function provideHasMessages()
+    {
+        return [
+            [false],
+            [true],
+        ];
+    }
+
+    /**
+     * @dataProvider provideHasMessages
+     * @runInSeparateProcess
+     * @covers SanSessionToolbar\Module::onBootstrap()
+     */
+    public function testOnBootstrap($hasMessages)
+    {
+        $pluginManager = $this->prophesize('Zend\Mvc\Controller\PluginManager');
+        $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+
+        if ($hasMessages) {
+            $splQueue = new SplQueue();
+            $splQueue->push('a message');
+
+            $container = new Container('FlashMessenger');
+            $container->offsetSet('flash', $splQueue);
+
+            $flashMessenger->setNamespace('flash')
+                           ->willReturn($flashMessenger)
+                           ->shouldBeCalled();
+            $flashMessenger->addMessage('a message')
+                           ->shouldBeCalled();
+        }
+
+        $pluginManager->get('flashMessenger')
+                      ->willReturn($flashMessenger)
+                      ->shouldBeCalled();
+
+        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+        $serviceManager = $this->prophesize('Zend\ServiceManager\ServiceManager');
+        $serviceManager->get('ControllerPluginManager')
+                       ->willReturn($pluginManager)
+                       ->shouldBeCalled();
+
+        $application = $this->prophesize('Zend\Mvc\Application');
+        $application->getServiceManager()
+                    ->willReturn($serviceManager)
+                    ->shouldBeCalled();
+        $e->getApplication()
+          ->willReturn($application)
+          ->shouldBeCalled();
+
+        $this->module->onBootstrap($e->reveal());
     }
 
     /**
