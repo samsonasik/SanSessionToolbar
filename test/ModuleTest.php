@@ -42,8 +42,8 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     public function provideHasMessages()
     {
         return array(
-            (false),
-            (true),
+            array(false),
+            array(true),
         );
     }
 
