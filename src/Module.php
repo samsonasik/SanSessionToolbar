@@ -38,11 +38,11 @@ class Module implements
      */
     public function onBootstrap(EventInterface $e)
     {
-        $container      = new Container('FlashMessenger');
+        $container = new Container('FlashMessenger');
         // need to be saved first, as when session will be read on next process, session already lost
-        $reCreateFlash  = $container->getArrayCopy();
+        $reCreateFlash = $container->getArrayCopy();
 
-        $app      = $e->getApplication();
+        $app = $e->getApplication();
         $services = $app->getServiceManager();
 
         $flash = $services->get('ControllerPluginManager')->get('flashMessenger');
