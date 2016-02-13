@@ -68,6 +68,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
                            ->willReturn($flashMessenger)
                            ->shouldBeCalled();
             $flashMessenger->addMessage('a message')
+                           ->willReturn($flashMessenger)
                            ->shouldBeCalled();
         }
 
