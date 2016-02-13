@@ -18,14 +18,47 @@
  */
 namespace SanSessionToolbar;
 
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
+use Zend\Session\Container;
+use Zend\Stdlib\SplQueue;
 
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class Module implements ConfigProviderInterface, DependencyIndicatorInterface
+class Module implements
+    BootstrapListenerInterface,
+    ConfigProviderInterface,
+    DependencyIndicatorInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function onBootstrap(EventInterface $e)
+    {
+        $container      = new Container('FlashMessenger');
+        // need to be saved first, as when session will be read on next process, session already lost
+        $reCreateFlash  = $container->getArrayCopy();
+
+        $app      = $e->getApplication();
+        $services = $app->getServiceManager();
+
+        $flash = $services->get('ControllerPluginManager')->get('flashMessenger');
+        foreach ($reCreateFlash as $key => $row) {
+            if ($row instanceof SplQueue) {
+                $flashPerNameSpace = $flash->setNamespace($key);
+                $valuesMessage = [];
+                foreach ($row->toArray() as $keyArray => $rowArray) {
+                    $flashPerNameSpace->addMessage($rowArray);
+                    $valuesMessage[] = $rowArray;
+                }
+                $container->offsetSet($key, $valuesMessage);
+            }
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
