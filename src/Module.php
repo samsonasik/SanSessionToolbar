@@ -49,7 +49,7 @@ class Module implements
         foreach ($reCreateFlash as $key => $row) {
             if ($row instanceof SplQueue) {
                 $flashPerNameSpace = $flash->setNamespace($key);
-                $valuesMessage = [];
+                $valuesMessage = array();
                 foreach ($row->toArray() as $keyArray => $rowArray) {
                     $flashPerNameSpace->addMessage($rowArray);
                     $valuesMessage[] = $rowArray;
