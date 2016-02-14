@@ -63,7 +63,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         $sharedEvmAttach = $sharedEvm->attach(
             'Zend\Mvc\Controller\AbstractActionController',
             'dispatch',
-            [$this->module, 'flashMessengerHandler'],
+            array($this->module, 'flashMessengerHandler'),
             2
         );
         $module = $this->module;
