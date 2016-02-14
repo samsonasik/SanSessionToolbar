@@ -20,7 +20,6 @@
 namespace SanSessionToolbarTest\Collector;
 
 use PHPUnit_Framework_TestCase;
-use ReflectionClass;
 use SanSessionToolbar\Collector\SessionCollector;
 use SanSessionToolbar\Manager\SessionManager;
 use Zend\Mvc\MvcEvent;

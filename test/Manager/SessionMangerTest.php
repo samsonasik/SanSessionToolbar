@@ -20,8 +20,8 @@
 namespace SanSessionToolbarTest\Manager;
 
 use PHPUnit_Framework_TestCase;
-use Zend\Session\Container;
 use SanSessionToolbar\Manager\SessionManager;
+use Zend\Session\Container;
 
 /**
  * This class tests SessionManager class.

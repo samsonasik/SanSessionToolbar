@@ -38,14 +38,28 @@ class Module implements
      */
     public function onBootstrap(EventInterface $e)
     {
+        $app = $e->getApplication();
+        $sharedEvm = $app->getEventManager()->getSharedManager();
+
+        $sharedEvm->attach(
+            'Zend\Mvc\Controller\AbstractActionController',
+            'dispatch',
+            [$this, 'flashMessengerHandler'],
+            2
+        );
+    }
+
+    /**
+     * @param EventInterface
+     */
+    public function flashMessengerHandler(EventInterface $e)
+    {
+        $controller = $e->getTarget();
+        $flash = $controller->plugin('flashMessenger');
+
         $container = new Container('FlashMessenger');
-        // need to be saved first, as when session will be read on next process, session already lost
         $reCreateFlash = $container->getArrayCopy();
 
-        $app = $e->getApplication();
-        $services = $app->getServiceManager();
-
-        $flash = $services->get('ControllerPluginManager')->get('flashMessenger');
         foreach ($reCreateFlash as $key => $row) {
             if ($row instanceof SplQueue) {
                 $flashPerNameSpace = $flash->setNamespace($key);

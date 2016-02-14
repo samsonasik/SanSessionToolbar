@@ -51,41 +51,65 @@ class ModuleTest extends PHPUnit_Framework_TestCase
      * @dataProvider provideHasMessages
      * @runInSeparateProcess
      * @covers SanSessionToolbar\Module::onBootstrap()
+     * @covers SanSessionToolbar\Module::flashMessengerHandler()
      */
     public function testOnBootstrap($hasMessages)
     {
-        $pluginManager = $this->prophesize('Zend\Mvc\Controller\PluginManager');
-        $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
-
-        if ($hasMessages) {
-            $splQueue = new SplQueue();
-            $splQueue->push('a message');
-
-            $container = new Container('FlashMessenger');
-            $container->offsetSet('flash', $splQueue);
-
-            $flashMessenger->setNamespace('flash')
-                           ->willReturn($flashMessenger)
-                           ->shouldBeCalled();
-            $flashMessenger->addMessage('a message')
-                           ->willReturn($flashMessenger)
-                           ->shouldBeCalled();
-        }
-
-        $pluginManager->get('flashMessenger')
-                      ->willReturn($flashMessenger)
-                      ->shouldBeCalled();
-
         $e = $this->prophesize('Zend\Mvc\MvcEvent');
-        $serviceManager = $this->prophesize('Zend\ServiceManager\ServiceManager');
-        $serviceManager->get('ControllerPluginManager')
-                       ->willReturn($pluginManager)
-                       ->shouldBeCalled();
 
         $application = $this->prophesize('Zend\Mvc\Application');
-        $application->getServiceManager()
-                    ->willReturn($serviceManager)
+        $eventManager = $this->prophesize('Zend\EventManager\EventManager');
+        $sharedEvm = $this->prophesize('Zend\EventManager\SharedEventManager');
+        $sharedEvmAttach = $sharedEvm->attach(
+            'Zend\Mvc\Controller\AbstractActionController',
+            'dispatch',
+            [$this->module, 'flashMessengerHandler'],
+            2
+        );
+        if ($hasMessages) {
+
+        }
+
+        $module = $this->module;
+        $testClass = $this;
+        $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $testClass) {
+            $abstractActionController = $testClass->prophesize('Zend\Mvc\Controller\AbstractActionController');
+            $flashMessenger = $testClass->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+            if ($hasMessages) {
+                $namespace = 'flash';
+                $message   = 'a message';
+
+                $splQueue = new SplQueue();
+                $splQueue->push($message);
+
+                $container = new Container('FlashMessenger');
+                $container->offsetSet($namespace, $splQueue);
+
+                $flashMessenger->setNamespace($namespace)
+                               ->willReturn($flashMessenger)
+                               ->shouldBeCalled();
+                $flashMessenger->addMessage($message)
+                               ->willReturn($flashMessenger)
+                               ->shouldBeCalled();
+            }
+            $abstractActionController->plugin('flashMessenger')
+                                     ->willReturn($flashMessenger)
+                                     ->shouldBeCalled();
+            $e->getTarget()
+              ->willReturn($abstractActionController)
+              ->shouldBeCalled();
+
+            $module->flashMessengerHandler($e->reveal());
+        });
+        $sharedEvmAttach->shouldBeCalled();
+
+        $eventManager->getSharedManager()
+                     ->willReturn($sharedEvm)
+                     ->shouldBeCalled();
+        $application->getEventManager()
+                    ->willReturn($eventManager)
                     ->shouldBeCalled();
+
         $e->getApplication()
           ->willReturn($application)
           ->shouldBeCalled();
