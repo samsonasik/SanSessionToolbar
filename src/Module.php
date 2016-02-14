@@ -19,24 +19,23 @@
 namespace SanSessionToolbar;
 
 use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
+use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\Stdlib\SplQueue;
 
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class Module implements
-    BootstrapListenerInterface,
-    ConfigProviderInterface,
-    DependencyIndicatorInterface
+class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 {
     /**
-     * {@inheritdoc}
+     * Bootstrap Handle FlashMessenger session show
+     *
+     * @param MvcEvent $e
      */
-    public function onBootstrap(EventInterface $e)
+    public function onBootstrap(MvcEvent $e)
     {
         $app = $e->getApplication();
         $sharedEvm = $app->getEventManager()->getSharedManager();
