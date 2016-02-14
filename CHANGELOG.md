@@ -1,3 +1,7 @@
+### 0.4.1 - 2016-02-14
+
+- [Immediate release for remove manage button (add, remove) when session container name is "FlashMessenger"](https://github.com/samsonasik/SanSessionToolbar/pull/50)
+
 ### 0.4.0 - 2016-02-14
 
 - [Added support show sessions of flashmessenger](https://github.com/samsonasik/SanSessionToolbar/pull/49)
