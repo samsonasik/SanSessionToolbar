@@ -67,10 +67,10 @@ class ModuleTest extends PHPUnit_Framework_TestCase
             2
         );
         $module = $this->module;
-        $testClass = $this;
-        $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $testClass) {
-            $abstractActionController = $testClass->prophesize('Zend\Mvc\Controller\AbstractActionController');
-            $flashMessenger = $testClass->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+        $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
+        $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+
+        $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger) {
             if ($hasMessages) {
                 $namespace = 'flash';
                 $message   = 'a message';
