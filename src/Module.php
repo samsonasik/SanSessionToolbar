@@ -31,7 +31,7 @@ use Zend\Stdlib\SplQueue;
 class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 {
     /**
-     * Bootstrap Handle FlashMessenger session show
+     * Bootstrap Handle FlashMessenger session show.
      *
      * @param MvcEvent $e
      */
