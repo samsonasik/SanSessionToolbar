@@ -1,3 +1,7 @@
+### 0.4.0 - 2016-02-14
+
+- [Added support show sessions of flashmessenger](https://github.com/samsonasik/SanSessionToolbar/pull/49)
+
 ### 0.3.3 - 2016-01-11
 
 - [remove not needed session-data-reload.phtml view](https://github.com/samsonasik/SanSessionToolbar/pull/48)
