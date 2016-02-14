@@ -21,7 +21,7 @@ script:
 
 after_script:
   - php ./vendor/bin/phpcov merge --clover ./build/logs/clover.xml ./build/coverage/
-  - php ./vendor/bin/coveralls -v --exclude-no-stmt
+  - travis_retry vendor/bin/coveralls -v --exclude-no-stmt
 
 notifications:
   email: false

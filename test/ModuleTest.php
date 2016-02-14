@@ -21,6 +21,8 @@ namespace SanSessionToolbarTest;
 
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Module;
+use Zend\Session\Container;
+use Zend\Stdlib\SplQueue;
 
 /**
  * This class tests Module class.
@@ -35,6 +37,80 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->module = new Module();
+    }
+
+    public function provideHasMessages()
+    {
+        return array(
+            array(false),
+            array(true),
+        );
+    }
+
+    /**
+     * @dataProvider provideHasMessages
+     * @runInSeparateProcess
+     * @covers SanSessionToolbar\Module::onBootstrap()
+     * @covers SanSessionToolbar\Module::flashMessengerHandler()
+     */
+    public function testOnBootstrap($hasMessages)
+    {
+        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+
+        $application = $this->prophesize('Zend\Mvc\Application');
+        $eventManager = $this->prophesize('Zend\EventManager\EventManager');
+        $sharedEvm = $this->prophesize('Zend\EventManager\SharedEventManager');
+        $sharedEvmAttach = $sharedEvm->attach(
+            'Zend\Mvc\Controller\AbstractActionController',
+            'dispatch',
+            array($this->module, 'flashMessengerHandler'),
+            2
+        );
+        $module = $this->module;
+        $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
+        $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+
+        $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger) {
+            if ($hasMessages) {
+                $namespace = 'flash';
+                $message   = 'a message';
+
+                $splQueue = new SplQueue();
+                $splQueue->push($message);
+
+                $container = new Container('FlashMessenger');
+                $container->offsetSet($namespace, $splQueue);
+
+                $flashMessenger->setNamespace($namespace)
+                               ->willReturn($flashMessenger)
+                               ->shouldBeCalled();
+                $flashMessenger->addMessage($message)
+                               ->willReturn($flashMessenger)
+                               ->shouldBeCalled();
+            }
+            $abstractActionController->plugin('flashMessenger')
+                                     ->willReturn($flashMessenger)
+                                     ->shouldBeCalled();
+            $e->getTarget()
+              ->willReturn($abstractActionController)
+              ->shouldBeCalled();
+
+            $module->flashMessengerHandler($e->reveal());
+        });
+        $sharedEvmAttach->shouldBeCalled();
+
+        $eventManager->getSharedManager()
+                     ->willReturn($sharedEvm)
+                     ->shouldBeCalled();
+        $application->getEventManager()
+                    ->willReturn($eventManager)
+                    ->shouldBeCalled();
+
+        $e->getApplication()
+          ->willReturn($application)
+          ->shouldBeCalled();
+
+        $this->module->onBootstrap($e->reveal());
     }
 
     /**

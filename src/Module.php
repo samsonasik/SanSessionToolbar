@@ -18,14 +18,60 @@
  */
 namespace SanSessionToolbar;
 
+use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
+use Zend\Mvc\MvcEvent;
+use Zend\Session\Container;
+use Zend\Stdlib\SplQueue;
 
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 {
+    /**
+     * Bootstrap Handle FlashMessenger session show.
+     *
+     * @param MvcEvent $e
+     */
+    public function onBootstrap(MvcEvent $e)
+    {
+        $app = $e->getApplication();
+        $sharedEvm = $app->getEventManager()->getSharedManager();
+
+        $sharedEvm->attach(
+            'Zend\Mvc\Controller\AbstractActionController',
+            'dispatch',
+            array($this, 'flashMessengerHandler'),
+            2
+        );
+    }
+
+    /**
+     * @param EventInterface
+     */
+    public function flashMessengerHandler(EventInterface $e)
+    {
+        $controller = $e->getTarget();
+        $flash = $controller->plugin('flashMessenger');
+
+        $container = new Container('FlashMessenger');
+        $reCreateFlash = $container->getArrayCopy();
+
+        foreach ($reCreateFlash as $key => $row) {
+            if ($row instanceof SplQueue) {
+                $flashPerNameSpace = $flash->setNamespace($key);
+                $valuesMessage = array();
+                foreach ($row->toArray() as $keyArray => $rowArray) {
+                    $flashPerNameSpace->addMessage($rowArray);
+                    $valuesMessage[] = $rowArray;
+                }
+                $container->offsetSet($key, $valuesMessage);
+            }
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
