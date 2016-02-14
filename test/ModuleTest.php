@@ -66,10 +66,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
             [$this->module, 'flashMessengerHandler'],
             2
         );
-        if ($hasMessages) {
-
-        }
-
         $module = $this->module;
         $testClass = $this;
         $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $testClass) {
