@@ -44,7 +44,7 @@ class Module implements
         $sharedEvm->attach(
             'Zend\Mvc\Controller\AbstractActionController',
             'dispatch',
-            [$this, 'flashMessengerHandler'],
+            array($this, 'flashMessengerHandler'),
             2
         );
     }
