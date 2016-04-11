@@ -43,7 +43,9 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         /** @var ControllerManager $controllerManager */
-        $controllerManager = $this->getMock('Zend\Mvc\Controller\ControllerManager');
+        $controllerManager = $this->getMockBuilder('Zend\Mvc\Controller\ControllerManager')
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
         $this->controllerManager = $controllerManager;
 
         /** @var ServiceLocatorInterface $serviceLocator */
