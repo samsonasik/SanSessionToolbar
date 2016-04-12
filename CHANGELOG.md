@@ -1,3 +1,7 @@
+### 0.5.0 - 2016-04-13
+
+- [Do not start session when it not started yet in app](https://github.com/samsonasik/SanSessionToolbar/pull/51)
+
 ### 0.4.1 - 2016-02-14
 
 - [Immediate release for remove manage button (add, remove) when session container name is "FlashMessenger"](https://github.com/samsonasik/SanSessionToolbar/pull/50)
