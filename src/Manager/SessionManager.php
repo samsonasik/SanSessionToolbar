@@ -42,6 +42,15 @@ final class SessionManager implements SessionManagerInterface
         $container = new Container();
         $arraysession = $container->getManager()->getStorage()->toArray();
 
+        return $this->collectSessionData($arraysession);
+    }
+
+    /**
+     * @var array $arraysession
+     * @return array
+     */
+    private function collectSessionData(array $arraysession)
+    {
         $data = array();
 
         foreach ($arraysession as $key => $row) {
