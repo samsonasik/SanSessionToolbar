@@ -46,7 +46,7 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * @var array $arraysession
+     * @param array $arraysession
      * @return array
      */
     private function collectSessionData(array $arraysession)
