@@ -35,11 +35,11 @@ final class SessionManager implements SessionManagerInterface
     public function getSessionData()
     {
         $manager = new SessionManager();
-        if (! $manager->sessionExists()) {
+        if (!$manager->sessionExists()) {
             return;
         }
 
-        $container    = new Container();
+        $container = new Container();
         $arraysession = $container->getManager()->getStorage()->toArray();
 
         $data = array();
