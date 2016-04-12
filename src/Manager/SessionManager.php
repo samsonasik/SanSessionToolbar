@@ -19,7 +19,7 @@
 namespace SanSessionToolbar\Manager;
 
 use Zend\Session\Container;
-use Zend\Session\SessionManager;
+use Zend\Session\SessionManager as ZFSessionManager;
 use Zend\Stdlib\ArrayObject;
 
 /**
@@ -34,7 +34,7 @@ final class SessionManager implements SessionManagerInterface
      */
     public function getSessionData()
     {
-        $manager = new SessionManager();
+        $manager = new ZFSessionManager();
         if (!$manager->sessionExists()) {
             return;
         }
