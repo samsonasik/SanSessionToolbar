@@ -37,6 +37,11 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
      */
     public function onBootstrap(MvcEvent $e)
     {
+        $manager = Container::getDefaultManager();
+        if (!$manager->sessionExists()) {
+            return;
+        }
+
         $app = $e->getApplication();
         $sharedEvm = $app->getEventManager()->getSharedManager();
 

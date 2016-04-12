@@ -33,12 +33,25 @@ final class SessionManager implements SessionManagerInterface
      */
     public function getSessionData()
     {
-        $data = array();
+        $manager = Container::getDefaultManager();
+        if (!$manager->sessionExists()) {
+            return;
+        }
 
         $container = new Container();
-        $container->getManager()->start();
-
         $arraysession = $container->getManager()->getStorage()->toArray();
+
+        return $this->collectSessionData($arraysession);
+    }
+
+    /**
+     * @param array $arraysession
+     *
+     * @return array
+     */
+    private function collectSessionData(array $arraysession)
+    {
+        $data = array();
 
         foreach ($arraysession as $key => $row) {
             if ($row instanceof ArrayObject) {
