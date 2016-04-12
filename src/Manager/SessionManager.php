@@ -19,6 +19,7 @@
 namespace SanSessionToolbar\Manager;
 
 use Zend\Session\Container;
+use Zend\Session\SessionManager;
 use Zend\Stdlib\ArrayObject;
 
 /**
@@ -33,12 +34,15 @@ final class SessionManager implements SessionManagerInterface
      */
     public function getSessionData()
     {
-        $data = array();
+        $manager = new SessionManager();
+        if (! $manager->sessionExists()) {
+            return;
+        }
 
-        $container = new Container();
-        $container->getManager()->start();
-
+        $container    = new Container();
         $arraysession = $container->getManager()->getStorage()->toArray();
+
+        $data = array();
 
         foreach ($arraysession as $key => $row) {
             if ($row instanceof ArrayObject) {

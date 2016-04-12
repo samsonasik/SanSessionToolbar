@@ -41,14 +41,22 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->manager = new SessionManager();
+    }
 
-        // existing container
-        $fooContainer = new Container('Foo');
-        $fooContainer->foo = 'fooValue';
+    /**
+     * @runInSeparateProcess
+     */
+    public function testSessionIsNotStartedAlready()
+    {
+        $manager = new SessionManager();
+        $this->assertNull($manager->getSessionData());
     }
 
     public function testGetSessionData()
     {
+        $fooContainer = new Container('Foo');
+        $fooContainer->foo = 'fooValue';
+
         $container      = new Container();
         $container->foo = 'fooValue';
 
@@ -68,6 +76,9 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
      */
     public function testSessionSetting($container, $keysession, $value, $options, $result)
     {
+        $fooContainer = new Container('Foo');
+        $fooContainer->foo = 'fooValue';
+
         $this->assertEquals($result, $this->manager->sessionSetting($container, $keysession, $value, $options));
     }
 
@@ -87,6 +98,9 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
      */
     public function testClearSession($byContainer, $result)
     {
+        $fooContainer = new Container('Foo');
+        $fooContainer->foo = 'fooValue';
+
         $this->manager->clearSession($byContainer);
         $this->assertEquals($result, $this->manager->getSessionData());
     }
