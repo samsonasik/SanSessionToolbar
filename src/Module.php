@@ -23,6 +23,7 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
+use Zend\Session\SessionManager as ZFSessionManager;
 use Zend\Stdlib\SplQueue;
 
 /**
@@ -37,6 +38,11 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
      */
     public function onBootstrap(MvcEvent $e)
     {
+        $manager = new ZFSessionManager();
+        if (!$manager->sessionExists()) {
+            return;
+        }
+
         $app = $e->getApplication();
         $sharedEvm = $app->getEventManager()->getSharedManager();
 
