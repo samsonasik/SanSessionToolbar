@@ -28,7 +28,7 @@ interface SessionManagerInterface
     /**
      * Get Session Data.
      *
-     * @return array
+     * @return array|null
      */
     public function getSessionData();
 
