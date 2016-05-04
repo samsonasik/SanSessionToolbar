@@ -29,6 +29,7 @@ interface SessionManagerInterface
      * Get Session Data.
      *
      * @param bool $checkExists
+     *
      * @return array|null
      */
     public function getSessionData($checkExists = true);
