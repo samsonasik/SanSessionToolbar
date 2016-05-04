@@ -28,9 +28,11 @@ interface SessionManagerInterface
     /**
      * Get Session Data.
      *
+     * @param bool $checkExists
+     *
      * @return array|null
      */
-    public function getSessionData();
+    public function getSessionData($checkExists = true);
 
     /**
      * Set/Unset Session by Container and its key.

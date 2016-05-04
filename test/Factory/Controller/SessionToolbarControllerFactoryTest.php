@@ -19,6 +19,7 @@
 
 namespace SanSessionToolbarTest\Factory\Controller;
 
+use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory;
 use Zend\Mvc\Controller\ControllerManager;
@@ -94,5 +95,29 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
 
         $result = $this->factory->createService($serviceLocator);
         $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
+    }
+
+    /**
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::getParentServiceLocator
+     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::__invoke
+     */
+    public function testInvoke()
+    {
+        if ($this->serviceLocator instanceof ContainerInterface) {
+            $mockViewRenderer = $this->getMock('Zend\View\Renderer\RendererInterface');
+            $this->serviceLocator->expects($this->at(0))
+                ->method('get')
+                ->with('ViewRenderer')
+                ->willReturn($mockViewRenderer);
+
+            $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
+            $this->serviceLocator->expects($this->at(1))
+                ->method('get')
+                ->with('SanSessionManager')
+                ->willReturn($sessionManager);
+
+            $result = $this->factory->__invoke($this->serviceLocator, '');
+            $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
+        }
     }
 }

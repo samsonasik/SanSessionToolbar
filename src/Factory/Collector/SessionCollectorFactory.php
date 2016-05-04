@@ -18,6 +18,7 @@
  */
 namespace SanSessionToolbar\Factory\Collector;
 
+use Interop\Container\ContainerInterface;
 use SanSessionToolbar\Collector\SessionCollector;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -35,5 +36,13 @@ class SessionCollectorFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         return new SessionCollector((object) $serviceLocator->get('SanSessionManager'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    {
+        return $this->createService($serviceLocator);
     }
 }
