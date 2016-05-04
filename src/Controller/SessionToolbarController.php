@@ -79,7 +79,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function reloadsessionAction()
     {
-        $sessionData = $this->sessionManager->getSessionData();
+        $sessionData = $this->sessionManager->getSessionData(false);
 
         $renderedContent = $this->viewRenderer
                                 ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));

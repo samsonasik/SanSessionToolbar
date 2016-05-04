@@ -31,11 +31,13 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getSessionData()
+    public function getSessionData($checkExists = true)
     {
-        $manager = Container::getDefaultManager();
-        if (!$manager->sessionExists()) {
-            return;
+        if ($checkExists) {
+            $manager = Container::getDefaultManager();
+            if (!$manager->sessionExists()) {
+                return;
+            }
         }
 
         $container = new Container();

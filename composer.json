@@ -19,6 +19,7 @@
         "zendframework/zend-debug": "~2.3"
     },
     "require-dev": {
+        "container-interop/container-interop": "^1.1",
         "satooshi/php-coveralls": "^1.0",
         "phpunit/phpcov": "~2.0",
         "zendframework/zend-test": "~2.3",

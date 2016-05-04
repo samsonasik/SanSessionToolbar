@@ -18,6 +18,7 @@
  */
 namespace SanSessionToolbar\Factory\Controller;
 
+use Interop\Container\ContainerInterface;
 use SanSessionToolbar\Controller\SessionToolbarController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -57,5 +58,13 @@ class SessionToolbarControllerFactory implements FactoryInterface
         }
 
         return $serviceLocator;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    {
+        return $this->createService($serviceLocator);
     }
 }
