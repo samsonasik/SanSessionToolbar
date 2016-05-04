@@ -19,6 +19,7 @@
 
 namespace SanSessionToolbarTest\Factory\Collector;
 
+use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -66,14 +67,15 @@ class SessionCollectorFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testInvoke()
     {
-        $serviceLocator = $this->getMock('Interop\Container\ContainerInterface');
-        $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
-        $serviceLocator->expects($this->once())
-                             ->method('get')
-                             ->with('SanSessionManager')
-                             ->willReturn($sessionManager);
+        if ($this->serviceLocator instanceof ContainerInterface) {
+            $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
+            $this->serviceLocator->expects($this->once())
+                                 ->method('get')
+                                 ->with('SanSessionManager')
+                                 ->willReturn($sessionManager);
 
-        $result = $this->factory->__invoke($serviceLocator, '');
-        $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
+            $result = $this->factory->__invoke($this->serviceLocator, '');
+            $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
+        }
     }
 }
