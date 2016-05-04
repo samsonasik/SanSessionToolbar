@@ -1,3 +1,8 @@
+### 0.6.0 - 2016-05-05
+
+- [Support to be used with zend-servicemanager v2 and v3](https://github.com/samsonasik/SanSessionToolbar/pull/53)
+- [Fixes reload session should force start the session](https://github.com/samsonasik/SanSessionToolbar/pull/53)
+
 ### 0.5.0 - 2016-04-13
 
 - [Do not start session when it not started yet in app](https://github.com/samsonasik/SanSessionToolbar/pull/51)
