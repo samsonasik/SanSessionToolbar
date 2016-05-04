@@ -66,13 +66,14 @@ class SessionCollectorFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testInvoke()
     {
+        $serviceLocator = $this->getMock('Interop\Container\ContainerInterface');
         $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
-        $this->serviceLocator->expects($this->once())
+        $serviceLocator->expects($this->once())
                              ->method('get')
                              ->with('SanSessionManager')
                              ->willReturn($sessionManager);
 
-        $result = $this->factory->__invoke($this->serviceLocator, '');
+        $result = $this->factory->__invoke($serviceLocator, '');
         $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
     }
 }
