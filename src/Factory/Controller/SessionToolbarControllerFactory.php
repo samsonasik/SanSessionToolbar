@@ -22,7 +22,6 @@ use Interop\Container\ContainerInterface;
 use SanSessionToolbar\Controller\SessionToolbarController;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
