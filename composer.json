@@ -28,7 +28,7 @@
         "zendframework/zend-log": "~2.3",
         "zendframework/zend-i18n": "~2.3",
         "zendframework/zend-view": "~2.3",
-        "zendframework/zend-developer-tools": "dev-master"
+        "zendframework/zend-developer-tools": "^1.0.0 || ^1.1.0"
     },
     "suggest": {
         "ext-xdebug": "For better output format of session data, Xdebug should already installed"
