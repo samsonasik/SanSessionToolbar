@@ -1,3 +1,7 @@
+### 0.6.1 - 2016-06-28
+
+- Added zend-json dependency when only use new skeleton-app ( with zend-mvc v3 ) minimal
+
 ### 0.6.0 - 2016-05-05
 
 - [Support to be used with zend-servicemanager v2 and v3](https://github.com/samsonasik/SanSessionToolbar/pull/53)
