@@ -23,6 +23,7 @@ use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory;
 use Zend\Mvc\Controller\ControllerManager;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -44,21 +45,36 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         /** @var ControllerManager $controllerManager */
-        $controllerManager = $this->getMockBuilder('Zend\Mvc\Controller\ControllerManager')
-                                  ->disableOriginalConstructor()
-                                  ->getMock();
+        $controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
         $this->controllerManager = $controllerManager;
 
         /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $this->serviceLocator = $serviceLocator;
-
-        $controllerManager->expects($this->any())
-                          ->method('getServiceLocator')
-                          ->willReturn($serviceLocator);
 
         $factory = new SessionToolbarControllerFactory();
         $this->factory = $factory;
+    }
+
+    private function doTestCreateService($serviceLocator)
+    {
+        if ($serviceLocator->reveal() instanceof ControllerManager) {
+            $serviceLocator->getServiceLocator()
+                           ->willReturn($this->serviceLocator);
+        }
+
+        $mockViewRenderer = $this->prophesize('Zend\View\Renderer\RendererInterface');
+        $this->serviceLocator->get('ViewRenderer')
+                             ->willReturn($mockViewRenderer)
+                             ->shouldBeCalled();
+
+        $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
+        $this->serviceLocator->get('SanSessionManager')
+                             ->willReturn($sessionManager)
+                             ->shouldBeCalled();
+
+        $result = $this->factory->createService($serviceLocator->reveal());
+        $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
     }
 
     /**
@@ -79,44 +95,24 @@ class SessionToolbarControllerFactoryTest extends PHPUnit_Framework_TestCase
         $this->doTestCreateService($this->serviceLocator);
     }
 
-    private function doTestCreateService(ServiceLocatorInterface $serviceLocator)
-    {
-        $mockViewRenderer = $this->getMock('Zend\View\Renderer\RendererInterface');
-        $this->serviceLocator->expects($this->at(0))
-            ->method('get')
-            ->with('ViewRenderer')
-            ->willReturn($mockViewRenderer);
-
-        $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
-        $this->serviceLocator->expects($this->at(1))
-            ->method('get')
-            ->with('SanSessionManager')
-            ->willReturn($sessionManager);
-
-        $result = $this->factory->createService($serviceLocator);
-        $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
-    }
-
     /**
      * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::getParentServiceLocator
      * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::__invoke
      */
     public function testInvoke()
     {
-        if ($this->serviceLocator instanceof ContainerInterface) {
-            $mockViewRenderer = $this->getMock('Zend\View\Renderer\RendererInterface');
-            $this->serviceLocator->expects($this->at(0))
-                ->method('get')
-                ->with('ViewRenderer')
-                ->willReturn($mockViewRenderer);
+        if ($this->serviceLocator->reveal() instanceof ContainerInterface) {
+            $mockViewRenderer = $this->prophesize('Zend\View\Renderer\RendererInterface');
+            $this->serviceLocator->get('ViewRenderer')
+                                 ->willReturn($mockViewRenderer)
+                                 ->shouldBeCalled();
 
-            $sessionManager = $this->getMock('SanSessionToolbar\Manager\SessionManagerInterface');
-            $this->serviceLocator->expects($this->at(1))
-                ->method('get')
-                ->with('SanSessionManager')
-                ->willReturn($sessionManager);
+            $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
+            $this->serviceLocator->get('SanSessionManager')
+                                 ->willReturn($sessionManager)
+                                 ->shouldBeCalled();
 
-            $result = $this->factory->__invoke($this->serviceLocator, '');
+            $result = $this->factory->__invoke($this->serviceLocator->reveal(), '');
             $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
         }
     }
