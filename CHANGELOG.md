@@ -1,6 +1,7 @@
 ### 0.6.2 - 2016-06-28
 
-- Added zend-view dependency in require-dev to be able to run tests in travis
+- Added zend-view dependency in require-dev to be able to run tests in travis and update tests with prophecy
+- use ControllerManager check in SessionToolbarControllerFactory
 
 ### 0.6.1 - 2016-06-28
 
