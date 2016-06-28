@@ -1,3 +1,7 @@
+### 0.6.3 - 2016-06-28
+
+- zdt dependency in require-dev
+
 ### 0.6.2 - 2016-06-28
 
 - Added zend-view dependency in require-dev to be able to run tests in travis and update tests with prophecy
