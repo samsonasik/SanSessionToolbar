@@ -1,3 +1,7 @@
+### 0.6.2 - 2016-06-28
+
+- Added zend-view dependency in require-dev to be able to run tests in travis
+
 ### 0.6.1 - 2016-06-28
 
 - Added zend-json dependency when only use new skeleton-app ( with zend-mvc v3 ) minimal
