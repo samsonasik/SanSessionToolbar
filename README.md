@@ -16,9 +16,9 @@ SanSessionToolbar
 
 What is it about ?
 -----------------
-It is a ZF2 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2 session data you've been using like this :
+It is a ZF2/ZF3 module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF2/ZF3 session data you've been using like this :
 
-![Fully Crud ZF2 sessions data](https://cloud.githubusercontent.com/assets/459648/6867548/cad28e40-d4b5-11e4-911c-ffd8b88fd41f.png)
+![Fully Crud ZF2/ZF3 sessions data](https://cloud.githubusercontent.com/assets/459648/6867548/cad28e40-d4b5-11e4-911c-ffd8b88fd41f.png)
 
 You can reload, clear, add, update, and remove your sessions data.
 

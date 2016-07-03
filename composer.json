@@ -1,8 +1,8 @@
 {
     "name": "san/san-session-toolbar",
     "type": "library",
-    "description": "ZF2 Session Toolbar for ZendDeveloperTools ",
-    "keywords": ["session","zf2"],
+    "description": "ZF2/ZF3 Session Toolbar for ZendDeveloperTools ",
+    "keywords": ["session","zf2","zf3"],
     "homepage": "https://github.com/samsonasik/SanSessionToolbar",
     "license": "MIT",
     "authors": [
