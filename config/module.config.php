@@ -17,62 +17,62 @@
  * and is licensed under the MIT license.
  */
 
-return array(
+return [
 
-    'controllers' => array(
-        'factories' => array(
+    'controllers' => [
+        'factories' => [
             'SanSessionToolbar\Controller\SessionToolbar' => 'SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'san-session-toolbar' => array(
+    'router' => [
+        'routes' => [
+            'san-session-toolbar' => [
                 'type'    => 'segment',
-                'options' => array(
+                'options' => [
                     'route'    => '/san-session-toolbar[/:action]',
-                    'constraints' => array(
+                    'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ),
-                    'defaults' => array(
+                    ],
+                    'defaults' => [
                         'controller' => 'SanSessionToolbar\Controller\SessionToolbar',
                         'action'     => 'removesession',
-                    ),
-                ),
-            ),
-        ),
-    ),
+                    ],
+                ],
+            ],
+        ],
+    ],
 
-    'service_manager' => array(
-        'invokables' => array(
+    'service_manager' => [
+        'invokables' => [
             'SanSessionManager' => 'SanSessionToolbar\Manager\SessionManager',
-        ),
-        'factories' => array(
+        ],
+        'factories' => [
             'session.toolbar' => 'SanSessionToolbar\Factory\Collector\SessionCollectorFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'view_manager' => array(
-        'template_map' => array(
+    'view_manager' => [
+        'template_map' => [
             'zend-developer-tools/toolbar/session-data' => __DIR__.'/../view/zend-developer-tools/toolbar/session-data.phtml',
             'zend-developer-tools/toolbar/session-data-list' => __DIR__.'/../view/zend-developer-tools/toolbar/session-data-list.phtml',
-        ),
-        'strategies' => array(
+        ],
+        'strategies' => [
             'ViewJsonStrategy',
-        ),
-    ),
+        ],
+    ],
 
-    'zenddevelopertools' => array(
-        'profiler' => array(
-            'collectors' => array(
+    'zenddevelopertools' => [
+        'profiler' => [
+            'collectors' => [
                 'session.toolbar' => 'session.toolbar',
-            ),
-        ),
-        'toolbar' => array(
-            'entries' => array(
+            ],
+        ],
+        'toolbar' => [
+            'entries' => [
                 'session.toolbar' => 'zend-developer-tools/toolbar/session-data',
-            ),
-        ),
-    ),
+            ],
+        ],
+    ],
 
-);
+];

@@ -31,17 +31,17 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 {
     protected function setUp()
     {
-        $this->setApplicationConfig(array(
-            'modules' => array(
+        $this->setApplicationConfig([
+            'modules' => [
                 'ZendDeveloperTools',
                 'SanSessionToolbar',
-            ),
-            'module_listener_options' => array(
-                'module_paths' => array(
+            ],
+            'module_listener_options' => [
+                'module_paths' => [
                     dirname(dirname(dirname(__DIR__))),
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
         parent::setUp();
     }
@@ -56,10 +56,10 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostDataWithSessionNotExists()
     {
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'foo',
-        );
+        ];
         $this->dispatch('/san-session-toolbar/removesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
@@ -71,10 +71,10 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('Default');
         $container->foo = 'fooValue';
 
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'foo',
-        );
+        ];
         $this->dispatch('/san-session-toolbar/removesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
@@ -109,9 +109,9 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('OtherContainer');
         $container->foo = 'fooValue';
 
-        $postData = array(
+        $postData = [
             'byContainer' => 'Default',
-        );
+        ];
 
         $this->dispatch('/san-session-toolbar/clearsession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
@@ -143,11 +143,11 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('OtherContainer');
         $container->foo = 'fux';
 
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'foo',
             'sessionvalue' => 'barbar',
-        );
+        ];
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
@@ -164,11 +164,11 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('OtherContainer');
         $container->foo = 'fux';
 
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'foo',
             'sessionvalue' => '',
-        );
+        ];
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
@@ -182,11 +182,11 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('Default');
         $container->foo = 'fooValue';
 
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'bazbazbadabum',
             'sessionvalue' => 'barbar',
-        );
+        ];
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
@@ -199,12 +199,12 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('Default');
         $container->foo = 'fooValue';
 
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'bazbazbadabum',
             'sessionvalue' => 'barbar',
             'new' => 1,
-        );
+        ];
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
@@ -217,12 +217,12 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $container = new Container('Default');
         $container->foo = 'fooValue';
 
-        $postData = array(
+        $postData = [
             'key' => 'Default',
             'keysession' => 'foo',
             'sessionvalue' => 'barbar',
             'new' => 1,
-        );
+        ];
 
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');

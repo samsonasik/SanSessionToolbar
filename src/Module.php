@@ -48,7 +48,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
         $sharedEvm->attach(
             'Zend\Mvc\Controller\AbstractActionController',
             'dispatch',
-            array($this, 'flashMessengerHandler'),
+            [$this, 'flashMessengerHandler'],
             2
         );
     }
@@ -67,7 +67,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
         foreach ($reCreateFlash as $key => $row) {
             if ($row instanceof SplQueue) {
                 $flashPerNameSpace = $flash->setNamespace($key);
-                $valuesMessage = array();
+                $valuesMessage = [];
                 foreach ($row->toArray() as $keyArray => $rowArray) {
                     $flashPerNameSpace->addMessage($rowArray);
                     $valuesMessage[] = $rowArray;
@@ -90,6 +90,6 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
      */
     public function getModuleDependencies()
     {
-        return array('ZendDeveloperTools');
+        return ['ZendDeveloperTools'];
     }
 }

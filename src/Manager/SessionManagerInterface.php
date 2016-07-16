@@ -44,7 +44,7 @@ interface SessionManagerInterface
      *
      * @return bool
      */
-    public function sessionSetting($containerName, $keysession, $value = null, $options = array());
+    public function sessionSetting($containerName, $keysession, $value = null, $options = []);
 
     /**
      * Clear Session.
