@@ -53,7 +53,7 @@ final class SessionManager implements SessionManagerInterface
      */
     private function collectSessionData(array $arraysession)
     {
-        $data = array();
+        $data = [];
 
         foreach ($arraysession as $key => $row) {
             if ($row instanceof ArrayObject) {
@@ -71,7 +71,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function sessionSetting($containerName, $keysession, $value = null, $options = array())
+    public function sessionSetting($containerName, $keysession, $value = null, $options = [])
     {
         $container = new Container($containerName);
         $set = (!empty($options['set'])) ? $options['set'] : false;

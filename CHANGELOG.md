@@ -1,3 +1,9 @@
+### 1.0.0 - 2016-07-16
+
+- support only php ^5.6 | ^7.0
+- bring short array syntax
+- support only zf ^2.5 components
+
 ### 0.6.3 - 2016-06-28
 
 - zdt dependency in require-dev

@@ -60,14 +60,14 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
         $container      = new Container();
         $container->foo = 'fooValue';
 
-        $sessionData  = array(
-            'Foo' => array(
+        $sessionData  = [
+            'Foo' => [
                 'foo' => 'fooValue',
-            ),
-            'Default' => array(
+            ],
+            'Default' => [
                 'foo' => 'fooValue',
-            ),
-        );
+            ],
+        ];
         $this->assertEquals($sessionData, $this->manager->getSessionData());
     }
 
@@ -84,13 +84,13 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
 
     public function provideSessionSettingData()
     {
-        return array(
-            array('Default', 'foo', null, array(), false),
-            array('Default', 'foo', 'fooValue', array('new' => true), true),
-            array('Foo', 'foo', 'fooValue', array('new' => true), false),
-            array('Foo', 'foo', 'NewFooValue', array('set' => true), true),
-            array('Foo', 'foo', 'NewFooValue', array('set' => false), true),
-        );
+        return [
+            ['Default', 'foo', null, [], false],
+            ['Default', 'foo', 'fooValue', ['new' => true], true],
+            ['Foo', 'foo', 'fooValue', ['new' => true], false],
+            ['Foo', 'foo', 'NewFooValue', ['set' => true], true],
+            ['Foo', 'foo', 'NewFooValue', ['set' => false], true],
+        ];
     }
 
     /**
@@ -107,9 +107,9 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
 
     public function provideClearSession()
     {
-        return array(
-            array('Default', array('Foo' => array('foo' => 'fooValue'))),
-            array(null, array()),
-        );
+        return [
+            ['Default', ['Foo' => ['foo' => 'fooValue']]],
+            [null, []],
+        ];
     }
 }

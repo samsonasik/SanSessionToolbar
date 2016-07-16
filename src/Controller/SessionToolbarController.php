@@ -69,9 +69,9 @@ final class SessionToolbarController extends AbstractActionController
                             ->sessionSetting($containerName, $keysession);
         }
 
-        return new JsonModel(array(
+        return new JsonModel([
             'success' => $success,
-        ));
+        ]);
     }
 
     /**
@@ -82,11 +82,11 @@ final class SessionToolbarController extends AbstractActionController
         $sessionData = $this->sessionManager->getSessionData(false);
 
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));
+                                ->render('zend-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
 
-        return new JsonModel(array(
+        return new JsonModel([
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
-        ));
+        ]);
     }
 
     /**
@@ -101,11 +101,11 @@ final class SessionToolbarController extends AbstractActionController
 
         $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));
+                                ->render('zend-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
 
-        return new JsonModel(array(
+        return new JsonModel([
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
-        ));
+        ]);
     }
 
     /**
@@ -113,7 +113,7 @@ final class SessionToolbarController extends AbstractActionController
      */
     public function savesessionAction()
     {
-        $processSetOrAddSessionData = array('success' => false, 'errorMessage' => '');
+        $processSetOrAddSessionData = ['success' => false, 'errorMessage' => ''];
         $request = $this->getEvent()->getRequest();
 
         if ($request instanceof Request && $request->isPost()) {
@@ -122,13 +122,13 @@ final class SessionToolbarController extends AbstractActionController
 
         $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-list', array('sessionData' => $sessionData));
+                                ->render('zend-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
 
-        return new JsonModel(array(
+        return new JsonModel([
             'success' => $processSetOrAddSessionData['success'],
             'errorMessage' => $processSetOrAddSessionData['errorMessage'],
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
-        ));
+        ]);
     }
 
     /**
@@ -148,11 +148,11 @@ final class SessionToolbarController extends AbstractActionController
         $notEmptyValidator = new NotEmpty();
         if ($notEmptyValidator->isValid($keysession) && $notEmptyValidator->isValid($sessionValue)) {
             $success = $this->sessionManager
-                            ->sessionSetting($containerName, $keysession, $sessionValue, array('set' => true, 'new' => $new));
+                            ->sessionSetting($containerName, $keysession, $sessionValue, ['set' => true, 'new' => $new]);
 
-            return array('success' => $success, 'errorMessage' => '');
+            return ['success' => $success, 'errorMessage' => ''];
         }
 
-        return array('success' => false, 'errorMessage' => 'Value is required and can\'t be empty');
+        return ['success' => false, 'errorMessage' => 'Value is required and can\'t be empty'];
     }
 }
