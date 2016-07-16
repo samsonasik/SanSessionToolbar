@@ -25,14 +25,15 @@ You can reload, clear, add, update, and remove your sessions data.
 Installation
 ------------
 
-Installation of this module uses composer. For composer documentation, please refer to
-[getcomposer.org](https://getcomposer.org/).
+Installation of this module uses composer.
 
 ```sh
 $ composer require san/san-session-toolbar 0.*
 ```
 
-Enable this :
+For composer documentation, please refer to [getcomposer.org](https://getcomposer.org/).
+
+Enable it :
 ```php
 // config/application.config.php
 return [
