@@ -40,7 +40,7 @@ return [
     'modules' => [
         // ...
         'ZendDeveloperTools',
-        'SanSessionToolbar', // place at the end of modules list!
+        'SanSessionToolbar', // put at the end of modules list!
     ]
     // ...
 ],
