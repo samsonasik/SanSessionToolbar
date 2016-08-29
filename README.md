@@ -46,7 +46,9 @@ return [
 ],
 ```
 
-> **Note** : for better ouput format, you need to have Xdebug installed in your system.
+> **Note** : 
+- for better ouput format, you need to have Xdebug installed in your system.
+- for zend-mvc v3 usage, if you want to get FlashMessenger data, you need to install zendframework/zend-mvc-plugin-flashmessenger
 
 Contributing
 ------------

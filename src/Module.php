@@ -59,8 +59,11 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     public function flashMessengerHandler(EventInterface $e)
     {
         $controller = $e->getTarget();
-        $flash = $controller->plugin('flashMessenger');
+        if (!$controller->getPluginManager()->has('flashMessenger')) {
+            return;
+        }
 
+        $flash = $controller->plugin('flashMessenger');
         $container = new Container('FlashMessenger');
         $reCreateFlash = $container->getArrayCopy();
 
