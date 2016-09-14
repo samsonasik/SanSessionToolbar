@@ -14,8 +14,4 @@
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-php" target="./build/coverage/coverage-san-session-toolbar.cov"/>
-        <log type="coverage-html" target="./test/html-report/" charset="UTF-8" yui="true" />
-    </logging>
 </phpunit>
