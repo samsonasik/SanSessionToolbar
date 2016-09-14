@@ -16,10 +16,6 @@ install:
 script:
   - ./vendor/bin/phpunit --coverage-text
 
-after_script:
-  - php ./vendor/bin/phpcov merge --clover ./build/logs/clover.xml ./build/coverage/
-  - travis_retry vendor/bin/coveralls -v --exclude-no-stmt
-
 notifications:
   email: false
 
