@@ -44,10 +44,5 @@
     },
     "config": {
         "process-timeout": 5000
-    },
-    "extra": {
-        "zf": {
-            "module": "SanSessionToolbar"
-        }
     }
 }
