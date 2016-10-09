@@ -28,7 +28,7 @@ Installation
 Installation of this module uses composer.
 
 ```sh
-$ composer require san/san-session-toolbar
+composer require san/san-session-toolbar
 ```
 
 For composer documentation, please refer to [getcomposer.org](https://getcomposer.org/).
