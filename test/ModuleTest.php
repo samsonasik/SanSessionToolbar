@@ -36,6 +36,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        ini_set ('session.gc_probability', 0);
         $this->module = new Module();
     }
 
