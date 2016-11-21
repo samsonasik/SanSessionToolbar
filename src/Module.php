@@ -63,8 +63,8 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
             return;
         }
 
-        $flash = $controller->plugin('flashMessenger');
-        $container = new Container('FlashMessenger');
+        $flash         = $controller->plugin('flashMessenger');
+        $container     = $flash->getContainer();
         $reCreateFlash = $container->getArrayCopy();
 
         foreach ($reCreateFlash as $key => $row) {

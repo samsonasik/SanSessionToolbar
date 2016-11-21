@@ -78,7 +78,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
             $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
                 $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
                 $pluginManager->has('flashMessenger')->willReturn(true)->shouldBeCalled();
-                
+
                 if ($hasMessages) {
                     $namespace = 'flash';
                     $message   = 'a message';
@@ -89,6 +89,8 @@ class ModuleTest extends PHPUnit_Framework_TestCase
                     $container = new Container('FlashMessenger');
                     $container->offsetSet($namespace, $splQueue);
 
+                    $flashMessenger->getContainer()->willReturn($container)
+                                                   ->shouldBeCalled();
                     $flashMessenger->setNamespace($namespace)
                                    ->willReturn($flashMessenger)
                                    ->shouldBeCalled();
@@ -121,7 +123,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
         $this->module->onBootstrap($e->reveal());
     }
-    
+
     public function testOnBootstrapWithDoesntHasFlashMessenger()
     {
         $e = $this->prophesize('Zend\Mvc\MvcEvent');
@@ -161,7 +163,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
         $e->getApplication()
           ->willReturn($application)
-          ->shouldBeCalled(); 
+          ->shouldBeCalled();
 
         $this->module->onBootstrap($e->reveal());
     }
