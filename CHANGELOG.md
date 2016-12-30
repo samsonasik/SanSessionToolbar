@@ -1,3 +1,25 @@
+### 1.0.5 - 2016-11-21
+
+- pull flashMessenger container from its plugin in Module class to avoid error when user uses custom FlashMessenger.
+
+### 1.0.4 - 2016-10-09
+
+- revert zend-component-installer support
+
+### 1.0.3 - 2016-09-14
+
+- remove unused config
+
+### 1.0.2 - 2016-09-14
+
+- grammar readme fix
+- php 7.1 included in travis
+- using scrutinizer for coverage
+
+### 1.0.1 - 2016-08-29
+
+- FlashMessenger handling with zend-mvc v3
+
 ### 1.0.0 - 2016-07-16
 
 - support only php ^5.6 | ^7.0
