@@ -69,7 +69,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
             foreach ($container->getArrayCopy() as $key => $row) {
                 if ($row instanceof SplQueue) {
                     $valuesMessage = [];
-                    foreach ($row->toArray() as $keyArray => $rowArray) {
+                    foreach ($row->toArray() as $rowArray) {
                         $flash->setNamespace($key)->addMessage($rowArray);
                         $valuesMessage[] = $rowArray;
                     }
