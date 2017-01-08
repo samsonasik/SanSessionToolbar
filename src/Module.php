@@ -55,28 +55,26 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     }
 
     /**
+     * Used to re-fill flashMessenger data after it shown and gone.
+     *
      * @param EventInterface
      */
     public function flashMessengerHandler(EventInterface $e)
     {
         $controller = $e->getTarget();
-        if (!$controller->getPluginManager()->has('flashMessenger')) {
-            return;
-        }
+        if ($controller->getPluginManager()->has('flashMessenger')) {
+            $flash = $controller->plugin('flashMessenger');
+            $container = $flash->getContainer();
 
-        $flash = $controller->plugin('flashMessenger');
-        $container = $flash->getContainer();
-        $reCreateFlash = $container->getArrayCopy();
-
-        foreach ($reCreateFlash as $key => $row) {
-            if ($row instanceof SplQueue) {
-                $flashPerNameSpace = $flash->setNamespace($key);
-                $valuesMessage = [];
-                foreach ($row->toArray() as $keyArray => $rowArray) {
-                    $flashPerNameSpace->addMessage($rowArray);
-                    $valuesMessage[] = $rowArray;
+            foreach ($container->getArrayCopy() as $key => $row) {
+                if ($row instanceof SplQueue) {
+                    $valuesMessage = [];
+                    foreach ($row->toArray() as $keyArray => $rowArray) {
+                        $flash->setNamespace($key)->addMessage($rowArray);
+                        $valuesMessage[] = $rowArray;
+                    }
+                    $container->offsetSet($key, $valuesMessage);
                 }
-                $container->offsetSet($key, $valuesMessage);
             }
         }
     }
