@@ -55,7 +55,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     }
 
     /**
-     * Used to re-fill flashMessenger data after it shown and gone.
+     * Used to re-fill flashMessenger data as it shown and gone.
      *
      * @param EventInterface
      */
@@ -65,15 +65,16 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
         if ($controller->getPluginManager()->has('flashMessenger')) {
             $flash = $controller->plugin('flashMessenger');
             $container = $flash->getContainer();
+            $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
 
             foreach ($container->getArrayCopy() as $key => $row) {
                 if ($row instanceof SplQueue) {
-                    $valuesMessage = [];
-                    foreach ($row->toArray() as $rowArray) {
-                        $flash->setNamespace($key)->addMessage($rowArray);
-                        $valuesMessage[] = $rowArray;
+                    foreach ($row->toArray() as $keyArray => $rowArray) {
+                        if ($keyArray === 0) {
+                            $flashToolbarContainer->$key = new SplQueue();
+                        }
+                        $flashToolbarContainer->$key->push($rowArray);
                     }
-                    $container->offsetSet($key, $valuesMessage);
                 }
             }
         }

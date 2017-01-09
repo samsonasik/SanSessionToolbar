@@ -91,12 +91,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
                     $flashMessenger->getContainer()->willReturn($container)
                                                    ->shouldBeCalled();
-                    $flashMessenger->setNamespace($namespace)
-                                   ->willReturn($flashMessenger)
-                                   ->shouldBeCalled();
-                    $flashMessenger->addMessage($message)
-                                   ->willReturn($flashMessenger)
-                                   ->shouldBeCalled();
                 }
                 $abstractActionController->plugin('flashMessenger')
                                          ->willReturn($flashMessenger)
