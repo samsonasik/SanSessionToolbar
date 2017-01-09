@@ -68,13 +68,11 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
             $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
 
             foreach ($container->getArrayCopy() as $key => $row) {
-                if ($row instanceof SplQueue) {
-                    foreach ($row->toArray() as $keyArray => $rowArray) {
-                        if ($keyArray === 0) {
-                            $flashToolbarContainer->$key = new SplQueue();
-                        }
-                        $flashToolbarContainer->$key->push($rowArray);
+                foreach ($row->toArray() as $keyArray => $rowArray) {
+                    if ($keyArray === 0) {
+                        $flashToolbarContainer->$key = new SplQueue();
                     }
+                    $flashToolbarContainer->$key->push($rowArray);
                 }
             }
         }
