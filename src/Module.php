@@ -73,7 +73,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     }
 
     /**
-     * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.  
+     * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.
      *
      * @param EventInterface $e
      */
