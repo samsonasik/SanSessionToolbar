@@ -55,27 +55,38 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     }
 
     /**
-     * Used to re-fill flashMessenger data as it shown and gone.
+     * Used to duplicate flashMessenger data as it shown and gone.
      *
-     * @param EventInterface
+     * @param Container $container
+     */
+    private function duplicateFlashMessengerSessionData(Container $container)
+    {
+        $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
+        foreach ($container->getArrayCopy() as $key => $row) {
+            foreach ($row->toArray() as $keyArray => $rowArray) {
+                if ($keyArray === 0) {
+                    $flashToolbarContainer->$key = new SplQueue();
+                }
+                $flashToolbarContainer->$key->push($rowArray);
+            }
+        }
+    }
+
+    /**
+     * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.  
+     *
+     * @param EventInterface $e
      */
     public function flashMessengerHandler(EventInterface $e)
     {
         $controller = $e->getTarget();
-        if ($controller->getPluginManager()->has('flashMessenger')) {
-            $flash = $controller->plugin('flashMessenger');
-            $container = $flash->getContainer();
-            $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
-
-            foreach ($container->getArrayCopy() as $key => $row) {
-                foreach ($row->toArray() as $keyArray => $rowArray) {
-                    if ($keyArray === 0) {
-                        $flashToolbarContainer->$key = new SplQueue();
-                    }
-                    $flashToolbarContainer->$key->push($rowArray);
-                }
-            }
+        if (!$controller->getPluginManager()->has('flashMessenger')) {
+            return;
         }
+
+        $flash = $controller->plugin('flashMessenger');
+        $container = $flash->getContainer();
+        $this->duplicateFlashMessengerSessionData($container);
     }
 
     /**
