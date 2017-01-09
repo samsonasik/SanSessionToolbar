@@ -1,3 +1,7 @@
+### 1.0.6 - 2017-01-10
+
+- Fixes Fatal Error: Call to a member function toArray() on array for idempotent invoke FlashMessenger.
+
 ### 1.0.5 - 2016-11-21
 
 - pull flashMessenger container from its plugin in Module class to avoid error when user uses custom FlashMessenger.
