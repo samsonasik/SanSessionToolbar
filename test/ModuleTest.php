@@ -52,6 +52,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
      * @dataProvider provideHasMessages
      * @runInSeparateProcess
      * @covers SanSessionToolbar\Module::onBootstrap()
+     * @covers SanSessionToolbar\Module::duplicateFlashMessengerSessionData()
      * @covers SanSessionToolbar\Module::flashMessengerHandler()
      */
     public function testOnBootstrap($hasMessages)
