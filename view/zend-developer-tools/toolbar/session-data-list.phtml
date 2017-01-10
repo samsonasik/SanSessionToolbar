@@ -42,7 +42,13 @@
                                         title="Remove Session" /></a>&nbsp;
                                  <?php } ?> <?php echo $keysession; ?></span>
 
-                                <span class="zdt-detail-value" id="san-session-toolbar-detail-value-<?php echo $containerName; ?>-<?php echo $keysession; ?>"><?php if (!is_scalar($rowsession)) { ?><div style="white-space: normal; max-width: 570px;"><?php var_dump($rowsession); ?></div><?php } else {  echo $this->escapeHtml($rowsession); }  ?></span>
+                                <span class="zdt-detail-value" id="san-session-toolbar-detail-value-<?php echo $containerName; ?>-<?php echo $keysession; ?>">
+                                    <?php if (!is_scalar($rowsession)) { ?>
+                                        <div style="white-space: normal; max-width: 570px;"><?php var_dump(($rowsession instanceof Zend\Stdlib\SplQueue) ? $rowsession->toArray() : $rowsession); ?></div>
+                                    <?php } else {
+                                         echo $this->escapeHtml($rowsession);
+                                     }  ?>
+                                </span>
                         </span>
 
                         <?php if (is_scalar($rowsession)) { ?>
@@ -69,8 +75,7 @@
 
                         <?php
                         if ($containerName === 'SanSessionToolbarFlashMessenger') {
-                            $container = new Zend\Session\Container($containerName);
-                            $container->offsetUnset($keysession);
+                            (new Zend\Session\Container($containerName))->offsetUnset($keysession);
                         }
                         ?>
 

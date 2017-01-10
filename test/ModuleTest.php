@@ -83,9 +83,11 @@ class ModuleTest extends PHPUnit_Framework_TestCase
                 if ($hasMessages) {
                     $namespace = 'flash';
                     $message   = 'a message';
+                    $anotherMessage = 'another message';
 
                     $splQueue = new SplQueue();
                     $splQueue->push($message);
+                    $splQueue->push($anotherMessage);
 
                     $container = new Container('FlashMessenger');
                     $container->offsetSet($namespace, $splQueue);
