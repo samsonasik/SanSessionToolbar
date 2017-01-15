@@ -56,18 +56,19 @@
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
 
-            var containerName = trg.parentNode.getAttribute("data-container");
+            var containerNameOriginal = trg.parentNode.getAttribute("data-container");
+            var containerNameEscaped  = containerNameOriginal.split('\\\\').join('\\\\\\\\');
             var keysession = trg.parentNode.getAttribute("data-keysession");
-            var params = "containerName="+containerName+"&keysession="+keysession;
+            var params = "containerName="+containerNameOriginal+"&keysession="+keysession;
             sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/removesession', function (html) {
                 if (html.success) {
                     // top parent level for this session key - span tag
-                    var elements = doc.querySelector(".san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession);
+                    var elements = doc.querySelector(".san-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession);
                     if (elements !== undefined) {
                         elements.parentNode.removeChild(elements);
                     }
                 } else {
-                    alert('No session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
+                    alert('No session registered with container named "'+containerNameOriginal+'" and key session "'+keysession+'" or session already removed');
                 }
             }, params);
         },
@@ -109,11 +110,11 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerName = trg.parentNode.getAttribute("data-container");
+            var containerNameEscaped = trg.parentNode.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
             var keysession = trg.parentNode.getAttribute("data-keysession");
 
-            doc.querySelector("#san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
-            doc.querySelector("#san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
+            doc.querySelector("#san-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession).style.display = 'none';
+            doc.querySelector("#san-edit-mode-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession).style.display = 'block';
         },
 
         cancelSaveSessionByKey: function (e) {
@@ -122,16 +123,16 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerName = trg.parentNode.getAttribute("data-container");
+            var containerNameEscaped = trg.parentNode.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
             var keysession = trg.parentNode.getAttribute("data-keysession");
 
-            doc.querySelector("#san-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'block';
-            doc.querySelector("#san-edit-mode-session-toolbar-info-containerName-"+containerName+"-keysession-"+keysession).style.display = 'none';
+            doc.querySelector("#san-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession).style.display = 'block';
+            doc.querySelector("#san-edit-mode-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession).style.display = 'none';
 
             // empty error
-            doc.querySelector('#errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = '';
+            doc.querySelector('#errorMessage-containerName-'+containerNameEscaped+'-keysession-'+keysession).innerHTML = '';
             // re-fill input with current content
-            doc.querySelector('#san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value = doc.querySelector('#san-session-toolbar-detail-value-'+containerName+'-'+keysession).innerHTML.trim();
+            doc.querySelector('#san-detail-value-containerName-'+containerNameEscaped+'-keysession-'+keysession).value = doc.querySelector('#san-session-toolbar-detail-value-'+containerNameEscaped+'-'+keysession).innerHTML.trim();
         },
 
         saveSessionByKey: function (e) {
@@ -141,17 +142,18 @@
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
 
-            var containerName = trg.parentNode.getAttribute("data-container");
+            var containerNameOriginal = trg.parentNode.getAttribute("data-container");
+            var containerNameEscaped  = containerNameOriginal.split('\\\\').join('\\\\\\\\');
             var keysession = trg.parentNode.getAttribute("data-keysession");
-            var params = "containerName="+containerName+"&keysession="+keysession+"&sessionvalue="+doc.querySelector('#san-detail-value-containerName-'+containerName+'-keysession-'+keysession).value+"&new=0";
+            var params = "containerName="+containerNameOriginal+"&keysession="+keysession+"&sessionvalue="+doc.querySelector('#san-detail-value-containerName-'+containerNameEscaped+'-keysession-'+keysession).value+"&new=0";
             sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/savesession', function (html) {
                 if (html.success) {
                     doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
                 } else {
                     if (html.errorMessage === '') {
-                        alert('Save session failed, check if no session registered with container named "'+containerName+'" and key session "'+keysession+'" or session already removed');
+                        alert('Save session failed, check if no session registered with container named "'+containerNameOriginal+'" and key session "'+keysession+'" or session already removed');
                     } else {
-                        doc.querySelector('#errorMessage-containerName-'+containerName+'-keysession-'+keysession).innerHTML = html.errorMessage;
+                        doc.querySelector('#errorMessage-containerName-'+containerNameEscaped+'-keysession-'+keysession).innerHTML = html.errorMessage;
                     }
                 }
             }, params);
@@ -163,11 +165,11 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerName = trg.parentNode.getAttribute("data-container");
+            var containerNameEscaped = trg.parentNode.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
 
-            doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'none';
+            doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerNameEscaped).style.display = 'none';
             // empty error
-            doc.querySelector('#errorMessage-add-new-data-containerName-'+containerName).innerHTML = '';
+            doc.querySelector('#errorMessage-add-new-data-containerName-'+containerNameEscaped).innerHTML = '';
         },
 
         addNewSessionData: function (e) {
@@ -176,8 +178,8 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerName = trg.getAttribute("data-container");
-            doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerName).style.display = 'block';
+            var containerNameEscaped = trg.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
+            doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerNameEscaped).style.display = 'block';
         },
 
         saveNewSessionData: function (e) {
@@ -186,19 +188,20 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerName = trg.parentNode.getAttribute("data-container");
-            var newSessionKey  = doc.querySelector('#san-add-value-sessionkey-containerName-'+containerName).value;
-            var newSessionData = doc.querySelector('#san-add-value-sessiondata-containerName-'+containerName).value;
-            var params = "containerName="+containerName+"&keysession="+newSessionKey+"&sessionvalue="+newSessionData+"&new=1";
+            var containerNameOriginal = trg.parentNode.getAttribute("data-container");
+            var containerNameEscaped  = containerNameOriginal.split('\\\\').join('\\\\\\\\');
+            var newSessionKey  = doc.querySelector('#san-add-value-sessionkey-containerName-'+containerNameEscaped).value;
+            var newSessionData = doc.querySelector('#san-add-value-sessiondata-containerName-'+containerNameEscaped).value;
+            var params = "containerName="+containerNameOriginal+"&keysession="+newSessionKey+"&sessionvalue="+newSessionData+"&new=1";
 
             sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/savesession', function (html) {
                 if (html.success) {
                     doc.querySelector('#san-session-toolbar-detail').innerHTML = html.san_sessiontoolbar_data_renderedContent;
                 } else {
                     if (html.errorMessage === '') {
-                        alert('Save new session failed, check if session with container named "'+containerName+'" and key session "'+newSessionKey+'" already registered');
+                        alert('Save new session failed, check if session with container named "'+containerNameOriginal+'" and key session "'+newSessionKey+'" already registered');
                     } else {
-                        doc.querySelector('#errorMessage-add-new-data-containerName-'+containerName).innerHTML = html.errorMessage;
+                        doc.querySelector('#errorMessage-add-new-data-containerName-'+containerNameEscaped).innerHTML = html.errorMessage;
                     }
                 }
             }, params);
