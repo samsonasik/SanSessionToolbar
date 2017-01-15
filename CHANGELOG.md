@@ -1,3 +1,9 @@
+### 1.0.7 - 2017-01-15
+
+- Fixes unescaped backslash in container name
+- Set input color for edit/add with #000000 to be viewable in twitter bootstrap 3.3.7
+- enhance Zend\Stdlib\SplQueue data with toArray() call
+
 ### 1.0.6 - 2017-01-10
 
 - Fixes Fatal Error: Call to a member function toArray() on array for idempotent invoke FlashMessenger.
