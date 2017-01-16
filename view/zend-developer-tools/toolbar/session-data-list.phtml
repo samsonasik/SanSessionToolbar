@@ -75,7 +75,8 @@
 
                         <?php
                         if ($containerName === 'SanSessionToolbarFlashMessenger') {
-                            (new Zend\Session\Container($containerName))->offsetUnset($keysession);
+                            $SanSessionToolbarFlashMessengerContainer = new Zend\Session\Container($containerName);
+                            $SanSessionToolbarFlashMessengerContainer->offsetUnset($keysession);
                         }
                         ?>
 
