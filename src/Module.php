@@ -54,29 +54,40 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     }
 
     /**
-     * @param EventInterface
+     * Used to duplicate flashMessenger data as it shown and gone.
+     *
+     * @param Container $container
      */
-    public function flashMessengerHandler(EventInterface $e)
+    private function duplicateFlashMessengerSessionData(Container $container)
     {
-        $controller = $e->getTarget();
-        $flash = $controller->plugin('flashMessenger');
-
-        $container = new Container('FlashMessenger');
-        $reCreateFlash = $container->getArrayCopy();
-
-        foreach ($reCreateFlash as $key => $row) {
-            if ($row instanceof SplQueue) {
-                $flashPerNameSpace = $flash->setNamespace($key);
-                $valuesMessage = array();
-                foreach ($row->toArray() as $keyArray => $rowArray) {
-                    $flashPerNameSpace->addMessage($rowArray);
-                    $valuesMessage[] = $rowArray;
+        $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
+        foreach ($container->getArrayCopy() as $key => $row) {
+            foreach ($row->toArray() as $keyArray => $rowArray) {
+                if ($keyArray === 0) {
+                    $flashToolbarContainer->$key = new SplQueue();
                 }
-                $container->offsetSet($key, $valuesMessage);
+                $flashToolbarContainer->$key->push($rowArray);
             }
         }
     }
 
+    /**
+     * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.
+     *
+     * @param EventInterface $e
+     */
+    public function flashMessengerHandler(EventInterface $e)
+    {
+        $controller = $e->getTarget();
+        if (!$controller->getPluginManager()->has('flashMessenger')) {
+            return;
+        }
+
+        $flash = $controller->plugin('flashMessenger');
+        $container = $flash->getContainer();
+        $this->duplicateFlashMessengerSessionData($container);
+    }
+    
     /**
      * {@inheritdoc}
      */
