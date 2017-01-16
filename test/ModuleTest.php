@@ -42,10 +42,10 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     public function provideHasMessages()
     {
-        return [
-            [false],
-            [true],
-        ];
+        return array(
+            array(false),
+            array(true),
+        );
     }
 
     /**
@@ -68,7 +68,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
             $sharedEvmAttach = $sharedEvm->attach(
                 'Zend\Mvc\Controller\AbstractActionController',
                 'dispatch',
-                [$this->module, 'flashMessengerHandler'],
+                array($this->module, 'flashMessengerHandler'),
                 2
             );
             $module = $this->module;
@@ -131,7 +131,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         $sharedEvmAttach = $sharedEvm->attach(
             'Zend\Mvc\Controller\AbstractActionController',
             'dispatch',
-            [$this->module, 'flashMessengerHandler'],
+            array($this->module, 'flashMessengerHandler'),
             2
         );
         $module = $this->module;
@@ -178,6 +178,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
      */
     public function testGetModuleDependencies()
     {
-        $this->assertEquals(['ZendDeveloperTools'], $this->module->getModuleDependencies());
+        $this->assertEquals(array('ZendDeveloperTools'), $this->module->getModuleDependencies());
     }
 }
