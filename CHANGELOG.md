@@ -36,6 +36,14 @@
 - bring short array syntax
 - support only zf ^2.5 components
 
+### 0.6.5 2017-01-16
+
+- PHP 5.3 array() syntax compat
+
+### 0.6.4 2017-01-16
+
+- start backport bug fixes in 1.x.x into 0.x.x
+
 ### 0.6.3 - 2016-06-28
 
 - zdt dependency in require-dev
