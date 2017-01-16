@@ -36,11 +36,15 @@
 - bring short array syntax
 - support only zf ^2.5 components
 
-### 0.6.5 2017-01-16
+### 0.6.6 - 2017-01-16
+
+- T_OBJECT_OPERATOR for php 5.3 compat fix
+
+### 0.6.5 - 2017-01-16
 
 - PHP 5.3 array() syntax compat
 
-### 0.6.4 2017-01-16
+### 0.6.4 - 2017-01-16
 
 - start backport bug fixes in 1.x.x into 0.x.x
 
