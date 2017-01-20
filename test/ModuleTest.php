@@ -139,7 +139,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
         $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
 
-        $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $flashMessenger, $pluginManager) {
+        $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {
             $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
             $pluginManager->has('flashMessenger')->willReturn(false)->shouldBeCalled();
 
