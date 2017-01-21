@@ -137,7 +137,7 @@ final class SessionToolbarController extends AbstractActionController
      *
      * @param Request $request
      *
-     * @return bool|string
+     * @return array
      */
     private function setOrAddSession(Request $request)
     {
