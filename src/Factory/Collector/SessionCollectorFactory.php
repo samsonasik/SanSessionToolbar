@@ -27,7 +27,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 // @codeCoverageIgnoreStart
 if (!interface_exists(FactoryInterface::class)) {
-    class_alias(FactoryInterface::class, LegacyFactoryInterface::class);
+    class_alias(LegacyFactoryInterface::class, FactoryInterface::class);
 }
 // @codeCoverageIgnoreEnd
 
