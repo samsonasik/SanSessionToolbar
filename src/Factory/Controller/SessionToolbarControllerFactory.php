@@ -22,8 +22,8 @@ namespace SanSessionToolbar\Factory\Controller;
 use Interop\Container\ContainerInterface;
 use SanSessionToolbar\Controller\SessionToolbarController;
 use Zend\Mvc\Controller\ControllerManager;
-use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 if (!interface_exists(FactoryInterface::class)) {

@@ -21,8 +21,8 @@ namespace SanSessionToolbar\Factory\Collector;
 
 use Interop\Container\ContainerInterface;
 use SanSessionToolbar\Collector\SessionCollector;
-use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 if (!interface_exists(FactoryInterface::class)) {
