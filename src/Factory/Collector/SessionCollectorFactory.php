@@ -25,9 +25,11 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
+// @codeCoverageIgnoreStart
 if (!interface_exists(FactoryInterface::class)) {
     class_alias(FactoryInterface::class, LegacyFactoryInterface::class);
 }
+// @codeCoverageIgnoreEnd
 
 /**
  * Factory class for SessionCollector creation.
