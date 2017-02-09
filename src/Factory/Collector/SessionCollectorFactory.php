@@ -21,8 +21,15 @@ namespace SanSessionToolbar\Factory\Collector;
 
 use Interop\Container\ContainerInterface;
 use SanSessionToolbar\Collector\SessionCollector;
-use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+
+// @codeCoverageIgnoreStart
+if (!interface_exists(FactoryInterface::class)) {
+    class_alias(LegacyFactoryInterface::class, FactoryInterface::class);
+}
+// @codeCoverageIgnoreEnd
 
 /**
  * Factory class for SessionCollector creation.
