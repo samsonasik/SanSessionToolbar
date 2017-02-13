@@ -1,3 +1,7 @@
+### 1.0.8 - 2017-02-13
+
+- legacy and new SM FactoryInterface compat
+
 ### 1.0.7 - 2017-01-15
 
 - Fixes unescaped backslash in container name
