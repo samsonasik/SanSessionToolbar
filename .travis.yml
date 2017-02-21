@@ -9,6 +9,7 @@ php:
   - hhvm
 
 before_install:
+  - mkdir -p build/logs
   - composer self-update
 
 install:
