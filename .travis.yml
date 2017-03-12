@@ -1,5 +1,3 @@
-sudo: false
-
 language: php
 
 matrix:
@@ -34,14 +32,10 @@ before_script:
   - composer self-update
   - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable --no-interaction ; fi
   - if [[ $DEPS == 'latest' ]]; then travis_retry composer install --prefer-source --no-interaction ; fi
+  - composer dump-autoload -o
 
 script:
-  - ./vendor/bin/phpunit --coverage-text
+  - vendor/bin/phpunit --coverage-text
 
 notifications:
-  email: false
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - php: hhvm
+    email: false
