@@ -23,6 +23,11 @@ matrix:
       env:
         - DEPS=latest
     - php: hhvm
+      env:
+        - DEPS=lowest
+    - php: hhvm
+      env:
+        - DEPS=latest
 
 before_install:
   - mkdir -p build/logs
