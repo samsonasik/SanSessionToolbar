@@ -23,11 +23,9 @@ matrix:
       env:
         - DEPS=latest
 
-before_install:
+before_script:
   - mkdir -p build/logs
   - composer self-update
-
-install:
   - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable --no-interaction ; fi
   - if [[ $DEPS == 'latest' ]]; then travis_retry composer install --prefer-source --no-interaction ; fi
 
