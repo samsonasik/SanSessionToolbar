@@ -22,7 +22,7 @@ matrix:
     - php: 7.1
       env:
         - DEPS=latest
-    - hhvm
+    - php: hhvm
 
 before_install:
   - mkdir -p build/logs
