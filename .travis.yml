@@ -31,7 +31,7 @@ before_script:
   - mkdir -p build/logs
   - composer self-update
   - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable --no-interaction ; fi
-  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer require phpunit/phpunit:^4.5 --no-interaction ; fi
+  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer require phpunit/phpunit:^5.7 --no-interaction ; fi
   - if [[ $DEPS == 'latest' ]]; then travis_retry composer install --prefer-source --no-interaction ; fi
   - composer dump-autoload -o
 
