@@ -26,6 +26,8 @@ matrix:
     - php: hhvm
       env:
         - DEPS=latest
+  allow_failures:
+    - php: hhvm
 
 before_script:
   - mkdir -p build/logs
