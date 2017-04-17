@@ -19,7 +19,6 @@
 
 namespace SanSessionToolbar\Collector;
 
-use SanSessionToolbar\Manager\SessionManager;
 use SanSessionToolbar\Manager\SessionManagerInterface;
 use Zend\Mvc\MvcEvent;
 use ZendDeveloperTools\Collector\AbstractCollector;
