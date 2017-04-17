@@ -22,6 +22,7 @@ namespace SanSessionToolbar;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\Stdlib\SplQueue;
@@ -47,7 +48,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
         $sharedEvm = $app->getEventManager()->getSharedManager();
 
         $sharedEvm->attach(
-            'Zend\Mvc\Controller\AbstractActionController',
+            AbstractActionController::class,
             'dispatch',
             [$this, 'flashMessengerHandler'],
             2
