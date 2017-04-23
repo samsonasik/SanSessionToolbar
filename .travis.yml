@@ -1,27 +1,44 @@
-sudo: false
-
 language: php
 
-php:
-  - 5.6
-  - 7
-  - 7.1
-  - hhvm
-
-before_install:
-  - mkdir -p build/logs
-  - composer self-update
-
-install:
-  - composer install
-
-script:
-  - ./vendor/bin/phpunit --coverage-text
-
-notifications:
-  email: false
-
 matrix:
-  fast_finish: true
+  include:
+    - php: 5.6
+      env:
+        - DEPS=lowest
+    - php: 5.6
+      env:
+        - DEPS=latest
+    - php: 7.0
+      env:
+        - DEPS=lowest
+    - php: 7.0
+      env:
+        - DEPS=latest
+    - php: 7.1
+      env:
+        - DEPS=lowest
+    - php: 7.1
+      env:
+        - DEPS=latest
+    - php: hhvm
+      env:
+        - DEPS=lowest
+    - php: hhvm
+      env:
+        - DEPS=latest
   allow_failures:
     - php: hhvm
+
+before_script:
+  - mkdir -p build/logs
+  - composer self-update
+  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable --no-interaction ; fi
+  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer require phpunit/phpunit:^5.7 --no-interaction ; fi
+  - if [[ $DEPS == 'latest' ]]; then travis_retry composer install --prefer-source --no-interaction ; fi
+  - composer dump-autoload -o
+
+script:
+  - vendor/bin/phpunit --coverage-text
+
+notifications:
+    email: false
