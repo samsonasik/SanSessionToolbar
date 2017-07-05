@@ -26,8 +26,8 @@ use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 // @codeCoverageIgnoreStart
-if (!interface_exists(FactoryInterface::class)) {
-    class_alias(LegacyFactoryInterface::class, FactoryInterface::class);
+if (!\interface_exists(FactoryInterface::class)) {
+    \class_alias(LegacyFactoryInterface::class, FactoryInterface::class);
 }
 // @codeCoverageIgnoreEnd
 
