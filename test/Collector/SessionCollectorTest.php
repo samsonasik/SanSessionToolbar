@@ -80,6 +80,8 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
      */
     public function testCallCollect()
     {
+        // idempotent call on purpose to check data property has "san-session"
+        $this->sessionCollector->collect(new MvcEvent());
         $this->sessionCollector->collect(new MvcEvent());
     }
 
