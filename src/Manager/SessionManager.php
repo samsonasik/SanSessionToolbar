@@ -82,6 +82,7 @@ final class SessionManager implements SessionManagerInterface
         }
 
         $set = (!empty($options['set'])) ? $options['set'] : false;
+
         return $this->setUnset($container, $keysession, $value, $set);
     }
 
@@ -101,6 +102,7 @@ final class SessionManager implements SessionManagerInterface
         }
 
         $container->offsetSet($keysession, $value);
+
         return true;
     }
 
@@ -116,16 +118,18 @@ final class SessionManager implements SessionManagerInterface
      */
     private function setUnset(Container $container, $keysession, $value = null, $set = false)
     {
-        if (! $container->offsetExists($keysession)) {
+        if (!$container->offsetExists($keysession)) {
             return false;
         }
 
         if ($set) {
             $container->offsetSet($keysession, $value);
+
             return true;
         }
 
         $container->offsetUnset($keysession);
+
         return true;
     }
 
