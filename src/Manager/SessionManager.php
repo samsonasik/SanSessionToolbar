@@ -75,12 +75,13 @@ final class SessionManager implements SessionManagerInterface
     public function sessionSetting($containerName, $keysession, $value = null, $options = [])
     {
         $container = new Container($containerName);
-        $set = (!empty($options['set'])) ? $options['set'] : false;
         $new = (!empty($options['new'])) ? $options['new'] : false;
 
         if ($new) {
             return $this->addSession($container, $keysession, $value);
         }
+
+        $set = (!empty($options['set'])) ? $options['set'] : false;
 
         return $this->setUnset($container, $keysession, $value, $set);
     }
@@ -117,17 +118,19 @@ final class SessionManager implements SessionManagerInterface
      */
     private function setUnset(Container $container, $keysession, $value = null, $set = false)
     {
-        if ($container->offsetExists($keysession)) {
-            if ($set) {
-                $container->offsetSet($keysession, $value);
-            } else {
-                $container->offsetUnset($keysession);
-            }
+        if (!$container->offsetExists($keysession)) {
+            return false;
+        }
+
+        if ($set) {
+            $container->offsetSet($keysession, $value);
 
             return true;
         }
 
-        return false;
+        $container->offsetUnset($keysession);
+
+        return true;
     }
 
     /**
@@ -135,7 +138,8 @@ final class SessionManager implements SessionManagerInterface
      */
     public function clearSession($byContainer = null)
     {
-        $container = new Container();
-        $container->getManager()->getStorage()->clear($byContainer);
+        (new Container())->getManager()
+             ->getStorage()
+             ->clear($byContainer);
     }
 }
