@@ -86,7 +86,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/reloadsession', 'POST');
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('No ZF2 Session Data', $this->getResponse()->getBody());
+        $this->assertContains('No ZF Session Data', $this->getResponse()->getBody());
     }
 
     public function testReloadWithSessionExists()
@@ -98,7 +98,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
         $this->assertContains('fooValue', $this->getResponse()->getBody());
-        $this->assertNotContains('No ZF2 Session Data', $this->getResponse()->getBody());
+        $this->assertNotContains('No ZF Session Data', $this->getResponse()->getBody());
     }
 
     public function testClearSessionByContainerExecuteCurrentContainerWhenItMet()
