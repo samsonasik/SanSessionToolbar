@@ -126,6 +126,8 @@ class ModuleTest extends PHPUnit_Framework_TestCase
      */
     public function testOnBootstrapWithDoesntHasFlashMessenger()
     {
+        session_start();
+
         $e = $this->prophesize('Zend\Mvc\MvcEvent');
 
         $application = $this->prophesize('Zend\Mvc\Application');
