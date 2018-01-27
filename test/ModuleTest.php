@@ -172,7 +172,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers SanSessionToolbar\Module::getConfig()
-     * @runInSeparateProcess
      */
     public function testGetConfig()
     {
@@ -181,7 +180,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers SanSessionToolbar\Module::getModuleDependencies()
-     * @runInSeparateProcess
      */
     public function testGetModuleDependencies()
     {

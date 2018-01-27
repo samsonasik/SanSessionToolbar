@@ -24,7 +24,6 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
-use Zend\Session\AbstractContainer;
 use Zend\Session\Container;
 use Zend\Stdlib\SplQueue;
 
