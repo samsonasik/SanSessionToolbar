@@ -42,8 +42,6 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     {
         $manager = Container::getDefaultManager();
         if (!$manager->sessionExists()) {
-            AbstractContainer::setDefaultManager($manager);
-
             return;
         }
 
