@@ -36,7 +36,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        ini_set ('session.gc_probability', 0);
         $this->module = new Module();
     }
 
@@ -121,13 +120,8 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         $this->module->onBootstrap($e->reveal());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testOnBootstrapWithDoesntHasFlashMessenger()
     {
-        session_start();
-
         $e = $this->prophesize('Zend\Mvc\MvcEvent');
 
         $application = $this->prophesize('Zend\Mvc\Application');
