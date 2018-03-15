@@ -72,28 +72,6 @@ class SessionMangerTest extends TestCase
     }
 
     /**
-     * @dataProvider provideSessionSettingData
-     */
-    public function testSessionSetting($container, $keysession, $value, $options, $result)
-    {
-        $fooContainer = new Container('Foo');
-        $fooContainer->foo = 'fooValue';
-
-        $this->assertEquals($result, $this->manager->sessionSetting($container, $keysession, $value, $options));
-    }
-
-    public function provideSessionSettingData()
-    {
-        return [
-            ['Default', 'foo', null, [], true],
-            ['Default', 'foo', 'fooValue', ['new' => true], true],
-            ['Foo', 'foo', 'fooValue', ['new' => true], false],
-            ['Foo', 'foo', 'NewFooValue', ['set' => true], true],
-            ['Foo', 'foo', 'NewFooValue', ['set' => false], true],
-        ];
-    }
-
-    /**
      * @dataProvider provideClearSession
      */
     public function testClearSession($byContainer, $result)
@@ -110,6 +88,28 @@ class SessionMangerTest extends TestCase
         return [
             ['Default', ['Foo' => ['foo' => 'fooValue']]],
             [null, []],
+        ];
+    }
+
+    /**
+     * @dataProvider provideSessionSettingData
+     */
+    public function testSessionSetting($container, $keysession, $value, $options, $result)
+    {
+        $fooContainer = new Container('Foo');
+        $fooContainer->foo = 'fooValue';
+
+        $this->assertEquals($result, $this->manager->sessionSetting($container, $keysession, $value, $options));
+    }
+
+    public function provideSessionSettingData()
+    {
+        return [
+            ['Default', 'foo', null, [], false],
+            ['Default', 'foo', 'fooValue', ['new' => true], true],
+            ['Foo', 'foo', 'fooValue', ['new' => true], false],
+            ['Foo', 'foo', 'NewFooValue', ['set' => true], true],
+            ['Foo', 'foo', 'NewFooValue', ['set' => false], true],
         ];
     }
 }
