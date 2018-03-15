@@ -23,9 +23,6 @@ namespace SanSessionToolbar\Factory\Controller;
 
 use Psr\Container\ContainerInterface;
 use SanSessionToolbar\Controller\SessionToolbarController;
-use Zend\Mvc\Controller\ControllerManager;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use SanSessionToolbar\Manager\SessionManager;
 
 /**

@@ -20,8 +20,8 @@
 namespace SanSessionToolbarTest\Factory\Collector;
 
 use PHPUnit\Framework\TestCase;
-use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
 use Psr\Container\ContainerInterface;
+use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
 
 /**
  * This class tests SessionCollectorFactory class.

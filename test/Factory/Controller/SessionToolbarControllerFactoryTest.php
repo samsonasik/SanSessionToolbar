@@ -20,10 +20,8 @@
 namespace SanSessionToolbarTest\Factory\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory;
-use Zend\Mvc\Controller\ControllerManager;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Psr\Container\ContainerInterface;
+use SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory;
 
 /**
  * This class tests SessionToolbarControllerFactory class.
