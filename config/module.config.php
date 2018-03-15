@@ -49,7 +49,7 @@ return [
 
     'service_manager' => [
         'factories' => [
-            SanSessionToolbar\Manager\SessionManager::class => InvokableFactory::class,
+            Manager\SessionManager::class => InvokableFactory::class,
             'session.toolbar' => Factory\Collector\SessionCollectorFactory::class,
         ],
     ],
