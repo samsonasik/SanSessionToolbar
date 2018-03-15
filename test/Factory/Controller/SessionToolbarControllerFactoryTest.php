@@ -46,9 +46,6 @@ class SessionToolbarControllerFactoryTest extends TestCase
         $this->factory = $factory;
     }
 
-    /**
-     * @covers SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory::__invoke
-     */
     public function testInvoke()
     {
             $mockViewRenderer = $this->prophesize('Zend\View\Renderer\RendererInterface');

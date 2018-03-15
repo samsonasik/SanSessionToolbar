@@ -50,9 +50,6 @@ class ModuleTest extends TestCase
     /**
      * @dataProvider provideHasMessages
      * @runInSeparateProcess
-     * @covers SanSessionToolbar\Module::onBootstrap()
-     * @covers SanSessionToolbar\Module::duplicateFlashMessengerSessionData()
-     * @covers SanSessionToolbar\Module::flashMessengerHandler()
      */
     public function testOnBootstrap($hasMessages)
     {
@@ -164,17 +161,11 @@ class ModuleTest extends TestCase
         $this->module->onBootstrap($e->reveal());
     }
 
-    /**
-     * @covers SanSessionToolbar\Module::getConfig()
-     */
     public function testGetConfig()
     {
         $this->assertTrue(is_array($this->module->getConfig()));
     }
 
-    /**
-     * @covers SanSessionToolbar\Module::getModuleDependencies()
-     */
     public function testGetModuleDependencies()
     {
         $this->assertEquals(['ZendDeveloperTools'], $this->module->getModuleDependencies());

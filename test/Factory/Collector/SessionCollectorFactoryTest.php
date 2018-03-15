@@ -46,9 +46,6 @@ class SessionCollectorFactoryTest extends TestCase
         $this->factory = $factory;
     }
 
-    /**
-     * @covers SanSessionToolbar\Factory\Collector\SessionCollectorFactory::__invoke
-     */
     public function testInvoke()
     {
         $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
