@@ -1,5 +1,9 @@
 <?php
 
+namespace SanSessionToolbar;
+
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,7 +25,7 @@ return [
 
     'controllers' => [
         'factories' => [
-            'SanSessionToolbar\Controller\SessionToolbar' => 'SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory',
+            Controller\SessionToolbarController::class => Factory\Controller\SessionToolbarControllerFactory::class,
         ],
     ],
 
@@ -35,7 +39,7 @@ return [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
                     'defaults' => [
-                        'controller' => 'SanSessionToolbar\Controller\SessionToolbar',
+                        'controller' => Controller\SessionToolbarController::class,
                         'action'     => 'removesession',
                     ],
                 ],
@@ -44,11 +48,9 @@ return [
     ],
 
     'service_manager' => [
-        'invokables' => [
-            'SanSessionManager' => 'SanSessionToolbar\Manager\SessionManager',
-        ],
         'factories' => [
-            'session.toolbar' => 'SanSessionToolbar\Factory\Collector\SessionCollectorFactory',
+            SanSessionToolbar\Manager\SessionManager::class => InvokableFactory::class,
+            'session.toolbar' => Factory\Collector\SessionCollectorFactory::class,
         ],
     ],
 

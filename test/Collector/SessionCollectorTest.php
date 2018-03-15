@@ -19,7 +19,7 @@
 
 namespace SanSessionToolbarTest\Collector;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Collector\SessionCollector;
 use SanSessionToolbar\Manager\SessionManager;
 use Zend\Mvc\MvcEvent;
@@ -30,7 +30,7 @@ use Zend\Session\Container;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollectorTest extends PHPUnit_Framework_TestCase
+class SessionCollectorTest extends TestCase
 {
     /**
      * @var SessionCollector

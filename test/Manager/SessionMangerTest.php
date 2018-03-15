@@ -19,7 +19,7 @@
 
 namespace SanSessionToolbarTest\Manager;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Manager\SessionManager;
 use Zend\Session\Container;
 
@@ -28,7 +28,7 @@ use Zend\Session\Container;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionMangerTest extends PHPUnit_Framework_TestCase
+class SessionMangerTest extends TestCase
 {
     /**
      * @var SessionManager

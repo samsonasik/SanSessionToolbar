@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,30 +31,19 @@ interface SessionManagerInterface
     /**
      * Get Session Data.
      *
-     * @param bool $checkExists
-     *
      * @return array|null
      */
-    public function getSessionData($checkExists = true);
+    public function getSessionData(bool $checkExists = true);
 
     /**
      * Set/Unset Session by Container and its key.
-     *
-     * @param string      $containerName
-     * @param string      $keysession
-     * @param null|string $value
-     * @param array       $options
-     *
-     * @return bool
      */
-    public function sessionSetting($containerName, $keysession, $value = null, $options = []);
+    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []) : bool;
 
     /**
      * Clear Session.
      *
      * @param bool|string $byContainer
-     *
-     * @return void
      */
-    public function clearSession($byContainer = false);
+    public function clearSession($byContainer = false) : void;
 }

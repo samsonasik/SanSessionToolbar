@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,7 +34,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getSessionData($checkExists = true)
+    public function getSessionData(bool $checkExists = true)
     {
         if ($checkExists) {
             $manager = Container::getDefaultManager();
@@ -48,11 +50,9 @@ final class SessionManager implements SessionManagerInterface
     }
 
     /**
-     * @param array $arraysession
-     *
-     * @return array
+     * {@inheritdoc}
      */
-    private function collectSessionData(array $arraysession)
+    private function collectSessionData(array $arraysession) : array
     {
         $data = [];
 
@@ -72,7 +72,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function sessionSetting($containerName, $keysession, $value = null, $options = [])
+    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []) : bool
     {
         $container = new Container($containerName);
         $new = (!empty($options['new'])) ? $options['new'] : false;
@@ -88,14 +88,8 @@ final class SessionManager implements SessionManagerInterface
 
     /**
      * Add new session data.
-     *
-     * @param Container $container
-     * @param string    $keysession
-     * @param string    $value
-     *
-     * @return bool
      */
-    private function addSession(Container $container, $keysession, $value)
+    private function addSession(Container $container, string $keysession, string $value) : bool
     {
         if ($container->offsetExists($keysession)) {
             return false;
@@ -108,15 +102,8 @@ final class SessionManager implements SessionManagerInterface
 
     /**
      * Set/Unset session data.
-     *
-     * @param Container   $container
-     * @param string      $keysession
-     * @param null|string $value
-     * @param false|bool  $set
-     *
-     * @return bool
      */
-    private function setUnset(Container $container, $keysession, $value = null, $set = false)
+    private function setUnset(Container $container, string $keysession, string $value = null, bool $set = false) : bool
     {
         if (!$container->offsetExists($keysession)) {
             return false;
@@ -136,7 +123,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function clearSession($byContainer = null)
+    public function clearSession($byContainer = null) : void
     {
         (new Container())->getManager()
              ->getStorage()

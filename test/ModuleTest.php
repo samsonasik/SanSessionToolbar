@@ -19,7 +19,7 @@
 
 namespace SanSessionToolbarTest;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Module;
 use Zend\Session\Container;
 use Zend\Stdlib\SplQueue;
@@ -27,7 +27,7 @@ use Zend\Stdlib\SplQueue;
 /**
  * This class tests Module class.
  */
-class ModuleTest extends PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
     /**
      * @var Module
@@ -72,7 +72,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
             );
             $module = $this->module;
             $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
-            $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+            $flashMessenger = $this->prophesize('Zend\Mvc\Plugin\FlashMessenger\FlashMessenger');
             $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
 
             $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
@@ -135,7 +135,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         );
         $module = $this->module;
         $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
-        $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+        $flashMessenger = $this->prophesize('Zend\Mvc\Plugin\FlashMessenger\FlashMessenger');
         $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
 
         $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {

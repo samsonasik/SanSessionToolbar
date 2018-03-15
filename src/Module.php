@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -34,8 +36,6 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 {
     /**
      * Bootstrap Handle FlashMessenger session show.
-     *
-     * @param MvcEvent $e
      */
     public function onBootstrap(MvcEvent $e)
     {
@@ -57,10 +57,8 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 
     /**
      * Used to duplicate flashMessenger data as it shown and gone.
-     *
-     * @param Container $container
      */
-    private function duplicateFlashMessengerSessionData(Container $container)
+    private function duplicateFlashMessengerSessionData(Container $container) : void
     {
         $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
         foreach ($container->getArrayCopy() as $key => $row) {
@@ -75,10 +73,8 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
 
     /**
      * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.
-     *
-     * @param EventInterface $e
      */
-    public function flashMessengerHandler(EventInterface $e)
+    public function flashMessengerHandler(EventInterface $e) : void
     {
         $controller = $e->getTarget();
         if (!$controller->getPluginManager()->has('flashMessenger')) {
@@ -93,7 +89,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfig()
+    public function getConfig() : array
     {
         return include __DIR__.'/../config/module.config.php';
     }
@@ -101,7 +97,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     /**
      * {@inheritdoc}
      */
-    public function getModuleDependencies()
+    public function getModuleDependencies() : array
     {
         return ['ZendDeveloperTools'];
     }

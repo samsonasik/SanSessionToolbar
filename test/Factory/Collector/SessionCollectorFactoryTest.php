@@ -19,28 +19,27 @@
 
 namespace SanSessionToolbarTest\Factory\Collector;
 
-use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * This class tests SessionCollectorFactory class.
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollectorFactoryTest extends PHPUnit_Framework_TestCase
+class SessionCollectorFactoryTest extends TestCase
 {
     /** @var SessionCollectorFactory */
     protected $factory;
 
-    /** @var ServiceLocatorInterface */
+    /** @var ContainerInterface */
     protected $serviceLocator;
 
     protected function setUp()
     {
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        /** @var ContainerInterface $serviceLocator */
+        $serviceLocator = $this->prophesize('Psr\Container\ContainerInterface');
         $this->serviceLocator = $serviceLocator;
 
         $factory = new SessionCollectorFactory();
@@ -48,32 +47,16 @@ class SessionCollectorFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SanSessionToolbar\Factory\Collector\SessionCollectorFactory::createService
-     */
-    public function testCreateService()
-    {
-        $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
-        $this->serviceLocator->get('SanSessionManager')
-                             ->willReturn($sessionManager)
-                             ->shouldBeCalled();
-
-        $result = $this->factory->createService($this->serviceLocator->reveal());
-        $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
-    }
-
-    /**
      * @covers SanSessionToolbar\Factory\Collector\SessionCollectorFactory::__invoke
      */
     public function testInvoke()
     {
-        if ($this->serviceLocator->reveal() instanceof ContainerInterface) {
-            $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
-            $this->serviceLocator->get('SanSessionManager')
-                                 ->willReturn($sessionManager)
-                                 ->shouldBeCalled();
+        $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
+        $this->serviceLocator->get('SanSessionToolbar\Manager\SessionManager')
+                                ->willReturn($sessionManager)
+                                ->shouldBeCalled();
 
-            $result = $this->factory->__invoke($this->serviceLocator->reveal(), '');
-            $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
-        }
+        $result = $this->factory->__invoke($this->serviceLocator->reveal());
+        $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
     }
 }
