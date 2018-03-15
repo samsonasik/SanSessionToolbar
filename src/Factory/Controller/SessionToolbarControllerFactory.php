@@ -32,9 +32,6 @@ use SanSessionToolbar\Manager\SessionManager;
  */
 class SessionToolbarControllerFactory
 {
-    /**
-     * {@inheritdoc}
-     */
     public function __invoke(ContainerInterface $container)
     {
         return new SessionToolbarController(
