@@ -54,7 +54,7 @@ class SessionCollectorTest extends TestCase
 
     public function testConstruct()
     {
-        new SessionCollector(new SessionManager());
+        $this->assertInstanceOf(SessionCollector::class, new SessionCollector(new SessionManager()));
     }
 
     public function testGetName()

@@ -39,6 +39,15 @@ class ModuleTest extends TestCase
         $this->module = new Module();
     }
 
+    /**
+     * @runInSeparateProcess
+     */
+    public function testOnBootstrapOnSessionNotExists()
+    {
+        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+        $this->assertNull($this->module->onBootstrap($e->reveal()));
+    }
+
     public function provideHasMessages()
     {
         return [
@@ -114,7 +123,7 @@ class ModuleTest extends TestCase
               ->shouldBeCalled();
         }
 
-        $this->module->onBootstrap($e->reveal());
+        $this->assertNull($this->module->onBootstrap($e->reveal()));
     }
 
     public function testOnBootstrapWithDoesntHasFlashMessenger()
