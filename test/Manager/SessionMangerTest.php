@@ -85,7 +85,7 @@ class SessionMangerTest extends TestCase
     public function provideSessionSettingData()
     {
         return [
-            ['Default', 'foo', null, [], false],
+            ['Default', 'foo', null, [], true],
             ['Default', 'foo', 'fooValue', ['new' => true], true],
             ['Foo', 'foo', 'fooValue', ['new' => true], false],
             ['Foo', 'foo', 'NewFooValue', ['set' => true], true],
