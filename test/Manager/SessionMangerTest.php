@@ -19,7 +19,7 @@
 
 namespace SanSessionToolbarTest\Manager;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Manager\SessionManager;
 use Zend\Session\Container;
 
@@ -28,7 +28,7 @@ use Zend\Session\Container;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionMangerTest extends PHPUnit_Framework_TestCase
+class SessionMangerTest extends TestCase
 {
     /**
      * @var SessionManager
@@ -72,6 +72,26 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider provideClearSession
+     */
+    public function testClearSession($byContainer, $result)
+    {
+        $fooContainer = new Container('Foo');
+        $fooContainer->foo = 'fooValue';
+
+        $this->manager->clearSession($byContainer);
+        $this->assertEquals($result, $this->manager->getSessionData());
+    }
+
+    public function provideClearSession()
+    {
+        return [
+            ['Default', ['Foo' => ['foo' => 'fooValue']]],
+            [null, []],
+        ];
+    }
+
+    /**
      * @dataProvider provideSessionSettingData
      */
     public function testSessionSetting($container, $keysession, $value, $options, $result)
@@ -90,26 +110,6 @@ class SessionMangerTest extends PHPUnit_Framework_TestCase
             ['Foo', 'foo', 'fooValue', ['new' => true], false],
             ['Foo', 'foo', 'NewFooValue', ['set' => true], true],
             ['Foo', 'foo', 'NewFooValue', ['set' => false], true],
-        ];
-    }
-
-    /**
-     * @dataProvider provideClearSession
-     */
-    public function testClearSession($byContainer, $result)
-    {
-        $fooContainer = new Container('Foo');
-        $fooContainer->foo = 'fooValue';
-
-        $this->manager->clearSession($byContainer);
-        $this->assertEquals($result, $this->manager->getSessionData());
-    }
-
-    public function provideClearSession()
-    {
-        return [
-            ['Default', ['Foo' => ['foo' => 'fooValue']]],
-            [null, []],
         ];
     }
 }

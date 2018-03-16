@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,38 +21,19 @@
 
 namespace SanSessionToolbar\Factory\Collector;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use SanSessionToolbar\Collector\SessionCollector;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
-// @codeCoverageIgnoreStart
-if (!\interface_exists(FactoryInterface::class)) {
-    \class_alias(LegacyFactoryInterface::class, FactoryInterface::class);
-}
-// @codeCoverageIgnoreEnd
+use SanSessionToolbar\Manager\SessionManager;
 
 /**
  * Factory class for SessionCollector creation.
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollectorFactory implements FactoryInterface
+class SessionCollectorFactory
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $serviceLocator) : SessionCollector
     {
-        return new SessionCollector((object) $serviceLocator->get('SanSessionManager'));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
-    {
-        return $this->createService($serviceLocator);
+        return new SessionCollector($serviceLocator->get(SessionManager::class));
     }
 }

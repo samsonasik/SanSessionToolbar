@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,60 +21,22 @@
 
 namespace SanSessionToolbar\Factory\Controller;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use SanSessionToolbar\Controller\SessionToolbarController;
-use Zend\Mvc\Controller\ControllerManager;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\FactoryInterface as LegacyFactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
-// @codeCoverageIgnoreStart
-if (!\interface_exists(FactoryInterface::class)) {
-    \class_alias(LegacyFactoryInterface::class, FactoryInterface::class);
-}
-// @codeCoverageIgnoreEnd
+use SanSessionToolbar\Manager\SessionManager;
 
 /**
  * Factory class for SessionToolbarController creation.
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionToolbarControllerFactory implements FactoryInterface
+class SessionToolbarControllerFactory
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container) : SessionToolbarController
     {
-        $services = $this->getParentServiceLocator($serviceLocator);
-
         return new SessionToolbarController(
-            (object) $services->get('ViewRenderer'),
-            (object) $services->get('SanSessionManager')
+            $container->get('ViewRenderer'),
+            $container->get(SessionManager::class)
         );
-    }
-
-    /**
-     * Get Parent ServiceLocator.
-     *
-     * @param ServiceLocatorInterface
-     *
-     * @return ServiceLocatorInterface
-     */
-    private function getParentServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        if ($serviceLocator instanceof ControllerManager) {
-            return $serviceLocator->getServiceLocator();
-        }
-
-        return $serviceLocator;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
-    {
-        return $this->createService($serviceLocator);
     }
 }

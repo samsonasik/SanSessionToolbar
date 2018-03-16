@@ -19,7 +19,7 @@
 
 namespace SanSessionToolbarTest;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Module;
 use Zend\Session\Container;
 use Zend\Stdlib\SplQueue;
@@ -27,7 +27,7 @@ use Zend\Stdlib\SplQueue;
 /**
  * This class tests Module class.
  */
-class ModuleTest extends PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
     /**
      * @var Module
@@ -37,6 +37,15 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->module = new Module();
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testOnBootstrapOnSessionNotExists()
+    {
+        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+        $this->assertNull($this->module->onBootstrap($e->reveal()));
     }
 
     public function provideHasMessages()
@@ -50,9 +59,6 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideHasMessages
      * @runInSeparateProcess
-     * @covers SanSessionToolbar\Module::onBootstrap()
-     * @covers SanSessionToolbar\Module::duplicateFlashMessengerSessionData()
-     * @covers SanSessionToolbar\Module::flashMessengerHandler()
      */
     public function testOnBootstrap($hasMessages)
     {
@@ -72,7 +78,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
             );
             $module = $this->module;
             $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
-            $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+            $flashMessenger = $this->prophesize('Zend\Mvc\Plugin\FlashMessenger\FlashMessenger');
             $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
 
             $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
@@ -117,7 +123,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
               ->shouldBeCalled();
         }
 
-        $this->module->onBootstrap($e->reveal());
+        $this->assertNull($this->module->onBootstrap($e->reveal()));
     }
 
     public function testOnBootstrapWithDoesntHasFlashMessenger()
@@ -135,7 +141,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         );
         $module = $this->module;
         $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
-        $flashMessenger = $this->prophesize('Zend\Mvc\Controller\Plugin\FlashMessenger');
+        $flashMessenger = $this->prophesize('Zend\Mvc\Plugin\FlashMessenger\FlashMessenger');
         $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
 
         $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {
@@ -164,17 +170,11 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         $this->module->onBootstrap($e->reveal());
     }
 
-    /**
-     * @covers SanSessionToolbar\Module::getConfig()
-     */
     public function testGetConfig()
     {
         $this->assertTrue(is_array($this->module->getConfig()));
     }
 
-    /**
-     * @covers SanSessionToolbar\Module::getModuleDependencies()
-     */
     public function testGetModuleDependencies()
     {
         $this->assertEquals(['ZendDeveloperTools'], $this->module->getModuleDependencies());

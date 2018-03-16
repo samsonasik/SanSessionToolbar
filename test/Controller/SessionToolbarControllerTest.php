@@ -33,6 +33,8 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
     {
         $this->setApplicationConfig([
             'modules' => [
+                'Zend\Router',
+                'Zend\Mvc\Plugin\FlashMessenger',
                 'ZendDeveloperTools',
                 'SanSessionToolbar',
             ],

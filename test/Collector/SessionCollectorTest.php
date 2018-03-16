@@ -19,7 +19,8 @@
 
 namespace SanSessionToolbarTest\Collector;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
 use SanSessionToolbar\Collector\SessionCollector;
 use SanSessionToolbar\Manager\SessionManager;
 use Zend\Mvc\MvcEvent;
@@ -30,7 +31,7 @@ use Zend\Session\Container;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollectorTest extends PHPUnit_Framework_TestCase
+class SessionCollectorTest extends TestCase
 {
     /**
      * @var SessionCollector
@@ -51,42 +52,22 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
         $this->sessionContainer = new Container();
     }
 
-    /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::__construct
-     */
     public function testConstruct()
     {
-        new SessionCollector(new SessionManager());
+        $this->assertInstanceOf(SessionCollector::class, new SessionCollector(new SessionManager()));
     }
 
-    /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::getName
-     */
     public function testGetName()
     {
         $this->assertEquals('session.toolbar', $this->sessionCollector->getName());
     }
 
-    /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::getPriority
-     */
     public function testGetPriority()
     {
         $this->assertEquals(10, $this->sessionCollector->getPriority());
     }
 
     /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::collect
-     */
-    public function testCallCollect()
-    {
-        // idempotent call on purpose to check data property has "san-session"
-        $this->sessionCollector->collect(new MvcEvent());
-        $this->sessionCollector->collect(new MvcEvent());
-    }
-
-    /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
      * @runInSeparateProcess
      */
     public function testGetSessionData()
@@ -121,7 +102,6 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SanSessionToolbar\Collector\SessionCollector::getSessionData
      * @runInSeparateProcess
      */
     public function testGetSessionDataForEmpty()
@@ -130,7 +110,10 @@ class SessionCollectorTest extends PHPUnit_Framework_TestCase
         $this->sessionContainer->offsetUnset('a');
         $this->sessionContainer->offsetUnset('bar');
 
+        // idempotent call on purpose to check data property has "san-session"
         $this->sessionCollector->collect(new MvcEvent());
+        $this->sessionCollector->collect(new MvcEvent());
+
         $this->assertEquals([], $this->sessionCollector->getSessionData());
     }
 
