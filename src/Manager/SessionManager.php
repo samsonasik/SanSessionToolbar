@@ -75,7 +75,7 @@ final class SessionManager implements SessionManagerInterface
     public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []) : bool
     {
         $container = new Container($containerName);
-        $new       = $options['new'] ?? false;
+        $new = $options['new'] ?? false;
 
         if ($new) {
             return $this->addSession($container, $keysession, $value);
