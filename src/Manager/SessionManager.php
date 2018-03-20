@@ -82,6 +82,7 @@ final class SessionManager implements SessionManagerInterface
         }
 
         $set = $options['set'] ?? false;
+
         return $this->setUnset($container, $keysession, $value, $set);
     }
 
