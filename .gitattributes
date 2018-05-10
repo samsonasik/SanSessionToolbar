@@ -3,3 +3,4 @@
 /.styleci.yml export-ignore
 /.travis.yml export-ignore
 /test/ export-ignore
+/CONTRIBUTING.md export-ignore
