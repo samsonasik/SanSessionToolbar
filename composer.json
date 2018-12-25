@@ -2,7 +2,11 @@
     "name": "san/san-session-toolbar",
     "type": "library",
     "description": "ZF Session Toolbar for ZendDeveloperTools ",
-    "keywords": ["session","zf2","zf3"],
+    "keywords": [
+        "session",
+        "zf2",
+        "zf3"
+    ],
     "homepage": "https://github.com/samsonasik/SanSessionToolbar",
     "license": "MIT",
     "authors": [
@@ -15,18 +19,18 @@
     ],
     "require": {
         "php": "^7.1",
-        "zendframework/zend-session": "^2.8.4",
         "zendframework/zend-json": "^2.5 || ^3.0",
-        "zendframework/zend-mvc": "^3.0"
+        "zendframework/zend-mvc": "^3.0",
+        "zendframework/zend-session": "^2.8.4"
     },
     "require-dev": {
-        "zendframework/zend-test": "^3.0",
-        "zendframework/zend-serializer": "^2.5",
-        "zendframework/zend-log": "^2.5",
-        "zendframework/zend-i18n": "^2.5",
         "zendframework/zend-developer-tools": "^1.1.0",
+        "zendframework/zend-i18n": "^2.5",
+        "zendframework/zend-log": "^2.5",
         "zendframework/zend-mvc-plugin-flashmessenger": "^1.0",
-        "zendframework/zend-router": "^3.0"
+        "zendframework/zend-router": "^3.0",
+        "zendframework/zend-serializer": "^2.5",
+        "zendframework/zend-test": "^3.0"
     },
     "suggest": {
         "ext-xdebug": "For better output format of session data, Xdebug should already installed",
@@ -41,8 +45,5 @@
         "psr-4": {
             "SanSessionToolbarTest\\": "test/"
         }
-    },
-    "config": {
-        "process-timeout": 5000
     }
 }
