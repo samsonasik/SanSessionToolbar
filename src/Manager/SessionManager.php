@@ -77,7 +77,7 @@ final class SessionManager implements SessionManagerInterface
         $container = new Container($containerName);
         $new = $options['new'] ?? false;
 
-        if ($new) {
+        if ($new && $value) {
             return $this->addSession($container, $keysession, $value);
         }
 
@@ -89,7 +89,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * Add new session data.
      */
-    private function addSession(Container $container, string $keysession, ?string $value) : bool
+    private function addSession(Container $container, string $keysession, string $value) : bool
     {
         if ($container->offsetExists($keysession)) {
             return false;
@@ -109,7 +109,7 @@ final class SessionManager implements SessionManagerInterface
             return false;
         }
 
-        if ($set) {
+        if ($set && $value) {
             $container->offsetSet($keysession, $value);
 
             return true;
