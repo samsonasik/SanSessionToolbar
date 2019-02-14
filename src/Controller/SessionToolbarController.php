@@ -64,7 +64,7 @@ final class SessionToolbarController extends AbstractActionController
     {
         $success = false;
         $request = $this->getEvent()->getRequest();
-        if ($request->isPost()) {
+        if ($request instanceof Request && $request->isPost()) {
             $containerName = $request->getPost('containerName', 'Default');
             $keysession = $request->getPost('keysession', '');
 
@@ -98,7 +98,7 @@ final class SessionToolbarController extends AbstractActionController
     public function clearsessionAction()
     {
         $request = $this->getEvent()->getRequest();
-        if ($request->isPost()) {
+        if ($request instanceof Request && $request->isPost()) {
             $this->sessionManager->clearSession($request->getPost('byContainer'));
         }
 

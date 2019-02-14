@@ -45,6 +45,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
         }
 
         $app = $e->getApplication();
+        /** @var \Zend\EventManager\SharedEventManagerInterface $sharedEvm */
         $sharedEvm = $app->getEventManager()->getSharedManager();
 
         $sharedEvm->attach(
@@ -76,6 +77,7 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
      */
     public function flashMessengerHandler(EventInterface $e) : void
     {
+        /** @var \Zend\Mvc\Controller\AbstractActionController $controller */
         $controller = $e->getTarget();
         if (!$controller->getPluginManager()->has('flashMessenger')) {
             return;

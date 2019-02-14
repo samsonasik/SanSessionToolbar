@@ -89,7 +89,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * Add new session data.
      */
-    private function addSession(Container $container, string $keysession, string $value) : bool
+    private function addSession(Container $container, string $keysession, ?string $value) : bool
     {
         if ($container->offsetExists($keysession)) {
             return false;
