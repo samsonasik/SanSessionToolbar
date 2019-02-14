@@ -123,7 +123,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function clearSession($byContainer = null) : void
+    public function clearSession(string $byContainer = null) : void
     {
         (new Container())->getManager()
              ->getStorage()

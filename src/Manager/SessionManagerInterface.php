@@ -45,5 +45,5 @@ interface SessionManagerInterface
      *
      * @param string|null $byContainer
      */
-    public function clearSession($byContainer = null) : void;
+    public function clearSession(string $byContainer = null) : void;
 }
