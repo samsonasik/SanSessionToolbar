@@ -145,7 +145,7 @@ final class SessionToolbarController extends AbstractActionController
     {
         $containerName = $request->getPost('containerName', 'Default');
         $keysession = $request->getPost('keysession', '');
-        $sessionValue = $request->getPost('sessionvalue');
+        $sessionValue = $request->getPost('sessionvalue', '');
         $new = (bool) $request->getPost('new', false);
 
         $notEmptyValidator = new NotEmpty();
