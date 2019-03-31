@@ -10,7 +10,7 @@ SanSessionToolbar
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9/mini.png)](https://insight.sensiolabs.com/projects/15956744-b35e-4504-ade8-14f46addcae9)
 [![StyleCI](https://styleci.io/repos/21261604/shield)](https://styleci.io/repos/21261604)
 [![PHP 7 ready](http://php7ready.timesplinter.ch/samsonasik/SanSessionToolbar/badge.svg)](https://travis-ci.org/samsonasik/SanSessionToolbar)
-[![Total Downloads](https://img.shields.io/packagist/dt/san/san-session-toolbar.svg?style=flat-square)](https://packagist.org/packages/san/san-session-toolbar)
+[![Total Downloads](https://poser.pugx.org/san/san-session-toolbar/downloads)](https://packagist.org/packages/san/san-session-toolbar)
 
 What is it about ?
 -----------------
