@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "zendframework/zend-json": "^2.5 || ^3.0",
         "zendframework/zend-mvc": "^3.0",
         "zendframework/zend-session": "^2.8.4"
