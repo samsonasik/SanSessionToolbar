@@ -117,7 +117,7 @@ class SessionCollectorTest extends TestCase
         $this->assertEquals([], $this->sessionCollector->getSessionData());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->sessionContainer->offsetUnset('word');
         $this->sessionContainer->offsetUnset('a');
