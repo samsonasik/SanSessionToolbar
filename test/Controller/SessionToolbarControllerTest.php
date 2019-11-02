@@ -29,7 +29,7 @@ use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
  */
 class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->setApplicationConfig([
             'modules' => [

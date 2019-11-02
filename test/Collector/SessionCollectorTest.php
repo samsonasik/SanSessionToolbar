@@ -46,7 +46,7 @@ class SessionCollectorTest extends TestCase
     /**
      * initialize properties.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sessionCollector = new SessionCollector(new SessionManager());
         $this->sessionContainer = new Container();

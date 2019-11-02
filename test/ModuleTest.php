@@ -34,7 +34,7 @@ class ModuleTest extends TestCase
      */
     protected $module;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->module = new Module();
     }
