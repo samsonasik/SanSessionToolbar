@@ -23,7 +23,6 @@ namespace SanSessionToolbar;
 
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
@@ -32,7 +31,7 @@ use Zend\Stdlib\SplQueue;
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class Module implements ConfigProviderInterface, DependencyIndicatorInterface
+class Module implements ConfigProviderInterface
 {
     /**
      * Bootstrap Handle FlashMessenger session show.
@@ -94,13 +93,5 @@ class Module implements ConfigProviderInterface, DependencyIndicatorInterface
     public function getConfig() : array
     {
         return include __DIR__.'/../config/module.config.php';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModuleDependencies() : array
-    {
-        return ['ZendDeveloperTools'];
     }
 }

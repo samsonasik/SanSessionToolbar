@@ -174,9 +174,4 @@ class ModuleTest extends TestCase
     {
         $this->assertTrue(is_array($this->module->getConfig()));
     }
-
-    public function testGetModuleDependencies()
-    {
-        $this->assertEquals(['ZendDeveloperTools'], $this->module->getModuleDependencies());
-    }
 }
