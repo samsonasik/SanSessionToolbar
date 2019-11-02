@@ -36,7 +36,7 @@ class SessionToolbarControllerFactoryTest extends TestCase
     /** @var ContainerInterface */
     protected $serviceLocator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         /** @var ServiceLocatorInterface $serviceLocator */
         $serviceLocator = $this->prophesize('Psr\Container\ContainerInterface');

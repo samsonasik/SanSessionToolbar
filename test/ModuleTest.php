@@ -34,7 +34,7 @@ class ModuleTest extends TestCase
      */
     protected $module;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->module = new Module();
     }
@@ -173,10 +173,5 @@ class ModuleTest extends TestCase
     public function testGetConfig()
     {
         $this->assertTrue(is_array($this->module->getConfig()));
-    }
-
-    public function testGetModuleDependencies()
-    {
-        $this->assertEquals(['ZendDeveloperTools'], $this->module->getModuleDependencies());
     }
 }

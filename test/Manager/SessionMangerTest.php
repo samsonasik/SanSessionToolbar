@@ -38,7 +38,7 @@ class SessionMangerTest extends TestCase
     /**
      * initialize properties.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->manager = new SessionManager();
     }

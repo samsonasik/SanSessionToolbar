@@ -3,10 +3,9 @@ dist: trusty
 language: php
 
 php:
-  - 7.1
   - 7.2
   - 7.3
-  
+
 before_install:
   - mkdir -p build/logs
   - composer self-update

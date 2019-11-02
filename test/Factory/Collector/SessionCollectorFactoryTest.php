@@ -36,7 +36,7 @@ class SessionCollectorFactoryTest extends TestCase
     /** @var ContainerInterface */
     protected $serviceLocator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         /** @var ContainerInterface $serviceLocator */
         $serviceLocator = $this->prophesize('Psr\Container\ContainerInterface');
