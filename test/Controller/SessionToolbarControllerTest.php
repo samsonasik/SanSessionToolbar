@@ -88,7 +88,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/reloadsession', 'POST');
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('No ZF Session Data', $this->getResponse()->getBody());
+        $this->assertStringContainsString('No ZF Session Data', $this->getResponse()->getBody());
     }
 
     public function testReloadWithSessionExists()
@@ -99,7 +99,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/reloadsession', 'POST');
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('fooValue', $this->getResponse()->getBody());
+        $this->assertStringContainsString('fooValue', $this->getResponse()->getBody());
         $this->assertNotContains('No ZF Session Data', $this->getResponse()->getBody());
     }
 
@@ -118,7 +118,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/clearsession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('OtherContainer', $this->getResponse()->getBody());
+        $this->assertStringContainsString('OtherContainer', $this->getResponse()->getBody());
         $this->assertNotContains('Default', $this->getResponse()->getBody());
     }
 
@@ -154,7 +154,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('barbar', $this->getResponse()->getBody());
+        $this->assertStringContainsString('barbar', $this->getResponse()->getBody());
         $this->assertNotContains('fooValue', $this->getResponse()->getBody());
     }
 
@@ -175,8 +175,8 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('Value is required', $this->getResponse()->getBody());
-        $this->assertContains('fooValue', $this->getResponse()->getBody());
+        $this->assertStringContainsString('Value is required', $this->getResponse()->getBody());
+        $this->assertStringContainsString('fooValue', $this->getResponse()->getBody());
     }
 
     public function testUpdateSessionDataNotExists()
@@ -211,7 +211,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/san-session-toolbar/savesession', 'POST', $postData);
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertContains('barbar', $this->getResponse()->getBody());
+        $this->assertStringContainsString('barbar', $this->getResponse()->getBody());
     }
 
     public function testNewSessionDataExists()
