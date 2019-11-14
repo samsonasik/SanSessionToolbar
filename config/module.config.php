@@ -62,6 +62,9 @@ return [
         'strategies' => [
             'ViewJsonStrategy',
         ],
+        'template_path_stack' => [
+            'zend-developer-tools' => __DIR__ . '/../view',
+        ],
     ],
 
     'zenddevelopertools' => [
