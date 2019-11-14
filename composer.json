@@ -40,7 +40,10 @@
     "autoload": {
         "psr-4": {
             "SanSessionToolbar\\": "src/"
-        }
+        },
+        "files": [
+            "src/autoload.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
