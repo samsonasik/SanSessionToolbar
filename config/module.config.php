@@ -62,9 +62,25 @@ return [
         'strategies' => [
             'ViewJsonStrategy',
         ],
+        'template_path_stack' => [
+            'zend-developer-tools' => __DIR__ . '/../view',
+        ],
     ],
 
     'zenddevelopertools' => [
+        'profiler' => [
+            'collectors' => [
+                'session.toolbar' => 'session.toolbar',
+            ],
+        ],
+        'toolbar' => [
+            'entries' => [
+                'session.toolbar' => 'zend-developer-tools/toolbar/session-data',
+            ],
+        ],
+    ],
+
+    'laminas-developer-tools' => [
         'profiler' => [
             'collectors' => [
                 'session.toolbar' => 'session.toolbar',
