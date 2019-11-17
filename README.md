@@ -20,7 +20,9 @@ It is a ZF module as session toolbar for [ZendDeveloperTools](https://github.com
 
 You can reload, clear, add, update, and remove your sessions data.
 
-> This is README for version ^2.0 which only support ZF3 with php ^7.1.
+> This is README for version ^2.1 which only support ZF3 with php ^7.2.
+
+> For version 2.0.*, you can read at [version 2.0.* readme](https://github.com/samsonasik/SanSessionToolbar/blob/2.0.x/README.md) which support ZF3 and php ^7.1.
 
 > For version 1, you can read at [version 1 readme](https://github.com/samsonasik/SanSessionToolbar/tree/1.x.x) which still support ZF2 with php ^5.6|^7.0 support.
 
