@@ -21,12 +21,12 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar;
 
-use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
-use Zend\Stdlib\SplQueue;
+use Laminas\EventManager\EventInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Session\Container;
+use Laminas\Stdlib\SplQueue;
 
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
@@ -44,7 +44,7 @@ class Module implements ConfigProviderInterface
         }
 
         $app = $e->getApplication();
-        /** @var \Zend\EventManager\SharedEventManagerInterface $sharedEvm */
+        /** @var \Laminas\EventManager\SharedEventManagerInterface $sharedEvm */
         $sharedEvm = $app->getEventManager()->getSharedManager();
 
         $sharedEvm->attach(
@@ -76,7 +76,7 @@ class Module implements ConfigProviderInterface
      */
     public function flashMessengerHandler(EventInterface $e) : void
     {
-        /** @var \Zend\Mvc\Controller\AbstractActionController $controller */
+        /** @var \Laminas\Mvc\Controller\AbstractActionController $controller */
         $controller = $e->getTarget();
         if (!$controller->getPluginManager()->has('flashMessenger')) {
             return;

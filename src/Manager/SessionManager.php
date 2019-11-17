@@ -21,8 +21,8 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar\Manager;
 
-use Zend\Session\Container;
-use Zend\Stdlib\ArrayObject;
+use Laminas\Session\Container;
+use Laminas\Stdlib\ArrayObject;
 
 /**
  * A class to manage session data.

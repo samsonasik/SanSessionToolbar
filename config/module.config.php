@@ -2,7 +2,7 @@
 
 namespace SanSessionToolbar;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -56,8 +56,8 @@ return [
 
     'view_manager' => [
         'template_map' => [
-            'zend-developer-tools/toolbar/session-data' => __DIR__.'/../view/zend-developer-tools/toolbar/session-data.phtml',
-            'zend-developer-tools/toolbar/session-data-list' => __DIR__.'/../view/zend-developer-tools/toolbar/session-data-list.phtml',
+            'laminas-developer-tools/toolbar/session-data' => __DIR__.'/../view/laminas-developer-tools/toolbar/session-data.phtml',
+            'laminas-developer-tools/toolbar/session-data-list' => __DIR__.'/../view/laminas-developer-tools/toolbar/session-data-list.phtml',
         ],
         'strategies' => [
             'ViewJsonStrategy',
@@ -67,7 +67,7 @@ return [
         ],
     ],
 
-    'zenddevelopertools' => [
+    'laminasdevelopertools' => [
         'profiler' => [
             'collectors' => [
                 'session.toolbar' => 'session.toolbar',
@@ -75,7 +75,7 @@ return [
         ],
         'toolbar' => [
             'entries' => [
-                'session.toolbar' => 'zend-developer-tools/toolbar/session-data',
+                'session.toolbar' => 'laminas-developer-tools/toolbar/session-data',
             ],
         ],
     ],
@@ -88,7 +88,7 @@ return [
         ],
         'toolbar' => [
             'entries' => [
-                'session.toolbar' => 'zend-developer-tools/toolbar/session-data',
+                'session.toolbar' => 'laminas-developer-tools/toolbar/session-data',
             ],
         ],
     ],

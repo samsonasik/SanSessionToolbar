@@ -22,8 +22,8 @@ declare(strict_types=1);
 namespace SanSessionToolbar\Collector;
 
 use SanSessionToolbar\Manager\SessionManagerInterface;
-use Zend\Mvc\MvcEvent;
-use ZendDeveloperTools\Collector\AbstractCollector;
+use Laminas\Mvc\MvcEvent;
+use LaminasDeveloperTools\Collector\AbstractCollector;
 
 /**
  * Session Data Collector.
