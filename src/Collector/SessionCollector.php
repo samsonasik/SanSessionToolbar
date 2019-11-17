@@ -21,9 +21,9 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar\Collector;
 
-use SanSessionToolbar\Manager\SessionManagerInterface;
-use Laminas\Mvc\MvcEvent;
 use Laminas\DeveloperTools\Collector\AbstractCollector;
+use Laminas\Mvc\MvcEvent;
+use SanSessionToolbar\Manager\SessionManagerInterface;
 
 /**
  * Session Data Collector.

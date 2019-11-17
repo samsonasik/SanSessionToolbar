@@ -21,12 +21,12 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar\Controller;
 
-use SanSessionToolbar\Manager\SessionManagerInterface;
 use Laminas\Http\PhpEnvironment\Request;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Validator\NotEmpty;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Renderer\RendererInterface;
+use SanSessionToolbar\Manager\SessionManagerInterface;
 
 /**
  * Session Toolbar Controller.
