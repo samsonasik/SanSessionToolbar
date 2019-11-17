@@ -23,7 +23,7 @@ namespace SanSessionToolbar\Collector;
 
 use SanSessionToolbar\Manager\SessionManagerInterface;
 use Laminas\Mvc\MvcEvent;
-use LaminasDeveloperTools\Collector\AbstractCollector;
+use Laminas\DeveloperTools\Collector\AbstractCollector;
 
 /**
  * Session Data Collector.

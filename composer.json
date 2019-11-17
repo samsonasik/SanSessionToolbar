@@ -37,6 +37,9 @@
         "ext-xdebug": "For better output format of session data, Xdebug should already installed",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.0 for laminas-mvc ^3.0 usage to be able to use flashMessenger"
     },
+    "conflict": {
+        "zendframework/zend-mvc": "*"
+    },
     "autoload": {
         "psr-4": {
             "SanSessionToolbar\\": "src/"
