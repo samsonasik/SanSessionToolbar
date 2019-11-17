@@ -35,7 +35,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
             'modules' => [
                 'Laminas\Router',
                 'Laminas\Mvc\Plugin\FlashMessenger',
-                'LaminasDeveloperTools',
+                'Laminas\DeveloperTools',
                 'SanSessionToolbar',
             ],
             'module_listener_options' => [
