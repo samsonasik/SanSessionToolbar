@@ -1,11 +1,11 @@
 {
     "name": "san/san-session-toolbar",
     "type": "library",
-    "description": "ZF Session Toolbar for Laminas\\DeveloperTools ",
+    "description": "Laminas Session Toolbar for Laminas\\DeveloperTools ",
     "keywords": [
         "session",
-        "zf2",
-        "zf3"
+        "laminas2",
+        "laminas3"
     ],
     "homepage": "https://github.com/samsonasik/SanSessionToolbar",
     "license": "MIT",
