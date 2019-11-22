@@ -52,8 +52,5 @@
             "type": "composer",
             "url": "https://laminas.mwop.net/repo/testing"
         }
-    },
-    "conflict": {
-        "zendframework/zend-mvc": "*"
     }
 }
