@@ -14,7 +14,7 @@ SanSessionToolbar
 
 What is it about ?
 -----------------
-It is a Laminas module as session toolbar for [LaminasDeveloperTools](https://github.com/zendframework/LaminasDeveloperTools). It shows you the Laminas session data you've been using like this :
+It is a Laminas module as session toolbar for [LaminasDeveloperTools](https://github.com/laminas/LaminasDeveloperTools). It shows you the Laminas session data you've been using like this :
 
 ![Fully Crud Laminas sessions data](https://cloud.githubusercontent.com/assets/459648/6867548/cad28e40-d4b5-11e4-911c-ffd8b88fd41f.png)
 
