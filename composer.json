@@ -25,7 +25,7 @@
         "laminas/laminas-session": "^2.8.4"
     },
     "require-dev": {
-        "laminas/laminas-developer-tools": "^1.1.0",
+        "laminas/laminas-developer-tools": "^1.1.0 || ^2.0",
         "laminas/laminas-i18n": "^2.5",
         "laminas/laminas-log": "^2.5",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.0",
