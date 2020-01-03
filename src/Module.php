@@ -21,12 +21,12 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar;
 
-use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
-use Zend\Stdlib\SplQueue;
+use Laminas\EventManager\EventInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Session\Container;
+use Laminas\Stdlib\SplQueue;
 
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
@@ -44,7 +44,7 @@ class Module implements ConfigProviderInterface
         }
 
         $app = $e->getApplication();
-        /** @var \Zend\EventManager\SharedEventManagerInterface $sharedEvm */
+        /** @var \Laminas\EventManager\SharedEventManagerInterface $sharedEvm */
         $sharedEvm = $app->getEventManager()->getSharedManager();
 
         $sharedEvm->attach(
@@ -58,7 +58,7 @@ class Module implements ConfigProviderInterface
     /**
      * Used to duplicate flashMessenger data as it shown and gone.
      */
-    private function duplicateFlashMessengerSessionData(Container $container) : void
+    private function duplicateFlashMessengerSessionData(Container $container): void
     {
         $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
         foreach ($container->getArrayCopy() as $key => $row) {
@@ -74,9 +74,9 @@ class Module implements ConfigProviderInterface
     /**
      * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.
      */
-    public function flashMessengerHandler(EventInterface $e) : void
+    public function flashMessengerHandler(EventInterface $e): void
     {
-        /** @var \Zend\Mvc\Controller\AbstractActionController $controller */
+        /** @var \Laminas\Mvc\Controller\AbstractActionController $controller */
         $controller = $e->getTarget();
         if (!$controller->getPluginManager()->has('flashMessenger')) {
             return;
@@ -90,7 +90,7 @@ class Module implements ConfigProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfig() : array
+    public function getConfig(): array
     {
         return include __DIR__.'/../config/module.config.php';
     }

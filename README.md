@@ -14,13 +14,15 @@ SanSessionToolbar
 
 What is it about ?
 -----------------
-It is a ZF module as session toolbar for [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools). It shows you the ZF session data you've been using like this :
+It is a Laminas module as session toolbar for [LaminasDeveloperTools](https://github.com/laminas/LaminasDeveloperTools). It shows you the Laminas session data you've been using like this :
 
-![Fully Crud ZF sessions data](https://cloud.githubusercontent.com/assets/459648/6867548/cad28e40-d4b5-11e4-911c-ffd8b88fd41f.png)
+![Fully Crud Laminas sessions data](https://cloud.githubusercontent.com/assets/459648/6867548/cad28e40-d4b5-11e4-911c-ffd8b88fd41f.png)
 
 You can reload, clear, add, update, and remove your sessions data.
 
-> This is README for version ^2.1 which only support ZF3 with php ^7.2.
+> This is README for version ^3.0 which only support Laminas 3 with php ^7.2.
+
+> For version 2.1.*, you can read at [version 2.1.* readme](https://github.com/samsonasik/SanSessionToolbar/blob/2.1.x/README.md) which support ZF3 and php ^7.2.
 
 > For version 2.0.*, you can read at [version 2.0.* readme](https://github.com/samsonasik/SanSessionToolbar/blob/2.0.x/README.md) which support ZF3 and php ^7.1.
 
@@ -43,7 +45,7 @@ Enable it :
 return [
     'modules' => [
         // ...
-        'ZendDeveloperTools',
+        'Laminas\DeveloperTools',
         'SanSessionToolbar', // put at the end of modules list!
     ]
     // ...
@@ -52,7 +54,7 @@ return [
 
 > **Note** :
 - for better ouput format, you need to have Xdebug installed in your system.
-- for zend-mvc v3 usage, if you want to get FlashMessenger data, you need to install zendframework/zend-mvc-plugin-flashmessenger
+- for laminas-mvc v3 usage, if you want to get FlashMessenger data, you need to install laminas/laminas-mvc-plugin-flashmessenger
 
 Contributing
 ------------

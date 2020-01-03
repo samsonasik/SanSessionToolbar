@@ -1,11 +1,11 @@
 {
     "name": "san/san-session-toolbar",
     "type": "library",
-    "description": "ZF Session Toolbar for ZendDeveloperTools ",
+    "description": "Laminas Session Toolbar for Laminas\\DeveloperTools ",
     "keywords": [
         "session",
-        "zf2",
-        "zf3"
+        "laminas2",
+        "laminas3"
     ],
     "homepage": "https://github.com/samsonasik/SanSessionToolbar",
     "license": "MIT",
@@ -19,22 +19,23 @@
     ],
     "require": {
         "php": "^7.2",
-        "zendframework/zend-json": "^2.5 || ^3.0",
-        "zendframework/zend-mvc": "^3.0",
-        "zendframework/zend-session": "^2.8.4"
+        "laminas/laminas-dependency-plugin": "^0.1.2",
+        "laminas/laminas-json": "^2.5 || ^3.0",
+        "laminas/laminas-mvc": "^3.0",
+        "laminas/laminas-session": "^2.8.4"
     },
     "require-dev": {
-        "zendframework/zend-developer-tools": "^1.1.0",
-        "zendframework/zend-i18n": "^2.5",
-        "zendframework/zend-log": "^2.5",
-        "zendframework/zend-mvc-plugin-flashmessenger": "^1.0",
-        "zendframework/zend-router": "^3.0",
-        "zendframework/zend-serializer": "^2.5",
-        "zendframework/zend-test": "^3.0"
+        "laminas/laminas-developer-tools": "^1.1.0 || ^2.0",
+        "laminas/laminas-i18n": "^2.5",
+        "laminas/laminas-log": "^2.5",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.0",
+        "laminas/laminas-router": "^3.0",
+        "laminas/laminas-serializer": "^2.5",
+        "laminas/laminas-test": "^3.0"
     },
     "suggest": {
         "ext-xdebug": "For better output format of session data, Xdebug should already installed",
-        "zendframework/zend-mvc-plugin-flashmessenger": "^1.0 for zend-mvc ^3.0 usage to be able to use flashMessenger"
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.0 for laminas-mvc ^3.0 usage to be able to use flashMessenger"
     },
     "autoload": {
         "psr-4": {

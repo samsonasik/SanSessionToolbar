@@ -21,8 +21,8 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar\Manager;
 
-use Zend\Session\Container;
-use Zend\Stdlib\ArrayObject;
+use Laminas\Session\Container;
+use Laminas\Stdlib\ArrayObject;
 
 /**
  * A class to manage session data.
@@ -34,7 +34,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getSessionData(bool $checkExists = true) : ?array
+    public function getSessionData(bool $checkExists = true): ?array
     {
         if ($checkExists) {
             $manager = Container::getDefaultManager();
@@ -52,7 +52,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    private function collectSessionData(array $arraysession) : array
+    private function collectSessionData(array $arraysession): array
     {
         $data = [];
 
@@ -72,7 +72,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []) : bool
+    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []): bool
     {
         $container = new Container($containerName);
         $new = $options['new'] ?? false;
@@ -89,7 +89,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * Add new session data.
      */
-    private function addSession(Container $container, string $keysession, string $value) : bool
+    private function addSession(Container $container, string $keysession, string $value): bool
     {
         if ($container->offsetExists($keysession)) {
             return false;
@@ -103,7 +103,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * Set/Unset session data.
      */
-    private function setUnset(Container $container, string $keysession, ?string $value, bool $set = false) : bool
+    private function setUnset(Container $container, string $keysession, ?string $value, bool $set = false): bool
     {
         if (!$container->offsetExists($keysession)) {
             return false;
@@ -123,7 +123,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function clearSession(string $byContainer = null) : void
+    public function clearSession(string $byContainer = null): void
     {
         (new Container())->getManager()
              ->getStorage()

@@ -23,8 +23,8 @@ use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use SanSessionToolbar\Collector\SessionCollector;
 use SanSessionToolbar\Manager\SessionManager;
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Session\Container;
 
 /**
  * This class tests SessionCollector class.

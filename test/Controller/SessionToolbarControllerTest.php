@@ -19,8 +19,8 @@
 
 namespace SanSessionToolbarTest\Controller;
 
-use Zend\Session\Container;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Session\Container;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
  * This class tests SessionToolbarController access.
@@ -33,9 +33,9 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
     {
         $this->setApplicationConfig([
             'modules' => [
-                'Zend\Router',
-                'Zend\Mvc\Plugin\FlashMessenger',
-                'ZendDeveloperTools',
+                'Laminas\Router',
+                'Laminas\Mvc\Plugin\FlashMessenger',
+                'Laminas\DeveloperTools',
                 'SanSessionToolbar',
             ],
             'module_listener_options' => [

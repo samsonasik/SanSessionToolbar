@@ -48,7 +48,7 @@ class SessionToolbarControllerFactoryTest extends TestCase
 
     public function testInvoke()
     {
-            $mockViewRenderer = $this->prophesize('Zend\View\Renderer\RendererInterface');
+            $mockViewRenderer = $this->prophesize('Laminas\View\Renderer\RendererInterface');
             $this->serviceLocator->get('ViewRenderer')
                                  ->willReturn($mockViewRenderer)
                                  ->shouldBeCalled();

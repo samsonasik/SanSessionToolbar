@@ -21,9 +21,9 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar\Collector;
 
+use Laminas\DeveloperTools\Collector\AbstractCollector;
+use Laminas\Mvc\MvcEvent;
 use SanSessionToolbar\Manager\SessionManagerInterface;
-use Zend\Mvc\MvcEvent;
-use ZendDeveloperTools\Collector\AbstractCollector;
 
 /**
  * Session Data Collector.
@@ -76,7 +76,7 @@ class SessionCollector extends AbstractCollector
      *
      * @return array|null
      */
-    public function getSessionData() : ?array
+    public function getSessionData(): ?array
     {
         return $this->data['san-session'] = $this->sessionManager->getSessionData();
     }

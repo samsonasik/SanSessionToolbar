@@ -21,12 +21,12 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar\Controller;
 
+use Laminas\Http\PhpEnvironment\Request;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Validator\NotEmpty;
+use Laminas\View\Model\JsonModel;
+use Laminas\View\Renderer\RendererInterface;
 use SanSessionToolbar\Manager\SessionManagerInterface;
-use Zend\Http\PhpEnvironment\Request;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Validator\NotEmpty;
-use Zend\View\Model\JsonModel;
-use Zend\View\Renderer\RendererInterface;
 
 /**
  * Session Toolbar Controller.
@@ -85,7 +85,7 @@ final class SessionToolbarController extends AbstractActionController
         $sessionData = $this->sessionManager->getSessionData(false);
 
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
+                                ->render('laminas-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
 
         return new JsonModel([
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
@@ -104,7 +104,7 @@ final class SessionToolbarController extends AbstractActionController
 
         $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
+                                ->render('laminas-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
 
         return new JsonModel([
             'san_sessiontoolbar_data_renderedContent' => $renderedContent,
@@ -125,7 +125,7 @@ final class SessionToolbarController extends AbstractActionController
 
         $sessionData = $this->sessionManager->getSessionData();
         $renderedContent = $this->viewRenderer
-                                ->render('zend-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
+                                ->render('laminas-developer-tools/toolbar/session-data-list', ['sessionData' => $sessionData]);
 
         return new JsonModel([
             'success' => $processSetOrAddSessionData['success'],

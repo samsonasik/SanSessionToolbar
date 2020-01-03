@@ -21,8 +21,8 @@ namespace SanSessionToolbarTest;
 
 use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Module;
-use Zend\Session\Container;
-use Zend\Stdlib\SplQueue;
+use Laminas\Session\Container;
+use Laminas\Stdlib\SplQueue;
 
 /**
  * This class tests Module class.
@@ -44,7 +44,7 @@ class ModuleTest extends TestCase
      */
     public function testOnBootstrapOnSessionNotExists()
     {
-        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+        $e = $this->prophesize('Laminas\Mvc\MvcEvent');
         $this->assertNull($this->module->onBootstrap($e->reveal()));
     }
 
@@ -62,24 +62,24 @@ class ModuleTest extends TestCase
      */
     public function testOnBootstrap($hasMessages)
     {
-        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+        $e = $this->prophesize('Laminas\Mvc\MvcEvent');
 
         if ($hasMessages) {
             new Container();
 
-            $application = $this->prophesize('Zend\Mvc\Application');
-            $eventManager = $this->prophesize('Zend\EventManager\EventManager');
-            $sharedEvm = $this->prophesize('Zend\EventManager\SharedEventManager');
+            $application = $this->prophesize('Laminas\Mvc\Application');
+            $eventManager = $this->prophesize('Laminas\EventManager\EventManager');
+            $sharedEvm = $this->prophesize('Laminas\EventManager\SharedEventManager');
             $sharedEvmAttach = $sharedEvm->attach(
-                'Zend\Mvc\Controller\AbstractActionController',
+                'Laminas\Mvc\Controller\AbstractActionController',
                 'dispatch',
                 [$this->module, 'flashMessengerHandler'],
                 2
             );
             $module = $this->module;
-            $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
-            $flashMessenger = $this->prophesize('Zend\Mvc\Plugin\FlashMessenger\FlashMessenger');
-            $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
+            $abstractActionController = $this->prophesize('Laminas\Mvc\Controller\AbstractActionController');
+            $flashMessenger = $this->prophesize('Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger');
+            $pluginManager  = $this->prophesize('Laminas\Mvc\Controller\PluginManager');
 
             $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
                 $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
@@ -128,21 +128,21 @@ class ModuleTest extends TestCase
 
     public function testOnBootstrapWithDoesntHasFlashMessenger()
     {
-        $e = $this->prophesize('Zend\Mvc\MvcEvent');
+        $e = $this->prophesize('Laminas\Mvc\MvcEvent');
 
-        $application = $this->prophesize('Zend\Mvc\Application');
-        $eventManager = $this->prophesize('Zend\EventManager\EventManager');
-        $sharedEvm = $this->prophesize('Zend\EventManager\SharedEventManager');
+        $application = $this->prophesize('Laminas\Mvc\Application');
+        $eventManager = $this->prophesize('Laminas\EventManager\EventManager');
+        $sharedEvm = $this->prophesize('Laminas\EventManager\SharedEventManager');
         $sharedEvmAttach = $sharedEvm->attach(
-            'Zend\Mvc\Controller\AbstractActionController',
+            'Laminas\Mvc\Controller\AbstractActionController',
             'dispatch',
             [$this->module, 'flashMessengerHandler'],
             2
         );
         $module = $this->module;
-        $abstractActionController = $this->prophesize('Zend\Mvc\Controller\AbstractActionController');
-        $flashMessenger = $this->prophesize('Zend\Mvc\Plugin\FlashMessenger\FlashMessenger');
-        $pluginManager  = $this->prophesize('Zend\Mvc\Controller\PluginManager');
+        $abstractActionController = $this->prophesize('Laminas\Mvc\Controller\AbstractActionController');
+        $flashMessenger = $this->prophesize('Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger');
+        $pluginManager  = $this->prophesize('Laminas\Mvc\Controller\PluginManager');
 
         $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {
             $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
