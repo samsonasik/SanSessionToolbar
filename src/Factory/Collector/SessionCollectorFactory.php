@@ -32,7 +32,7 @@ use SanSessionToolbar\Manager\SessionManager;
  */
 class SessionCollectorFactory
 {
-    public function __invoke(ContainerInterface $serviceLocator) : SessionCollector
+    public function __invoke(ContainerInterface $serviceLocator): SessionCollector
     {
         return new SessionCollector($serviceLocator->get(SessionManager::class));
     }
