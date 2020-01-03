@@ -24,6 +24,9 @@
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-session": "^2.8.4"
     },
+    "conflict": {
+        "zendframework/zend-mvc": "*"
+    },
     "require-dev": {
         "laminas/laminas-developer-tools": "^1.1.0 || ^2.0",
         "laminas/laminas-i18n": "^2.5",
@@ -47,10 +50,6 @@
             "SanSessionToolbarTest\\": "test/"
         }
     },
-    "repositories": {
-        "laminas": {
-            "type": "composer",
-            "url": "https://laminas.mwop.net/repo/testing"
-        }
-    }
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
