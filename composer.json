@@ -24,9 +24,6 @@
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-session": "^2.8.4"
     },
-    "conflict": {
-        "zendframework/zend-mvc": "*"
-    },
     "require-dev": {
         "laminas/laminas-developer-tools": "^1.1.0 || ^2.0",
         "laminas/laminas-i18n": "^2.5",
@@ -49,7 +46,5 @@
         "psr-4": {
             "SanSessionToolbarTest\\": "test/"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

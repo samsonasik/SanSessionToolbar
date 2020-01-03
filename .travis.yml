@@ -12,7 +12,6 @@ before_install:
   - composer self-update
 
 install:
-  - composer clear-cache
   - composer install
 
 script:
