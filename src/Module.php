@@ -58,7 +58,7 @@ class Module implements ConfigProviderInterface
     /**
      * Used to duplicate flashMessenger data as it shown and gone.
      */
-    private function duplicateFlashMessengerSessionData(Container $container) : void
+    private function duplicateFlashMessengerSessionData(Container $container): void
     {
         $flashToolbarContainer = new Container('SanSessionToolbarFlashMessenger');
         foreach ($container->getArrayCopy() as $key => $row) {
@@ -74,7 +74,7 @@ class Module implements ConfigProviderInterface
     /**
      * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.
      */
-    public function flashMessengerHandler(EventInterface $e) : void
+    public function flashMessengerHandler(EventInterface $e): void
     {
         /** @var \Laminas\Mvc\Controller\AbstractActionController $controller */
         $controller = $e->getTarget();
@@ -90,7 +90,7 @@ class Module implements ConfigProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfig() : array
+    public function getConfig(): array
     {
         return include __DIR__.'/../config/module.config.php';
     }

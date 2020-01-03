@@ -76,7 +76,7 @@ class SessionCollector extends AbstractCollector
      *
      * @return array|null
      */
-    public function getSessionData() : ?array
+    public function getSessionData(): ?array
     {
         return $this->data['san-session'] = $this->sessionManager->getSessionData();
     }
