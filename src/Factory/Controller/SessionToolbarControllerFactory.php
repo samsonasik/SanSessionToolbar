@@ -32,7 +32,7 @@ use SanSessionToolbar\Manager\SessionManager;
  */
 class SessionToolbarControllerFactory
 {
-    public function __invoke(ContainerInterface $container) : SessionToolbarController
+    public function __invoke(ContainerInterface $container): SessionToolbarController
     {
         return new SessionToolbarController(
             $container->get('ViewRenderer'),

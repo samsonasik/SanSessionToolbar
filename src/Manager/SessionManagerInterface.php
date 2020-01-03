@@ -33,17 +33,17 @@ interface SessionManagerInterface
      *
      * @return array|null
      */
-    public function getSessionData(bool $checkExists = true) : ?array;
+    public function getSessionData(bool $checkExists = true): ?array;
 
     /**
      * Set/Unset Session by Container and its key.
      */
-    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []) : bool;
+    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []): bool;
 
     /**
      * Clear Session.
      *
      * @param string|null $byContainer
      */
-    public function clearSession(string $byContainer = null) : void;
+    public function clearSession(string $byContainer = null): void;
 }
