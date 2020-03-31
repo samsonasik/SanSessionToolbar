@@ -78,6 +78,13 @@ class Module implements ConfigProviderInterface
     {
         /** @var \Laminas\Mvc\Controller\AbstractActionController $controller */
         $controller = $e->getTarget();
+        /** Check that getPluginManager is callable 
+         *  This handles instances where Module.php from the main project
+         *  has additional identifiers added to the EventManager. 
+         */
+        if (!is_callable([$controller, 'getPluginManager'])) {
+            return;
+        }
         if (!$controller->getPluginManager()->has('flashMessenger')) {
             return;
         }
