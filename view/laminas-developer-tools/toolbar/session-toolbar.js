@@ -57,7 +57,7 @@
             var trg = e.target ? e.target : e.srcElement;
 
             var containerNameOriginal = trg.parentNode.getAttribute("data-container");
-            var containerNameEscaped  = containerNameOriginal.split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped  = escape(containerNameOriginal);
             var keysession = trg.parentNode.getAttribute("data-keysession");
             var params = "containerName="+containerNameOriginal+"&keysession="+keysession;
             sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/removesession', function (html) {
@@ -110,7 +110,7 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerNameEscaped = trg.parentNode.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped = escape(trg.parentNode.getAttribute("data-container"));
             var keysession = trg.parentNode.getAttribute("data-keysession");
 
             doc.querySelector("#san-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession).style.display = 'none';
@@ -123,7 +123,7 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerNameEscaped = trg.parentNode.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped = escape(trg.parentNode.getAttribute("data-container"));
             var keysession = trg.parentNode.getAttribute("data-keysession");
 
             doc.querySelector("#san-session-toolbar-info-containerName-"+containerNameEscaped+"-keysession-"+keysession).style.display = 'block';
@@ -143,7 +143,7 @@
             var trg = e.target ? e.target : e.srcElement;
 
             var containerNameOriginal = trg.parentNode.getAttribute("data-container");
-            var containerNameEscaped  = containerNameOriginal.split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped  = escape(containerNameOriginal);
             var keysession = trg.parentNode.getAttribute("data-keysession");
             var params = "containerName="+containerNameOriginal+"&keysession="+keysession+"&sessionvalue="+doc.querySelector('#san-detail-value-containerName-'+containerNameEscaped+'-keysession-'+keysession).value+"&new=0";
             sanSessionToolbar.postDataWithAjax(sanSessionToolbarURL+'/savesession', function (html) {
@@ -165,7 +165,7 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerNameEscaped = trg.parentNode.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped = escape(trg.parentNode.getAttribute("data-container"));
 
             doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerNameEscaped).style.display = 'none';
             // empty error
@@ -178,7 +178,7 @@
             e.preventDefault();
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
-            var containerNameEscaped = trg.getAttribute("data-container").split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped = escape(trg.getAttribute("data-container"));
             doc.querySelector("#san-session-toolbar-info-add-new-data-containerName-"+containerNameEscaped).style.display = 'block';
         },
 
@@ -189,7 +189,7 @@
             // cross-browser event target
             var trg = e.target ? e.target : e.srcElement;
             var containerNameOriginal = trg.parentNode.getAttribute("data-container");
-            var containerNameEscaped  = containerNameOriginal.split('\\\\').join('\\\\\\\\');
+            var containerNameEscaped  = escape(containerNameOriginal);
             var newSessionKey  = doc.querySelector('#san-add-value-sessionkey-containerName-'+containerNameEscaped).value;
             var newSessionData = doc.querySelector('#san-add-value-sessiondata-containerName-'+containerNameEscaped).value;
             var params = "containerName="+containerNameOriginal+"&keysession="+newSessionKey+"&sessionvalue="+newSessionData+"&new=1";
