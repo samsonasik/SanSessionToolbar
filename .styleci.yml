@@ -1,6 +1,7 @@
 preset: recommended
 
 enabled:
+  - risky
   - strict
   - unalign_double_arrow
 
