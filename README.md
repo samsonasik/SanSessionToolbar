@@ -20,7 +20,9 @@ It is a Laminas module as session toolbar for [LaminasDeveloperTools](https://gi
 
 You can reload, clear, add, update, and remove your sessions data.
 
-> This is README for version ^3.0 which only support Laminas 3 with php ^7.2+.
+> This is README for version ^4.0 which only support Laminas 3 with php ^7.3|~8.0.
+
+> For version ^3.0, you can read at [version 3.x.x readme](https://github.com/samsonasik/SanSessionToolbar/blob/3.x.x/README.md) which support ZF3 and php ^7.2.
 
 > For version 2.1.*, you can read at [version 2.1.* readme](https://github.com/samsonasik/SanSessionToolbar/blob/2.1.x/README.md) which support ZF3 and php ^7.2.
 
