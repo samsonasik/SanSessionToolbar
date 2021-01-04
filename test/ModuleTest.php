@@ -19,16 +19,19 @@
 
 namespace SanSessionToolbarTest;
 
-use PHPUnit\Framework\TestCase;
-use SanSessionToolbar\Module;
 use Laminas\Session\Container;
 use Laminas\Stdlib\SplQueue;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use SanSessionToolbar\Module;
 
 /**
  * This class tests Module class.
  */
 class ModuleTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var Module
      */
