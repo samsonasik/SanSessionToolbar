@@ -20,6 +20,7 @@
 namespace SanSessionToolbarTest\Factory\Collector;
 
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
 use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
 
@@ -30,6 +31,8 @@ use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
  */
 class SessionCollectorFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var SessionCollectorFactory */
     protected $factory;
 

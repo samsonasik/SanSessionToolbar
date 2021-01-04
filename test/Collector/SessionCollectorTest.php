@@ -19,12 +19,11 @@
 
 namespace SanSessionToolbarTest\Collector;
 
-use PHPUnit\Framework\TestCase;
-use ReflectionProperty;
-use SanSessionToolbar\Collector\SessionCollector;
-use SanSessionToolbar\Manager\SessionManager;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Session\Container;
+use PHPUnit\Framework\TestCase;
+use SanSessionToolbar\Collector\SessionCollector;
+use SanSessionToolbar\Manager\SessionManager;
 
 /**
  * This class tests SessionCollector class.
