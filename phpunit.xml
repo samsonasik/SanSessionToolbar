@@ -13,7 +13,4 @@
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
-    <php>
-	<env name="XDEBUG_MODE" value="coverage"/>
-    </php>
 </phpunit>
