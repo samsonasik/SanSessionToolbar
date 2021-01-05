@@ -8,7 +8,6 @@ SanSessionToolbar
 [![Code Coverage](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
 [![StyleCI](https://styleci.io/repos/21261604/shield)](https://styleci.io/repos/21261604)
-[![PHP 7 ready](http://php7ready.timesplinter.ch/samsonasik/SanSessionToolbar/badge.svg)](https://travis-ci.org/samsonasik/SanSessionToolbar)
 [![Total Downloads](https://poser.pugx.org/san/san-session-toolbar/downloads)](https://packagist.org/packages/san/san-session-toolbar)
 
 What is it about ?
