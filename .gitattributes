@@ -5,3 +5,4 @@
 /test/ export-ignore
 /CONTRIBUTING.md export-ignore
 /phpunit.xml export-ignore
+/rector.php export-ignore
