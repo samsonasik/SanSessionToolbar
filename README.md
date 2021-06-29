@@ -4,7 +4,7 @@ SanSessionToolbar
 [![Latest Version](https://img.shields.io/github/release/samsonasik/SanSessionToolbar.svg?style=flat-square)](https://github.com/samsonasik/SanSessionToolbar/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Build Status](https://travis-ci.org/samsonasik/SanSessionToolbar.svg?branch=master)](https://travis-ci.org/samsonasik/SanSessionToolbar)
+[![Build Status](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/build-status/master)
 [![Code Coverage](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/samsonasik/SanSessionToolbar/?branch=master)
 [![StyleCI](https://styleci.io/repos/21261604/shield)](https://styleci.io/repos/21261604)
