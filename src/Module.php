@@ -21,8 +21,8 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar;
 
-use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\EventManager\EventInterface;
+use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\MvcEvent;
