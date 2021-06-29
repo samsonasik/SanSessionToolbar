@@ -40,7 +40,7 @@ class SessionToolbarControllerTest extends AbstractHttpControllerTestCase
             ],
             'module_listener_options' => [
                 'module_paths' => [
-                    dirname(dirname(dirname(__DIR__))),
+                    dirname(__DIR__, 3),
                 ],
             ],
         ]);

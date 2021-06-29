@@ -2,6 +2,10 @@
 
 namespace SanSessionToolbar;
 
+use SanSessionToolbar\Controller\SessionToolbarController;
+use SanSessionToolbar\Factory\Controller\SessionToolbarControllerFactory;
+use SanSessionToolbar\Manager\SessionManager;
+use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 /**
@@ -25,7 +29,7 @@ return [
 
     'controllers' => [
         'factories' => [
-            Controller\SessionToolbarController::class => Factory\Controller\SessionToolbarControllerFactory::class,
+            SessionToolbarController::class => SessionToolbarControllerFactory::class,
         ],
     ],
 
@@ -39,7 +43,7 @@ return [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
                     'defaults' => [
-                        'controller' => Controller\SessionToolbarController::class,
+                        'controller' => SessionToolbarController::class,
                         'action'     => 'removesession',
                     ],
                 ],
@@ -49,8 +53,8 @@ return [
 
     'service_manager' => [
         'factories' => [
-            Manager\SessionManager::class => InvokableFactory::class,
-            'session.toolbar' => Factory\Collector\SessionCollectorFactory::class,
+            SessionManager::class => InvokableFactory::class,
+            'session.toolbar' => SessionCollectorFactory::class,
         ],
     ],
 

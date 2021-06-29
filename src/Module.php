@@ -21,6 +21,7 @@ declare(strict_types=1);
 
 namespace SanSessionToolbar;
 
+use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\EventManager\EventInterface;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
@@ -44,7 +45,7 @@ class Module implements ConfigProviderInterface
         }
 
         $app = $e->getApplication();
-        /** @var \Laminas\EventManager\SharedEventManagerInterface $sharedEvm */
+        /** @var SharedEventManagerInterface $sharedEvm */
         $sharedEvm = $app->getEventManager()->getSharedManager();
 
         $sharedEvm->attach(
@@ -76,7 +77,7 @@ class Module implements ConfigProviderInterface
      */
     public function flashMessengerHandler(EventInterface $e): void
     {
-        /** @var \Laminas\Mvc\Controller\AbstractActionController $controller */
+        /** @var AbstractActionController $controller */
         $controller = $e->getTarget();
         if (!$controller->getPluginManager()->has('flashMessenger')) {
             return;

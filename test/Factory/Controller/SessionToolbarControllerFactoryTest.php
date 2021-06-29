@@ -61,7 +61,7 @@ class SessionToolbarControllerFactoryTest extends TestCase
                                  ->willReturn($sessionManager)
                                  ->shouldBeCalled();
 
-            $result = $this->factory->__invoke($this->serviceLocator->reveal(), '');
+            $result = $this->factory->__invoke($this->serviceLocator->reveal());
             $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $result);
     }
 }
