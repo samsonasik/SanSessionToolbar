@@ -56,7 +56,7 @@ class SessionCollectorFactoryTest extends TestCase
                                 ->willReturn($sessionManager)
                                 ->shouldBeCalled();
 
-        $result = $this->factory->__invoke($this->serviceLocator->reveal());
-        $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $result);
+        $sessionCollector = $this->factory->__invoke($this->serviceLocator->reveal());
+        $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $sessionCollector);
     }
 }

@@ -48,8 +48,8 @@ class SessionMangerTest extends TestCase
      */
     public function testSessionIsNotStartedAlready()
     {
-        $manager = new SessionManager();
-        $this->assertNull($manager->getSessionData());
+        $sessionManager = new SessionManager();
+        $this->assertNull($sessionManager->getSessionData());
     }
 
     public function testGetSessionData()

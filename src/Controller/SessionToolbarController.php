@@ -148,8 +148,8 @@ final class SessionToolbarController extends AbstractActionController
         $sessionValue = $request->getPost('sessionvalue', '');
         $new = (bool) $request->getPost('new', false);
 
-        $notEmptyValidator = new NotEmpty();
-        if ($notEmptyValidator->isValid($keysession) && $notEmptyValidator->isValid($sessionValue)) {
+        $notEmpty = new NotEmpty();
+        if ($notEmpty->isValid($keysession) && $notEmpty->isValid($sessionValue)) {
             $success = $this->sessionManager
                             ->sessionSetting($containerName, $keysession, $sessionValue, ['set' => true, 'new' => $new]);
 

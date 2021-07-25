@@ -37,18 +37,18 @@ class Module implements ConfigProviderInterface
     /**
      * Bootstrap Handle FlashMessenger session show.
      */
-    public function onBootstrap(MvcEvent $e)
+    public function onBootstrap(MvcEvent $mvcEvent)
     {
         $manager = Container::getDefaultManager();
         if (!$manager->sessionExists()) {
             return;
         }
 
-        $app = $e->getApplication();
-        /** @var SharedEventManagerInterface $sharedEvm */
-        $sharedEvm = $app->getEventManager()->getSharedManager();
+        $app = $mvcEvent->getApplication();
+        /** @var SharedEventManagerInterface $sharedEventManager */
+        $sharedEventManager = $app->getEventManager()->getSharedManager();
 
-        $sharedEvm->attach(
+        $sharedEventManager->attach(
             AbstractActionController::class,
             'dispatch',
             [$this, 'flashMessengerHandler'],
@@ -75,10 +75,10 @@ class Module implements ConfigProviderInterface
     /**
      * Handle FlashMessenger data to be able to be seen in both "app" and toolbar parts.
      */
-    public function flashMessengerHandler(EventInterface $e): void
+    public function flashMessengerHandler(EventInterface $event): void
     {
         /** @var AbstractActionController $controller */
-        $controller = $e->getTarget();
+        $controller = $event->getTarget();
         if (!$controller->getPluginManager()->has('flashMessenger')) {
             return;
         }

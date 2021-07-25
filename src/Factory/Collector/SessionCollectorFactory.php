@@ -32,8 +32,8 @@ use SanSessionToolbar\Manager\SessionManager;
  */
 class SessionCollectorFactory
 {
-    public function __invoke(ContainerInterface $serviceLocator): SessionCollector
+    public function __invoke(ContainerInterface $container): SessionCollector
     {
-        return new SessionCollector($serviceLocator->get(SessionManager::class));
+        return new SessionCollector($container->get(SessionManager::class));
     }
 }
