@@ -1,0 +1,26 @@
+name: "rector check"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    name: PHP ${{ matrix.php-versions }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['8.0']
+    steps:
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: intl
+          php-version: "${{ matrix.php-versions }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: "Code analyze"
+        run: bin/rector process --dry-run
