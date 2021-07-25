@@ -23,4 +23,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Code analyze"
-        run: bin/rector process --dry-run
+        run: vendor/bin/rector process --dry-run
