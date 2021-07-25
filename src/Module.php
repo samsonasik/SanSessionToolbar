@@ -44,9 +44,9 @@ class Module implements ConfigProviderInterface
             return;
         }
 
-        $app = $mvcEvent->getApplication();
+        $application = $mvcEvent->getApplication();
         /** @var SharedEventManagerInterface $sharedEventManager */
-        $sharedEventManager = $app->getEventManager()->getSharedManager();
+        $sharedEventManager = $application->getEventManager()->getSharedManager();
 
         $sharedEventManager->attach(
             AbstractActionController::class,
@@ -77,13 +77,13 @@ class Module implements ConfigProviderInterface
      */
     public function flashMessengerHandler(EventInterface $event): void
     {
-        /** @var AbstractActionController $controller */
-        $controller = $event->getTarget();
-        if (!$controller->getPluginManager()->has('flashMessenger')) {
+        /** @var AbstractActionController $target */
+        $target = $event->getTarget();
+        if (!$target->getPluginManager()->has('flashMessenger')) {
             return;
         }
 
-        $flash = $controller->plugin('flashMessenger');
+        $flash = $target->plugin('flashMessenger');
         $container = $flash->getContainer();
         $this->duplicateFlashMessengerSessionData($container);
     }
