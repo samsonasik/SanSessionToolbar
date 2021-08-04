@@ -144,7 +144,7 @@ class ModuleTest extends TestCase
         );
         $module = $this->module;
         $abstractActionController = $this->prophesize('Laminas\Mvc\Controller\AbstractActionController');
-        $flashMessenger = $this->prophesize('Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger');
+        $this->prophesize('Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger');
         $pluginManager  = $this->prophesize('Laminas\Mvc\Controller\PluginManager');
 
         $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {

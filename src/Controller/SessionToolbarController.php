@@ -47,9 +47,6 @@ final class SessionToolbarController extends AbstractActionController
 
     /**
      * Construct.
-     *
-     * @param RendererInterface       $viewRenderer
-     * @param SessionManagerInterface $sessionManager
      */
     public function __construct(RendererInterface $viewRenderer, SessionManagerInterface $sessionManager)
     {
@@ -137,7 +134,6 @@ final class SessionToolbarController extends AbstractActionController
     /**
      * Set or Add Session Data Process.
      *
-     * @param Request $request
      *
      * @return array
      */

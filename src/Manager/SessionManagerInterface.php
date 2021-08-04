@@ -30,8 +30,6 @@ interface SessionManagerInterface
 {
     /**
      * Get Session Data.
-     *
-     * @return array|null
      */
     public function getSessionData(bool $checkExists = true): ?array;
 

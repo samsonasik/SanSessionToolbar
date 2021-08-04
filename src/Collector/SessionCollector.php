@@ -39,8 +39,6 @@ class SessionCollector extends AbstractCollector
 
     /**
      * Construct.
-     *
-     * @param SessionManagerInterface $sessionManager
      */
     public function __construct(SessionManagerInterface $sessionManager)
     {
@@ -73,8 +71,6 @@ class SessionCollector extends AbstractCollector
 
     /**
      * Get Session data as array.
-     *
-     * @return array|null
      */
     public function getSessionData(): ?array
     {
