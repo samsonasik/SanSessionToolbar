@@ -1,6 +1,7 @@
 <?php
 
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
+use Rector\CodingStyle\Rector\FuncCall\CallUserFuncArrayToVariadicRector;
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
@@ -15,6 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::PHP_72);
     $containerConfigurator->import(SetList::PHP_73);
     $containerConfigurator->import(SetList::DEAD_CODE);
+    $containerConfigurator->import(SetList::CODING_STYLE);
 
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::PATHS, [__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test']);
@@ -25,5 +27,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::SKIP, [
         CallableThisArrayToAnonymousFunctionRector::class,
         RemoveUnusedPromotedPropertyRector::class,
+        CallUserFuncArrayToVariadicRector::class,
     ]);
 };

@@ -152,6 +152,6 @@ final class SessionToolbarController extends AbstractActionController
             return ['success' => $success, 'errorMessage' => ''];
         }
 
-        return ['success' => false, 'errorMessage' => 'Value is required and can\'t be empty'];
+        return ['success' => false, 'errorMessage' => "Value is required and can't be empty"];
     }
 }

@@ -19,6 +19,13 @@
 
 namespace SanSessionToolbarTest;
 
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Application;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\SharedEventManager;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
+use Laminas\Mvc\Controller\PluginManager;
 use Laminas\Session\Container;
 use Laminas\Stdlib\SplQueue;
 use PHPUnit\Framework\TestCase;
@@ -47,7 +54,7 @@ class ModuleTest extends TestCase
      */
     public function testOnBootstrapOnSessionNotExists()
     {
-        $e = $this->prophesize('Laminas\Mvc\MvcEvent');
+        $e = $this->prophesize(MvcEvent::class);
         $this->assertNull($this->module->onBootstrap($e->reveal()));
     }
 
@@ -65,24 +72,24 @@ class ModuleTest extends TestCase
      */
     public function testOnBootstrap($hasMessages)
     {
-        $e = $this->prophesize('Laminas\Mvc\MvcEvent');
+        $e = $this->prophesize(MvcEvent::class);
 
         if ($hasMessages) {
             new Container();
 
-            $application = $this->prophesize('Laminas\Mvc\Application');
-            $eventManager = $this->prophesize('Laminas\EventManager\EventManager');
-            $sharedEvm = $this->prophesize('Laminas\EventManager\SharedEventManager');
+            $application = $this->prophesize(Application::class);
+            $eventManager = $this->prophesize(EventManager::class);
+            $sharedEvm = $this->prophesize(SharedEventManager::class);
             $sharedEvmAttach = $sharedEvm->attach(
-                'Laminas\Mvc\Controller\AbstractActionController',
+                AbstractActionController::class,
                 'dispatch',
                 [$this->module, 'flashMessengerHandler'],
                 2
             );
             $module = $this->module;
-            $abstractActionController = $this->prophesize('Laminas\Mvc\Controller\AbstractActionController');
-            $flashMessenger = $this->prophesize('Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger');
-            $pluginManager  = $this->prophesize('Laminas\Mvc\Controller\PluginManager');
+            $abstractActionController = $this->prophesize(AbstractActionController::class);
+            $flashMessenger = $this->prophesize(FlashMessenger::class);
+            $pluginManager  = $this->prophesize(PluginManager::class);
 
             $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
                 $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
@@ -131,20 +138,20 @@ class ModuleTest extends TestCase
 
     public function testOnBootstrapWithDoesntHasFlashMessenger()
     {
-        $e = $this->prophesize('Laminas\Mvc\MvcEvent');
+        $e = $this->prophesize(MvcEvent::class);
 
-        $application = $this->prophesize('Laminas\Mvc\Application');
-        $eventManager = $this->prophesize('Laminas\EventManager\EventManager');
-        $sharedEvm = $this->prophesize('Laminas\EventManager\SharedEventManager');
+        $application = $this->prophesize(Application::class);
+        $eventManager = $this->prophesize(EventManager::class);
+        $sharedEvm = $this->prophesize(SharedEventManager::class);
         $sharedEvmAttach = $sharedEvm->attach(
-            'Laminas\Mvc\Controller\AbstractActionController',
+            AbstractActionController::class,
             'dispatch',
             [$this->module, 'flashMessengerHandler'],
             2
         );
         $module = $this->module;
-        $abstractActionController = $this->prophesize('Laminas\Mvc\Controller\AbstractActionController');
-        $pluginManager  = $this->prophesize('Laminas\Mvc\Controller\PluginManager');
+        $abstractActionController = $this->prophesize(AbstractActionController::class);
+        $pluginManager  = $this->prophesize(PluginManager::class);
 
         $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {
             $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();

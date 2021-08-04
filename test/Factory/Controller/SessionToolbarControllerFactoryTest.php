@@ -19,6 +19,10 @@
 
 namespace SanSessionToolbarTest\Factory\Controller;
 
+use Laminas\View\Renderer\RendererInterface;
+use SanSessionToolbar\Manager\SessionManagerInterface;
+use SanSessionToolbar\Manager\SessionManager;
+use SanSessionToolbar\Controller\SessionToolbarController;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
@@ -42,7 +46,7 @@ class SessionToolbarControllerFactoryTest extends TestCase
     protected function setUp(): void
     {
         /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->prophesize('Psr\Container\ContainerInterface');
+        $serviceLocator = $this->prophesize(ContainerInterface::class);
         $this->serviceLocator = $serviceLocator;
 
         $factory = new SessionToolbarControllerFactory();
@@ -51,17 +55,17 @@ class SessionToolbarControllerFactoryTest extends TestCase
 
     public function testInvoke()
     {
-            $mockViewRenderer = $this->prophesize('Laminas\View\Renderer\RendererInterface');
+            $mockViewRenderer = $this->prophesize(RendererInterface::class);
             $this->serviceLocator->get('ViewRenderer')
                                  ->willReturn($mockViewRenderer)
                                  ->shouldBeCalled();
 
-            $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
-            $this->serviceLocator->get('SanSessionToolbar\Manager\SessionManager')
+            $sessionManager = $this->prophesize(SessionManagerInterface::class);
+            $this->serviceLocator->get(SessionManager::class)
                                  ->willReturn($sessionManager)
                                  ->shouldBeCalled();
 
             $sessionToolbarController = $this->factory->__invoke($this->serviceLocator->reveal());
-            $this->assertInstanceOf('SanSessionToolbar\Controller\SessionToolbarController', $sessionToolbarController);
+            $this->assertInstanceOf(SessionToolbarController::class, $sessionToolbarController);
     }
 }

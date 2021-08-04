@@ -19,6 +19,9 @@
 
 namespace SanSessionToolbarTest\Factory\Collector;
 
+use SanSessionToolbar\Manager\SessionManagerInterface;
+use SanSessionToolbar\Manager\SessionManager;
+use SanSessionToolbar\Collector\SessionCollector;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
@@ -42,7 +45,7 @@ class SessionCollectorFactoryTest extends TestCase
     protected function setUp(): void
     {
         /** @var ContainerInterface $serviceLocator */
-        $serviceLocator = $this->prophesize('Psr\Container\ContainerInterface');
+        $serviceLocator = $this->prophesize(ContainerInterface::class);
         $this->serviceLocator = $serviceLocator;
 
         $factory = new SessionCollectorFactory();
@@ -51,12 +54,12 @@ class SessionCollectorFactoryTest extends TestCase
 
     public function testInvoke()
     {
-        $sessionManager = $this->prophesize('SanSessionToolbar\Manager\SessionManagerInterface');
-        $this->serviceLocator->get('SanSessionToolbar\Manager\SessionManager')
+        $sessionManager = $this->prophesize(SessionManagerInterface::class);
+        $this->serviceLocator->get(SessionManager::class)
                                 ->willReturn($sessionManager)
                                 ->shouldBeCalled();
 
         $sessionCollector = $this->factory->__invoke($this->serviceLocator->reveal());
-        $this->assertInstanceOf('SanSessionToolbar\Collector\SessionCollector', $sessionCollector);
+        $this->assertInstanceOf(SessionCollector::class, $sessionCollector);
     }
 }
