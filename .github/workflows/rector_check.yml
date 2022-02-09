@@ -23,6 +23,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Install dependencies"
-        run: "composer install --prefer-dist --ignore-platform-reqs"
+        run: "composer install --prefer-dist"
       - name: "Code analyze"
         run: vendor/bin/rector process --dry-run

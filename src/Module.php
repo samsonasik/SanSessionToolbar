@@ -67,6 +67,7 @@ class Module implements ConfigProviderInterface
                 if ($keyArray === 0) {
                     $flashToolbarContainer->$key = new SplQueue();
                 }
+
                 $flashToolbarContainer->$key->push($rowArray);
             }
         }
