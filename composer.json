@@ -30,7 +30,7 @@
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.0",
         "laminas/laminas-router": "^3.0",
         "laminas/laminas-serializer": "^2.5",
-        "laminas/laminas-test": "^3.0",
+        "laminas/laminas-test": "^4.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4",
         "rector/rector": "^0.11.43"
