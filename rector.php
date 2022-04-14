@@ -1,32 +1,23 @@
 <?php
 
+use Rector\Config\RectorConfig;
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
-use Rector\CodingStyle\Rector\FuncCall\CallUserFuncArrayToVariadicRector;
-use Rector\Core\Configuration\Option;
-use Rector\Core\ValueObject\PhpVersion;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Set\ValueObject\SetList;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Set\ValueObject\LevelSetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::CODE_QUALITY);
-    $containerConfigurator->import(SetList::NAMING);
-    $containerConfigurator->import(SetList::PHP_70);
-    $containerConfigurator->import(SetList::PHP_71);
-    $containerConfigurator->import(SetList::PHP_72);
-    $containerConfigurator->import(SetList::PHP_73);
-    $containerConfigurator->import(SetList::DEAD_CODE);
-    $containerConfigurator->import(SetList::CODING_STYLE);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->sets([
+        SetList::CODE_QUALITY,
+        SetList::NAMING,
+        LevelSetList::UP_TO_PHP_73,
+        SetList::DEAD_CODE,
+        SetList::CODING_STYLE
+    ]);
 
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test']);
+    $rectorConfig->paths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test', __DIR__ . '/rector.php']);
+    $rectorConfig->importNames();
 
-    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_73);
-
-    $parameters->set(Option::SKIP, [
+    $rectorConfig->skip([
         CallableThisArrayToAnonymousFunctionRector::class,
-        RemoveUnusedPromotedPropertyRector::class,
-        CallUserFuncArrayToVariadicRector::class,
     ]);
 };
