@@ -109,6 +109,7 @@ class ModuleTest extends TestCase
                     $flashMessenger->getContainer()->willReturn($container)
                                                    ->shouldBeCalled();
                 }
+
                 $abstractActionController->plugin('flashMessenger')
                                          ->willReturn($flashMessenger)
                                          ->shouldBeCalled();
