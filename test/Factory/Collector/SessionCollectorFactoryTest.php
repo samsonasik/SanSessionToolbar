@@ -48,8 +48,7 @@ class SessionCollectorFactoryTest extends TestCase
         $serviceLocator = $this->prophesize(ContainerInterface::class);
         $this->serviceLocator = $serviceLocator;
 
-        $factory = new SessionCollectorFactory();
-        $this->factory = $factory;
+        $this->factory = new SessionCollectorFactory();
     }
 
     public function testInvoke()

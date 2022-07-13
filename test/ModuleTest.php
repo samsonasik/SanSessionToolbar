@@ -91,10 +91,9 @@ class ModuleTest extends TestCase
             $flashMessenger = $this->prophesize(FlashMessenger::class);
             $pluginManager  = $this->prophesize(PluginManager::class);
 
-            $sharedEvmAttach->will(function() use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
+            $sharedEvmAttach->will(static function () use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
                 $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
                 $pluginManager->has('flashMessenger')->willReturn(true)->shouldBeCalled();
-
                 if ($hasMessages) {
                     $namespace = 'flash';
                     $message   = 'a message';
@@ -110,14 +109,12 @@ class ModuleTest extends TestCase
                     $flashMessenger->getContainer()->willReturn($container)
                                                    ->shouldBeCalled();
                 }
-
                 $abstractActionController->plugin('flashMessenger')
                                          ->willReturn($flashMessenger)
                                          ->shouldBeCalled();
                 $e->getTarget()
                   ->willReturn($abstractActionController)
                   ->shouldBeCalled();
-
                 $module->flashMessengerHandler($e->reveal());
             });
             $sharedEvmAttach->shouldBeCalled();
@@ -154,14 +151,12 @@ class ModuleTest extends TestCase
         $abstractActionController = $this->prophesize(AbstractActionController::class);
         $pluginManager  = $this->prophesize(PluginManager::class);
 
-        $sharedEvmAttach->will(function() use ($module, $e, $abstractActionController, $pluginManager) {
+        $sharedEvmAttach->will(static function () use ($module, $e, $abstractActionController, $pluginManager) {
             $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
             $pluginManager->has('flashMessenger')->willReturn(false)->shouldBeCalled();
-
             $e->getTarget()
               ->willReturn($abstractActionController)
               ->shouldBeCalled();
-
             $module->flashMessengerHandler($e->reveal());
         });
         $sharedEvmAttach->shouldBeCalled();

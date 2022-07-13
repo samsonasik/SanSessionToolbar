@@ -49,8 +49,7 @@ class SessionToolbarControllerFactoryTest extends TestCase
         $serviceLocator = $this->prophesize(ContainerInterface::class);
         $this->serviceLocator = $serviceLocator;
 
-        $factory = new SessionToolbarControllerFactory();
-        $this->factory = $factory;
+        $this->factory = new SessionToolbarControllerFactory();
     }
 
     public function testInvoke()
