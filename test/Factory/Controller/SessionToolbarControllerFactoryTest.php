@@ -54,9 +54,9 @@ class SessionToolbarControllerFactoryTest extends TestCase
 
     public function testInvoke()
     {
-            $mockViewRenderer = $this->prophesize(RendererInterface::class);
+            $objectProphecy = $this->prophesize(RendererInterface::class);
             $this->serviceLocator->get('ViewRenderer')
-                                 ->willReturn($mockViewRenderer)
+                                 ->willReturn($objectProphecy)
                                  ->shouldBeCalled();
 
             $sessionManager = $this->prophesize(SessionManagerInterface::class);

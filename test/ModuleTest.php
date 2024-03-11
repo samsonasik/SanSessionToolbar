@@ -54,8 +54,8 @@ class ModuleTest extends TestCase
      */
     public function testOnBootstrapOnSessionNotExists()
     {
-        $e = $this->prophesize(MvcEvent::class);
-        $this->assertNull($this->module->onBootstrap($e->reveal()));
+        $objectProphecy = $this->prophesize(MvcEvent::class);
+        $this->assertNull($this->module->onBootstrap($objectProphecy->reveal()));
     }
 
     public function provideHasMessages()
@@ -72,7 +72,7 @@ class ModuleTest extends TestCase
      */
     public function testOnBootstrap($hasMessages)
     {
-        $e = $this->prophesize(MvcEvent::class);
+        $objectProphecy = $this->prophesize(MvcEvent::class);
 
         if ($hasMessages) {
             new Container();
@@ -91,7 +91,7 @@ class ModuleTest extends TestCase
             $flashMessenger = $this->prophesize(FlashMessenger::class);
             $pluginManager  = $this->prophesize(PluginManager::class);
 
-            $sharedEvmAttach->will(static function () use ($module, $e, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
+            $sharedEvmAttach->will(static function () use ($module, $objectProphecy, $hasMessages, $abstractActionController, $flashMessenger, $pluginManager) {
                 $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
                 $pluginManager->has('flashMessenger')->willReturn(true)->shouldBeCalled();
                 if ($hasMessages) {
@@ -113,10 +113,10 @@ class ModuleTest extends TestCase
                 $abstractActionController->plugin('flashMessenger')
                                          ->willReturn($flashMessenger)
                                          ->shouldBeCalled();
-                $e->getTarget()
+                $objectProphecy->getTarget()
                   ->willReturn($abstractActionController)
                   ->shouldBeCalled();
-                $module->flashMessengerHandler($e->reveal());
+                $module->flashMessengerHandler($objectProphecy->reveal());
             });
             $sharedEvmAttach->shouldBeCalled();
 
@@ -127,17 +127,17 @@ class ModuleTest extends TestCase
                         ->willReturn($eventManager)
                         ->shouldBeCalled();
 
-            $e->getApplication()
+            $objectProphecy->getApplication()
               ->willReturn($application)
               ->shouldBeCalled();
         }
 
-        $this->assertNull($this->module->onBootstrap($e->reveal()));
+        $this->assertNull($this->module->onBootstrap($objectProphecy->reveal()));
     }
 
     public function testOnBootstrapWithDoesntHasFlashMessenger()
     {
-        $e = $this->prophesize(MvcEvent::class);
+        $objectProphecy = $this->prophesize(MvcEvent::class);
 
         $application = $this->prophesize(Application::class);
         $eventManager = $this->prophesize(EventManager::class);
@@ -152,13 +152,13 @@ class ModuleTest extends TestCase
         $abstractActionController = $this->prophesize(AbstractActionController::class);
         $pluginManager  = $this->prophesize(PluginManager::class);
 
-        $sharedEvmAttach->will(static function () use ($module, $e, $abstractActionController, $pluginManager) {
+        $sharedEvmAttach->will(static function () use ($module, $objectProphecy, $abstractActionController, $pluginManager) {
             $abstractActionController->getPluginManager()->willReturn($pluginManager)->shouldBeCalled();
             $pluginManager->has('flashMessenger')->willReturn(false)->shouldBeCalled();
-            $e->getTarget()
+            $objectProphecy->getTarget()
               ->willReturn($abstractActionController)
               ->shouldBeCalled();
-            $module->flashMessengerHandler($e->reveal());
+            $module->flashMessengerHandler($objectProphecy->reveal());
         });
         $sharedEvmAttach->shouldBeCalled();
 
@@ -169,11 +169,11 @@ class ModuleTest extends TestCase
                     ->willReturn($eventManager)
                     ->shouldBeCalled();
 
-        $e->getApplication()
+        $objectProphecy->getApplication()
           ->willReturn($application)
           ->shouldBeCalled();
 
-        $this->module->onBootstrap($e->reveal());
+        $this->module->onBootstrap($objectProphecy->reveal());
     }
 
     public function testGetConfig()
