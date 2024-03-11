@@ -17,6 +17,7 @@ return RectorConfig::configure()
         false,
         false,
         false,
+        false,
         true, // php73
     )
     ->withPaths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test'])
