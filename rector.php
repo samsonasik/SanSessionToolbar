@@ -5,19 +5,17 @@ use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\Set\ValueObject\SetList;
 use Rector\Set\ValueObject\LevelSetList;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->sets([
-        SetList::CODE_QUALITY,
-        SetList::NAMING,
-        LevelSetList::UP_TO_PHP_73,
-        SetList::DEAD_CODE,
-        SetList::CODING_STYLE
-    ]);
-
-    $rectorConfig->paths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test', __DIR__ . '/rector.php']);
-    $rectorConfig->importNames();
-
-    $rectorConfig->skip([
+return RectorConfig::configure()
+    ->withPreparedSets(
+        codeQuality: true,
+        naming: true,
+        deadCode: true,
+        codingStyle: true
+    )
+    ->withPhpSets(php73: true)
+    ->withPaths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test'])
+    ->withRootFiles()
+    ->withImportNames()
+    ->withSkip([
         CallableThisArrayToAnonymousFunctionRector::class,
     ]);
-};

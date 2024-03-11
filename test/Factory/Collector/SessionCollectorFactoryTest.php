@@ -53,9 +53,9 @@ class SessionCollectorFactoryTest extends TestCase
 
     public function testInvoke()
     {
-        $sessionManager = $this->prophesize(SessionManagerInterface::class);
+        $objectProphecy = $this->prophesize(SessionManagerInterface::class);
         $this->serviceLocator->get(SessionManager::class)
-                                ->willReturn($sessionManager)
+                                ->willReturn($objectProphecy)
                                 ->shouldBeCalled();
 
         $sessionCollector = $this->factory->__invoke($this->serviceLocator->reveal());
