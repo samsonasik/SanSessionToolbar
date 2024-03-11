@@ -12,7 +12,13 @@ return RectorConfig::configure()
         false,
         true, // naming
     )
-    ->withPhpSets(php73: true)
+    ->withPhpSets(
+        false,
+        false,
+        false,
+        false,
+        false, // php73
+    )
     ->withPaths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test'])
     ->withRootFiles()
     ->withImportNames()
