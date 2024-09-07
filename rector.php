@@ -21,7 +21,7 @@ return RectorConfig::configure()
     ])
     ->withPaths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test'])
     ->withRootFiles()
-    ->withImportNames()
+    ->withImportNames(removeUnusedImports: true)
     ->withSkip([
         FirstClassCallableRector::class
     ]);
