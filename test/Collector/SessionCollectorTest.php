@@ -19,6 +19,7 @@
 
 namespace SanSessionToolbarTest\Collector;
 
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Session\Container;
 use PHPUnit\Framework\TestCase;
@@ -66,9 +67,7 @@ class SessionCollectorTest extends TestCase
         $this->assertEquals(10, $this->sessionCollector->getPriority());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testGetSessionData()
     {
         $this->sessionContainer->word = 'zaf8go6i';
@@ -100,9 +99,7 @@ class SessionCollectorTest extends TestCase
         ], $this->sessionCollector->getSessionData());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testGetSessionDataForEmpty()
     {
         $this->sessionContainer->offsetUnset('word');

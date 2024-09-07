@@ -36,22 +36,10 @@ use SanSessionToolbar\Manager\SessionManagerInterface;
 final class SessionToolbarController extends AbstractActionController
 {
     /**
-     * @var RendererInterface
-     */
-    private $viewRenderer;
-
-    /**
-     * @var SessionManagerInterface
-     */
-    private $sessionManager;
-
-    /**
      * Construct.
      */
-    public function __construct(RendererInterface $viewRenderer, SessionManagerInterface $sessionManager)
+    public function __construct(private readonly RendererInterface $viewRenderer, private readonly SessionManagerInterface $sessionManager)
     {
-        $this->viewRenderer = $viewRenderer;
-        $this->sessionManager = $sessionManager;
     }
 
     /**

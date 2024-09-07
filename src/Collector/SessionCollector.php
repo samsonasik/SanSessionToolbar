@@ -66,7 +66,7 @@ class SessionCollector extends AbstractCollector
      */
     public function collect(MvcEvent $mvcEvent)
     {
-        $this->data['san-session'] = $this->data['san-session'] ?? [];
+        $this->data['san-session'] ??= [];
     }
 
     /**

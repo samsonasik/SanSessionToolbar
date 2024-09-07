@@ -19,6 +19,8 @@
 
 namespace SanSessionToolbarTest;
 
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Application;
 use Laminas\EventManager\EventManager;
@@ -49,16 +51,14 @@ class ModuleTest extends TestCase
         $this->module = new Module();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testOnBootstrapOnSessionNotExists()
     {
         $objectProphecy = $this->prophesize(MvcEvent::class);
         $this->assertNull($this->module->onBootstrap($objectProphecy->reveal()));
     }
 
-    public function provideHasMessages()
+    public static function provideHasMessages()
     {
         return [
             [false],
@@ -66,10 +66,8 @@ class ModuleTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provideHasMessages
-     * @runInSeparateProcess
-     */
+    #[DataProvider('provideHasMessages')]
+    #[RunInSeparateProcess]
     public function testOnBootstrap($hasMessages)
     {
         $objectProphecy = $this->prophesize(MvcEvent::class);

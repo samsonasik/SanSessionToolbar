@@ -19,6 +19,8 @@
 
 namespace SanSessionToolbarTest\Manager;
 
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Laminas\Session\Container;
 use PHPUnit\Framework\TestCase;
 use SanSessionToolbar\Manager\SessionManager;
@@ -43,9 +45,7 @@ class SessionMangerTest extends TestCase
         $this->manager = new SessionManager();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testSessionIsNotStartedAlready()
     {
         $sessionManager = new SessionManager();
@@ -71,9 +71,7 @@ class SessionMangerTest extends TestCase
         $this->assertEquals($sessionData, $this->manager->getSessionData());
     }
 
-    /**
-     * @dataProvider provideClearSession
-     */
+    #[DataProvider('provideClearSession')]
     public function testClearSession($byContainer, $result)
     {
         $fooContainer = new Container('Foo');
@@ -83,7 +81,7 @@ class SessionMangerTest extends TestCase
         $this->assertEquals($result, $this->manager->getSessionData());
     }
 
-    public function provideClearSession()
+    public static function provideClearSession()
     {
         return [
             ['Default', ['Foo' => ['foo' => 'fooValue']]],
@@ -91,9 +89,7 @@ class SessionMangerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provideSessionSettingData
-     */
+    #[DataProvider('provideSessionSettingData')]
     public function testSessionSetting($container, $keysession, $value, $options, $result)
     {
         $fooContainer = new Container('Foo');
@@ -102,7 +98,7 @@ class SessionMangerTest extends TestCase
         $this->assertEquals($result, $this->manager->sessionSetting($container, $keysession, $value, $options));
     }
 
-    public function provideSessionSettingData()
+    public static function provideSessionSettingData()
     {
         return [
             ['Default', 'foo', null, [], false],
