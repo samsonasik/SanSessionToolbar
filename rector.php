@@ -1,8 +1,8 @@
 <?php
 
 use Rector\Config\RectorConfig;
-use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\Php81\Rector\Array_\FirstClassCallableRector;
+use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
     ->withPreparedSets(
@@ -16,6 +16,9 @@ return RectorConfig::configure()
     ->withPhpSets(
         php81: true
     )
+    ->withSets([
+        PHPUnitSetList::PHPUNIT_100
+    ])
     ->withPaths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test'])
     ->withRootFiles()
     ->withImportNames()
