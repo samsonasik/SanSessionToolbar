@@ -36,12 +36,12 @@ interface SessionManagerInterface
     /**
      * Set/Unset Session by Container and its key.
      */
-    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []): bool;
+    public function sessionSetting(string $containerName, string $keysession, ?string $value = null, array $options = []): bool;
 
     /**
      * Clear Session.
      *
      * @param string|null $byContainer
      */
-    public function clearSession(string $byContainer = null): void;
+    public function clearSession(?string $byContainer = null): void;
 }

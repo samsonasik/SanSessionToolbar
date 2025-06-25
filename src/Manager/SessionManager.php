@@ -72,7 +72,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function sessionSetting(string $containerName, string $keysession, string $value = null, array $options = []): bool
+    public function sessionSetting(string $containerName, string $keysession, ?string $value = null, array $options = []): bool
     {
         $container = new Container($containerName);
         $new = $options['new'] ?? false;
@@ -123,7 +123,7 @@ final class SessionManager implements SessionManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function clearSession(string $byContainer = null): void
+    public function clearSession(?string $byContainer = null): void
     {
         (new Container())->getManager()
              ->getStorage()
