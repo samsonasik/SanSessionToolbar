@@ -1,7 +1,7 @@
 <?php
 
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\Array_\FirstClassCallableRector;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
@@ -23,5 +23,5 @@ return RectorConfig::configure()
     ->withRootFiles()
     ->withImportNames(removeUnusedImports: true)
     ->withSkip([
-        FirstClassCallableRector::class
+        ArrayToFirstClassCallableRector::class,
     ]);
