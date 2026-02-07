@@ -30,7 +30,7 @@ use SanSessionToolbar\Manager\SessionManager;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionMangerTest extends TestCase
+class SessionManagerTest extends TestCase
 {
     /**
      * @var SessionManager
