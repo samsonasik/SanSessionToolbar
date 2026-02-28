@@ -19,20 +19,19 @@
     ],
     "require": {
         "php": "^8.1",
-        "laminas/laminas-json": "^2.5 || ^3.0",
-        "laminas/laminas-mvc": "^3.0",
-        "laminas/laminas-session": "^2.8.4"
+        "laminas/laminas-json": "^2.5 || ^3.8",
+        "laminas/laminas-mvc": "^3.8",
+        "laminas/laminas-session": "^2.26"
     },
     "require-dev": {
-        "laminas/laminas-developer-tools": "^1.3.1 || ^2.0.2",
-        "laminas/laminas-i18n": "^2.5",
-        "laminas/laminas-log": "^2.5",
-        "laminas/laminas-mvc-plugin-flashmessenger": "^1.0",
-        "laminas/laminas-router": "^3.0",
-        "laminas/laminas-serializer": "^2.5",
-        "laminas/laminas-test": "^4.10",
-        "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^10.4",
+        "laminas/laminas-developer-tools": "^1.3.1 || ^2.10",
+        "laminas/laminas-i18n": "^2.32",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.11",
+        "laminas/laminas-router": "^3.17",
+        "laminas/laminas-serializer": "^2.18",
+        "laminas/laminas-test": "^4.12",
+        "phpspec/prophecy-phpunit": "^2.5",
+        "phpunit/phpunit": "^11.5",
         "rector/rector": "dev-main"
     },
     "conflict": {
