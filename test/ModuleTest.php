@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -37,7 +39,7 @@ use SanSessionToolbar\Module;
 /**
  * This class tests Module class.
  */
-class ModuleTest extends TestCase
+final class ModuleTest extends TestCase
 {
     use ProphecyTrait;
 

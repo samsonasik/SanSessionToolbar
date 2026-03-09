@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,7 +34,7 @@ use SanSessionToolbar\Factory\Collector\SessionCollectorFactory;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollectorFactoryTest extends TestCase
+final class SessionCollectorFactoryTest extends TestCase
 {
     use ProphecyTrait;
 

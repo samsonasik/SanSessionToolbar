@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -31,7 +33,7 @@ use SanSessionToolbar\Manager\SessionManager;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionCollectorTest extends TestCase
+final class SessionCollectorTest extends TestCase
 {
     /**
      * @var SessionCollector
