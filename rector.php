@@ -11,7 +11,7 @@ return RectorConfig::configure()
         naming: true,
     )
     ->withPhpSets(
-        php81: true
+        php82: true
     )
     ->withComposerBased(phpunit: true)
     ->withPaths([__DIR__ . '/config', __DIR__ . '/src', __DIR__ . '/test'])
