@@ -9,6 +9,7 @@ return RectorConfig::configure()
         codeQuality: true,
         codingStyle: true,
         naming: true,
+        rectorPreset: true
     )
     ->withPhpSets(
         php81: true

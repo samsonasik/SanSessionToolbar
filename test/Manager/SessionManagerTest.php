@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -16,7 +18,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace SanSessionToolbarTest\Manager;
 
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -30,7 +31,7 @@ use SanSessionToolbar\Manager\SessionManager;
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class SessionManagerTest extends TestCase
+final class SessionManagerTest extends TestCase
 {
     /**
      * @var SessionManager
