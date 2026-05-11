@@ -1,0 +1,28 @@
+name: "structarmed check"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    name: PHP ${{ matrix.php-versions }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['8.2']
+    steps:
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: intl
+          php-version: "${{ matrix.php-versions }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: "Install dependencies"
+        run: "composer install --prefer-dist"
+      - name: "Code analyze"
+        run: vendor/bin/structarmed analyze
